@@ -858,7 +858,7 @@ export const uxContentProjects: UXContentProject[] = [
   },
   {
     id: "Proyecto-5",
-    title: "Comunicación de productos financieros y estrategia de contenido",
+    title: "Estrategia de contenido y comunicación para una fintech",
     client: "Proyecto 5",
     year: "2018–2021",
     coverImage: "/images/other-projecto-1-imagen-1.jpg",
