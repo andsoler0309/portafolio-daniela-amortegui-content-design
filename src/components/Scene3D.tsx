@@ -210,18 +210,12 @@ export function Scene3D() {
         dpr={[1, 1.5]}
         gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
-        frameloop="demand"
+        frameloop="always"
       >
         <LetterField />
         <Particles />
-        <ContinuousInvalidate />
       </Canvas>
     </div>
   );
 }
 
-/** Invalidate on each frame so "demand" mode still animates */
-function ContinuousInvalidate() {
-  useFrame(({ invalidate }) => { invalidate(); });
-  return null;
-}

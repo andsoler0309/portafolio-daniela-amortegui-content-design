@@ -168,7 +168,7 @@ function InflateText({
 }
 
 /* ─── SECTION IDs ─── */
-const SECTIONS = [
+const SECTIONS_FULL = [
   { id: "rol", label: "Rol" },
   { id: "objetivo", label: "Objetivo" },
   { id: "desafio", label: "Desafío" },
@@ -176,6 +176,16 @@ const SECTIONS = [
   { id: "solucion", label: "Solución" },
   { id: "resultados", label: "Resultados" },
 ];
+
+const SECTIONS_COMPACT = [
+  { id: "desafio", label: "Desafío" },
+  { id: "enfoque", label: "Enfoque" },
+  { id: "impacto", label: "Impacto" },
+];
+
+function getSections(project: UXContentProject) {
+  return project.variant === "compact" ? SECTIONS_COMPACT : SECTIONS_FULL;
+}
 
 /* ─── IMAGE PLACEHOLDER / SLOT ─── */
 function ImageSlot({ src, alt }: { src?: string; alt?: string; aspect?: string }) {
@@ -256,7 +266,7 @@ function SectionLabel({ label }: { label: string }) {
 }
 
 /* ─── SECTION NAV (scroll-spy anchors) ─── */
-function SectionNav({ activeSection, projectId }: { activeSection: string; projectId: string }) {
+function SectionNav({ activeSection, projectId, sections }: { activeSection: string; projectId: string; sections: { id: string; label: string }[] }) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(`${projectId}-${id}`);
     if (!el) return;
@@ -266,7 +276,7 @@ function SectionNav({ activeSection, projectId }: { activeSection: string; proje
   };
   return (
     <div className="hidden md:flex items-center overflow-x-auto scrollbar-hide" style={{ gap: "0.5rem", height: "2.8rem" }}>
-      {SECTIONS.map((s) => (
+      {sections.map((s) => (
         <button
           key={s.id}
           onClick={() => scrollTo(s.id)}
@@ -286,25 +296,27 @@ function SectionNav({ activeSection, projectId }: { activeSection: string; proje
 
 /* ─── ROL ─── */
 function RolSection({ project }: { project: UXContentProject }) {
+  if (!project.rol) return null;
+  const rol = project.rol;
   return (
     <div className="flex flex-col gap-14">
       <div className="space-y-8">
         <p className="text-fg-primary font-normal" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.2rem)", lineHeight: 1.85 }}>
-          <T>{project.rol.text}</T>
+          <T>{rol.text}</T>
         </p>
         {/* Rich blocks */}
-        {project.rol.blocks && (
+        {rol.blocks && (
           <div>
-            {project.rol.blocks.map((block, i) => (
+            {rol.blocks.map((block, i) => (
               <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
                 <ContentBlockItem block={block} index={i} />
               </div>
             ))}
           </div>
         )}
-        {project.rol.bullets && (
+        {rol.bullets && (
           <ul className="">
-            {project.rol.bullets.map((bullet, i) => (
+            {rol.bullets.map((bullet, i) => (
               <motion.li
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
@@ -315,7 +327,7 @@ function RolSection({ project }: { project: UXContentProject }) {
                 style={{
                   paddingTop: "1rem",
                   paddingBottom: "1rem",
-                  borderBottom: i < (project.rol.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none",
+                  borderBottom: i < (rol.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none",
                 }}
               >
                 <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
@@ -325,8 +337,8 @@ function RolSection({ project }: { project: UXContentProject }) {
           </ul>
         )}
       </div>
-      {project.rol.image && (
-        <ImageSlot src={project.rol.image} alt={`Rol — ${project.client}`} />
+      {rol.image && (
+        <ImageSlot src={rol.image} alt={`Rol — ${project.client}`} />
       )}
     </div>
   );
@@ -334,19 +346,21 @@ function RolSection({ project }: { project: UXContentProject }) {
 
 /* ─── OBJETIVO ─── */
 function ObjetivoSection({ project }: { project: UXContentProject }) {
+  if (!project.objetivoGeneral) return null;
+  const obj = project.objetivoGeneral;
   return (
-    <div className={`grid grid-cols-1 ${project.objetivoGeneral.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
-      {project.objetivoGeneral.image && (
+    <div className={`grid grid-cols-1 ${obj.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+      {obj.image && (
         <div className="lg:col-span-5 lg:order-2">
-          <ImageSlot src={project.objetivoGeneral.image} alt={`Objetivo — ${project.client}`} aspect="3/4" />
+          <ImageSlot src={obj.image} alt={`Objetivo — ${project.client}`} aspect="3/4" />
         </div>
       )}
-      <div className={`${project.objetivoGeneral.image ? 'lg:col-span-7 lg:order-1' : 'max-w-3xl'} space-y-8`}>
-        <p className="text-fg-secondary font-normal" style={{ fontSize: "clamp(1rem, 1.4vw, 1.1rem)", lineHeight: 1.9 }}><T>{project.objetivoGeneral.text}</T></p>
+      <div className={`${obj.image ? 'lg:col-span-7 lg:order-1' : 'max-w-3xl'} space-y-8`}>
+        <p className="text-fg-secondary font-normal" style={{ fontSize: "clamp(1rem, 1.4vw, 1.1rem)", lineHeight: 1.9 }}><T>{obj.text}</T></p>
         {/* Rich blocks */}
-        {project.objetivoGeneral.blocks && (
+        {obj.blocks && (
           <div>
-            {project.objetivoGeneral.blocks.map((block, i) => (
+            {obj.blocks.map((block, i) => (
               <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
                 <ContentBlockItem block={block} index={i} />
               </div>
@@ -425,24 +439,26 @@ function DesafioSection({ project }: { project: UXContentProject }) {
 
 /* ─── ESTRATEGIA — numbered list ─── */
 function EstrategiaSection({ project }: { project: UXContentProject }) {
-  const hasPhoneMockup = !!project.estrategia.image && !project.estrategia.imageSide;
-  const hasSideImage = !!project.estrategia.image && !!project.estrategia.imageSide;
-  const hasImageGrid = !!(project.estrategia.images && project.estrategia.images.length > 0);
+  if (!project.estrategia) return null;
+  const est = project.estrategia;
+  const hasPhoneMockup = !!est.image && !est.imageSide;
+  const hasSideImage = !!est.image && !!est.imageSide;
+  const hasImageGrid = !!(est.images && est.images.length > 0);
   return (
     <div className="flex flex-col gap-14">
       <div className={`grid grid-cols-1 ${(hasPhoneMockup || hasSideImage) ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-24 items-start`}>
         <div className={(hasPhoneMockup || hasSideImage) ? 'lg:col-span-7' : ''}>
           <div className="space-y-2">
             {/* Intro paragraph */}
-            {project.estrategia.intro && (
+            {est.intro && (
               <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.9, paddingBottom: "1rem" }}>
-                <T>{project.estrategia.intro}</T>
+                <T>{est.intro}</T>
               </p>
             )}
             {/* Rich blocks */}
-            {project.estrategia.blocks && (
+            {est.blocks && (
               <div>
-                {project.estrategia.blocks.map((block, i) => (
+                {est.blocks.map((block, i) => (
                   <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
                     <ContentBlockItem block={block} index={i} />
                   </div>
@@ -450,9 +466,9 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
               </div>
             )}
             {/* Legacy plain bullets */}
-            {project.estrategia.bullets && (
+            {est.bullets && (
               <ul className="">
-                {project.estrategia.bullets.map((bullet, i) => (
+                {est.bullets.map((bullet, i) => (
                   <motion.li
                     key={i}
                     initial={{ opacity: 0, x: -10 }}
@@ -460,7 +476,7 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                     className="flex gap-5 items-start"
-                    style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.estrategia.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+                    style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (est.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
                   >
                     <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
                     <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></p>
@@ -496,10 +512,10 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
               <div
                 className="relative w-full overflow-hidden cursor-zoom-in"
                 style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
-                onClick={() => window.open(project.estrategia.image, "_blank")}
+                onClick={() => window.open(est.image, "_blank")}
               >
                 <Image
-                  src={project.estrategia.image!}
+                  src={est.image!}
                   alt="Estrategia — captura de pantalla"
                   fill
                   className="object-cover object-top"
@@ -521,15 +537,15 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <ImageSlot src={project.estrategia.image!} alt={`Estrategia — ${project.client}`} />
+            <ImageSlot src={est.image!} alt={`Estrategia — ${project.client}`} />
           </motion.div>
         )}
       </div>
 
       {/* Image grid — full width below content (multiple images, e.g. Proyecto-2) */}
       {hasImageGrid && (
-        <div className={`grid gap-5 ${project.estrategia.images!.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
-          {project.estrategia.images!.map((src, i) => (
+        <div className={`grid gap-5 ${est.images!.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+          {est.images!.map((src, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 16 }}
@@ -548,22 +564,24 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
 
 /* ─── SOLUCIÓN ─── */
 function SolucionSection({ project }: { project: UXContentProject }) {
-  const imageSide = project.solucion.imageSide && project.solucion.image;
+  if (!project.solucion) return null;
+  const sol = project.solucion;
+  const imageSide = sol.imageSide && sol.image;
   const content = (
     <div className="space-y-8">
       {/* Intro / statement text */}
-      {(project.solucion.intro || project.solucion.text) && (
+      {(sol.intro || sol.text) && (
         <p
           className="text-fg-primary"
           style={{ fontSize: "clamp(1rem, 1.4vw, 1.15rem)", lineHeight: 1.85 }}
         >
-          <T>{(project.solucion.intro ?? project.solucion.text)!}</T>
+          <T>{(sol.intro ?? sol.text)!}</T>
         </p>
       )}
       {/* Rich blocks */}
-      {project.solucion.blocks && (
+      {sol.blocks && (
         <div>
-          {project.solucion.blocks.map((block, i) => (
+          {sol.blocks.map((block, i) => (
             <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
               <ContentBlockItem block={block} index={i} />
             </div>
@@ -571,9 +589,9 @@ function SolucionSection({ project }: { project: UXContentProject }) {
         </div>
       )}
       {/* Legacy plain bullets */}
-      {project.solucion.bullets && (
+      {sol.bullets && (
         <ul className="pt-2">
-          {project.solucion.bullets.map((bullet, i) => (
+          {sol.bullets.map((bullet, i) => (
             <motion.li
               key={i}
               initial={{ opacity: 0, y: 8 }}
@@ -581,7 +599,7 @@ function SolucionSection({ project }: { project: UXContentProject }) {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               className="flex gap-5 items-start"
-              style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.solucion.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+              style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (sol.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
             >
               <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
               <span className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></span>
@@ -592,7 +610,7 @@ function SolucionSection({ project }: { project: UXContentProject }) {
     </div>
   );
 
-  const hasImageGrid = !!(project.solucion.images && project.solucion.images.length > 0);
+  const hasImageGrid = !!(sol.images && sol.images.length > 0);
 
   if (imageSide) {
     return (
@@ -605,7 +623,7 @@ function SolucionSection({ project }: { project: UXContentProject }) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5"
         >
-          <ImageSlot src={project.solucion.image!} alt={`Solución — ${project.client}`} />
+          <ImageSlot src={sol.image!} alt={`Solución — ${project.client}`} />
         </motion.div>
       </div>
     );
@@ -616,11 +634,11 @@ function SolucionSection({ project }: { project: UXContentProject }) {
       <div className="flex flex-col gap-14">
         {content}
         <div className={`grid gap-5 ${
-          project.solucion.images!.length === 1 ? 'grid-cols-1' :
-          project.solucion.images!.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
+          sol.images!.length === 1 ? 'grid-cols-1' :
+          sol.images!.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
           'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
         }`}>
-          {project.solucion.images!.map((src, i) => (
+          {sol.images!.map((src, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 16 }}
@@ -639,8 +657,8 @@ function SolucionSection({ project }: { project: UXContentProject }) {
   return (
     <div className="flex flex-col gap-14">
       {content}
-      {project.solucion.image && (
-        <ImageSlot src={project.solucion.image} alt={`Solución — ${project.client}`} />
+      {sol.image && (
+        <ImageSlot src={sol.image} alt={`Solución — ${project.client}`} />
       )}
     </div>
   );
@@ -648,12 +666,14 @@ function SolucionSection({ project }: { project: UXContentProject }) {
 
 /* ─── RESULTADOS — cards grid ─── */
 function ResultadosSection({ project }: { project: UXContentProject }) {
+  if (!project.resultados) return null;
+  const res = project.resultados;
   return (
-    <div className={`grid grid-cols-1 ${project.resultados.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+    <div className={`grid grid-cols-1 ${res.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
       {/* Rich blocks (alternative to cards) */}
-      {project.resultados.blocks && (
-        <div className={project.resultados.image ? 'lg:col-span-7' : ''}>
-          {project.resultados.blocks.map((block, i) => (
+      {res.blocks && (
+        <div className={res.image ? 'lg:col-span-7' : ''}>
+          {res.blocks.map((block, i) => (
             <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
               <ContentBlockItem block={block} index={i} />
             </div>
@@ -661,9 +681,9 @@ function ResultadosSection({ project }: { project: UXContentProject }) {
         </div>
       )}
       {/* Cards */}
-      {project.resultados.bullets && (
-      <div className={`${project.resultados.image ? 'lg:col-span-7' : ''} grid grid-cols-1 sm:grid-cols-2 gap-5`}>
-        {project.resultados.bullets.map((bullet, i) => (
+      {res.bullets && (
+      <div className={`${res.image ? 'lg:col-span-7' : ''} grid grid-cols-1 sm:grid-cols-2 gap-5`}>
+        {res.bullets.map((bullet, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, scale: 0.96 }}
@@ -685,7 +705,7 @@ function ResultadosSection({ project }: { project: UXContentProject }) {
       )}
 
       {/* Phone mockup — side column */}
-      {project.resultados.image && (
+      {res.image && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -712,10 +732,10 @@ function ResultadosSection({ project }: { project: UXContentProject }) {
             <div
               className="relative w-full overflow-hidden cursor-zoom-in"
               style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
-              onClick={() => window.open(project.resultados.image, '_blank')}
+              onClick={() => window.open(res.image, '_blank')}
             >
               <Image
-                src={project.resultados.image}
+                src={res.image!}
                 alt="Resultados — captura de pantalla"
                 fill
                 className="object-cover object-top"
@@ -728,6 +748,137 @@ function ResultadosSection({ project }: { project: UXContentProject }) {
             </div>
           </div>
         </motion.div>
+      )}
+    </div>
+  );
+}
+
+/* ─── ENFOQUE SECTION (compact variant) ─── */
+function EnfoqueSection({ project }: { project: UXContentProject }) {
+  if (!project.enfoque) return null;
+  const enf = project.enfoque;
+  const hasSideImage = !!enf.image && !!enf.imageSide;
+  const hasImageGrid = !!(enf.images && enf.images.length > 0);
+
+  return (
+    <div className="flex flex-col gap-14">
+      <div className={`grid grid-cols-1 ${hasSideImage ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-24 items-start`}>
+        <div className={hasSideImage ? 'lg:col-span-7' : ''}>
+          <div className="space-y-2">
+            {(enf.intro || enf.text) && (
+              <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.9, paddingBottom: "1rem" }}>
+                <T>{(enf.intro ?? enf.text)!}</T>
+              </p>
+            )}
+            {enf.blocks && (
+              <div>
+                {enf.blocks.map((block, i) => (
+                  <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+                    <ContentBlockItem block={block} index={i} />
+                  </div>
+                ))}
+              </div>
+            )}
+            {enf.bullets && (
+              <ul>
+                {enf.bullets.map((bullet, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex gap-5 items-start"
+                    style={{
+                      paddingTop: "1rem",
+                      paddingBottom: "1rem",
+                      borderBottom: i < (enf.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none",
+                    }}
+                  >
+                    <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
+                    <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></p>
+                  </motion.li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+        {hasSideImage && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <ImageSlot src={enf.image!} alt={`Enfoque — ${project.client}`} />
+          </motion.div>
+        )}
+      </div>
+
+      {!hasSideImage && enf.image && (
+        <ImageSlot src={enf.image} alt={`Enfoque — ${project.client}`} />
+      )}
+
+      {hasImageGrid && (
+        <div className={`grid gap-5 ${enf.images!.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+          {enf.images!.map((src, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ImageSlot src={src} alt={`Enfoque imagen ${i + 1} — ${project.client}`} />
+            </motion.div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── IMPACTO SECTION (compact variant) — cards grid ─── */
+function ImpactoSection({ project }: { project: UXContentProject }) {
+  if (!project.impacto) return null;
+  return (
+    <div className={`grid grid-cols-1 ${project.impacto.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+      {project.impacto.blocks && (
+        <div className={project.impacto.image ? 'lg:col-span-7' : ''}>
+          {project.impacto.blocks.map((block, i) => (
+            <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+              <ContentBlockItem block={block} index={i} />
+            </div>
+          ))}
+        </div>
+      )}
+      {project.impacto.bullets && (
+        <div className={`${project.impacto.image ? 'lg:col-span-7' : ''} grid grid-cols-1 sm:grid-cols-2 gap-5`}>
+          {project.impacto.bullets.map((bullet, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative overflow-hidden rounded-2xl border border-stone/20 bg-bg-card hover:border-terracotta/25 transition-all duration-500 hover:shadow-lg hover:shadow-terracotta/5"
+              style={{ padding: "2rem" }}
+            >
+              <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-terracotta/10 mb-5">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="text-terracotta">
+                  <path d="M2.5 7.5l3 3 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <p className="relative z-10 text-fg-primary font-medium" style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)", lineHeight: 1.75 }}><T>{bullet}</T></p>
+            </motion.div>
+          ))}
+        </div>
+      )}
+      {project.impacto.image && (
+        <div className="lg:col-span-5">
+          <ImageSlot src={project.impacto.image} alt={`Impacto — ${project.client}`} />
+        </div>
       )}
     </div>
   );
@@ -834,7 +985,8 @@ function ProjectCard({ project, isActive, onClick }: {
 
 /* ─── SINGLE PROJECT VIEW ─── */
 function ProjectView({ project }: { project: UXContentProject }) {
-  const [activeSection, setActiveSection] = useState("rol");
+  const sections = getSections(project);
+  const [activeSection, setActiveSection] = useState(sections[0].id);
 
   const handleIntersect = useCallback((id: string, visible: boolean) => {
     if (visible) setActiveSection(id);
@@ -842,7 +994,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    SECTIONS.forEach((s) => {
+    sections.forEach((s) => {
       const el = document.getElementById(`${project.id}-${s.id}`);
       if (!el) return;
       const obs = new IntersectionObserver(
@@ -853,7 +1005,9 @@ function ProjectView({ project }: { project: UXContentProject }) {
       observers.push(obs);
     });
     return () => observers.forEach((o) => o.disconnect());
-  }, [project.id, handleIntersect]);
+  }, [project.id, handleIntersect, sections]);
+
+  const isCompact = project.variant === "compact";
 
   return (
     <motion.div
@@ -872,58 +1026,86 @@ function ProjectView({ project }: { project: UXContentProject }) {
         style={{ top: "calc(var(--nav-height) + 68px)" }}
       >
         <div className="container-main py-5">
-          <SectionNav activeSection={activeSection} projectId={project.id} />
+          <SectionNav activeSection={activeSection} projectId={project.id} sections={sections} />
         </div>
       </div>
 
-      {/* 6 sections */}
+      {/* Sections */}
       <div className="container-main">
 
-        <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Rol" />
-          <br/>
-          <RolSection project={project} />
-        </section>
+        {isCompact ? (
+          <>
+            <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Desafío" />
+              <br/>
+              <DesafioSection project={project} />
+            </section>
 
-        <div className="border-t border-stone/20" />
+            <div className="border-t border-stone/20" />
 
-        <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Objetivo General" />
-          <br/>
-          <ObjetivoSection project={project} />
-        </section>
+            <section id={`${project.id}-enfoque`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Enfoque" />
+              <br/>
+              <EnfoqueSection project={project} />
+            </section>
 
-        <div className="border-t border-stone/20" />
+            <div className="border-t border-stone/20" />
 
-        <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Desafío" />
-          <br/>
-          <DesafioSection project={project} />
-        </section>
+            <section id={`${project.id}-impacto`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
+              <SectionLabel label="Impacto" />
+              <br/>
+              <ImpactoSection project={project} />
+            </section>
+          </>
+        ) : (
+          <>
+            <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Rol" />
+              <br/>
+              <RolSection project={project} />
+            </section>
 
-        <div className="border-t border-stone/20" />
+            <div className="border-t border-stone/20" />
 
-        <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Estrategia" />
-          <br/>
-          <EstrategiaSection project={project} />
-        </section>
+            <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Objetivo General" />
+              <br/>
+              <ObjetivoSection project={project} />
+            </section>
 
-        <div className="border-t border-stone/20" />
+            <div className="border-t border-stone/20" />
 
-        <section id={`${project.id}-solucion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Solución" />
-          <br/>
-          <SolucionSection project={project} />
-        </section>
+            <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Desafío" />
+              <br/>
+              <DesafioSection project={project} />
+            </section>
 
-        <div className="border-t border-stone/20" />
+            <div className="border-t border-stone/20" />
 
-        <section id={`${project.id}-resultados`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-          <SectionLabel label="Resultados" />
-          <br/>
-          <ResultadosSection project={project} />
-        </section>
+            <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Estrategia" />
+              <br/>
+              <EstrategiaSection project={project} />
+            </section>
+
+            <div className="border-t border-stone/20" />
+
+            <section id={`${project.id}-solucion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+              <SectionLabel label="Solución" />
+              <br/>
+              <SolucionSection project={project} />
+            </section>
+
+            <div className="border-t border-stone/20" />
+
+            <section id={`${project.id}-resultados`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
+              <SectionLabel label="Resultados" />
+              <br/>
+              <ResultadosSection project={project} />
+            </section>
+          </>
+        )}
 
       </div>
     </motion.div>

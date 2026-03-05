@@ -33,7 +33,7 @@ export const siteConfig = {
   title: "Content Specialist",
   tagline: "I craft stories that move people.",
   subtitle:
-    "Estratega de contenidos con +7 años construyendo narrativas de marca, ecosistemas editoriales y resultados medibles. Combino data, estructura y storytelling para crear contenido que posiciona y convierte.",
+    "Content Designer con +7 años diseñando estrategias de contenido para productos digitales. Trabajo transformando sistemas complejos en experiencias claras que ayudan a las personas a entender, decidir y actuar.",
   email: "daniela.amortegui@gmail.com",
   linkedin: "https://www.linkedin.com/in/danielaamorteguim/",
   instagram: "https://www.instagram.com/daniamortegui",
@@ -372,6 +372,7 @@ export interface ContentBlock {
   bullets?: string[];
 }
 
+/** "full" = 6-section layout (Rol → Resultados)  |  "compact" = 3-section layout (Desafío → Enfoque → Impacto) */
 export interface UXContentProject {
   id: string;
   title: string;
@@ -379,13 +380,16 @@ export interface UXContentProject {
   year: string;
   coverImage: string;
   gradient: string;
-  rol: {
+  /** Defaults to "full" when omitted */
+  variant?: "full" | "compact";
+  /* ── full-layout sections ── */
+  rol?: {
     text: string;
     image?: string;
     bullets?: string[];
     blocks?: ContentBlock[];
   };
-  objetivoGeneral: {
+  objetivoGeneral?: {
     text: string;
     image?: string;
     blocks?: ContentBlock[];
@@ -396,7 +400,7 @@ export interface UXContentProject {
     blocks?: ContentBlock[];
     image?: string;
   };
-  estrategia: {
+  estrategia?: {
     intro?: string;
     blocks?: ContentBlock[];
     bullets?: string[];
@@ -404,7 +408,7 @@ export interface UXContentProject {
     imageSide?: boolean; // when true renders image as plain ImageSlot in side column instead of phone mockup
     images?: string[];  // multiple images shown as grid below content
   };
-  solucion: {
+  solucion?: {
     intro?: string;
     text?: string;
     blocks?: ContentBlock[];
@@ -413,7 +417,22 @@ export interface UXContentProject {
     imageSide?: boolean; // when true renders image in a side column instead of below
     images?: string[];  // multiple images shown as grid below content
   };
-  resultados: {
+  resultados?: {
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+  /* ── compact-layout sections ── */
+  enfoque?: {
+    intro?: string;
+    text?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  impacto?: {
     bullets?: string[];
     blocks?: ContentBlock[];
     image?: string;
@@ -837,6 +856,46 @@ export const uxContentProjects: UXContentProject[] = [
       ],
     },
   },
+  {
+    id: "Proyecto-5",
+    title: "Comunicación de productos financieros y estrategia de contenido",
+    client: "Proyecto 5",
+    year: "2018–2021",
+    coverImage: "/images/other-projecto-1-imagen-1.jpg",
+    gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
+    variant: "compact",
+    desafio: {
+      text: "Mesfix era una fintech en crecimiento que necesitaba comunicar productos financieros complejos de forma clara para distintos públicos: usuarios, inversionistas y aliados estratégicos.\n\nUno de los principales retos era traducir información técnica, regulatoria y financiera en mensajes comprensibles que generaran confianza en los usuarios y facilitaran la toma de decisiones de inversión dentro de la plataforma.\n\nAdemás, el producto estaba en constante evolución, lo que implicaba coordinar lanzamientos, comunicar cambios operativos y alinear la comunicación entre distintos equipos como producto, tecnología y legal.",
+    },
+    enfoque: {
+      intro: "Mi trabajo consistió en diseñar y ejecutar una estrategia de comunicación alineada con los objetivos del producto y del negocio.\n\nEntre las principales iniciativas estuvieron:",
+      bullets: [
+        "Diseñar contenido y UX writing para todo el producto, asegurando claridad en la experiencia de usuario.",
+        "Definir historias de usuario y requerimientos funcionales para nuevas funcionalidades.",
+        "Co-crear una herramienta que permitía conocer mejor el perfil del inversionista y ofrecerle recomendaciones acordes a su perfil de riesgo.",
+        "Diseñar la arquitectura de información y contenidos del sitio web.",
+        "Lanzar el blog de Mesfix y desarrollar contenidos orientados a educación financiera.",
+        "Coordinar lanzamientos de producto, campañas y comunicaciones regulatorias críticas.",
+        "Trabajar de forma transversal con equipos de producto, tecnología y legal.",
+        "Monitorear métricas de desempeño para optimizar las decisiones de comunicación.",
+        "Gestionar flujos de trabajo y proyectos utilizando herramientas como Trello, Jira y HubSpot.",
+      ],
+    },
+    impacto: {
+      blocks: [
+        {
+          text: "Este trabajo permitió mejorar la claridad de la comunicación del producto y fortalecer la confianza de los usuarios en la plataforma.\n\nLas iniciativas de contenido ayudaron a:",
+        },
+      ],
+      bullets: [
+        "Explicar productos financieros complejos de forma accesible.",
+        "Mejorar la experiencia de usuario dentro del producto.",
+        "Educar a los usuarios a través de contenidos editoriales.",
+        "Alinear la comunicación entre producto, negocio y equipos técnicos.",
+        "Además, el desarrollo del sitio web y del blog permitió construir una base de contenido que apoyaba tanto la adquisición como la educación de los usuarios dentro del ecosistema de Mesfix.",
+      ],
+    },
+  },
 ];
 
 /* ──────────────────────────────────────────────
@@ -1209,36 +1268,6 @@ export interface Experiencia {
 }
 
 export const experiencias: Experiencia[] = [
-  {
-    id: "experiencia-1",
-    title: "Estrategia Integral de Contenidos y Posicionamiento de Marca",
-    client: "MESFIX",
-    year: "2018-2021",
-    coverImage: "/images/other-projecto-1-imagen-1.jpg",
-    gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
-    desafio: {
-      text: "Como startup fintech en crecimiento, Mesfix necesitaba construir posicionamiento, confianza y claridad en un mercado altamente competitivo y regulado. El reto era desarrollar una narrativa sólida que explicara un producto financiero complejo, generara credibilidad y acompañara momentos clave de crecimiento y comunicación sensible.",
-    },
-    enfoque: {
-      intro: "Diseñé y ejecuté la estrategia integral de contenidos digitales, integrando narrativa de marca, educación financiera y posicionamiento estratégico.",
-      bullets: [
-        "Definí la voz y los pilares editoriales para redes sociales, blog, SEO y PR.",
-        "Traducí conceptos financieros y técnicos en mensajes claros, educativos y accionables.",
-        "Lideré campañas con influenciadores y medios para fortalecer visibilidad y credibilidad.",
-        "Analicé métricas de desempeño y ajusté la estrategia con base en resultados.",
-        "Aporté desde comunicación y experiencia de usuario en el desarrollo y lanzamiento de nuevos productos.",
-        "Gestioné eventos estratégicos para posicionar la marca en el ecosistema fintech.",
-      ],
-    },
-    impacto: {
-      bullets: [
-        "Consolidación de una narrativa clara y coherente en todos los canales digitales.",
-        "Mayor posicionamiento y visibilidad en el sector fintech.",
-        "Optimización continua de la estrategia basada en métricas de rendimiento.",
-        "Integración efectiva entre comunicación, producto y crecimiento.",
-      ],
-    },
-  },
   {
     id: "experiencia-2",
     title: "Gestión y Análisis de Contenidos Digitales",
