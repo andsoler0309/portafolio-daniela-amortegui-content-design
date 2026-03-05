@@ -9,7 +9,6 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
-  { href: "/about", label: "Sobre mí" },
   { href: "/work/ux-content", label: "Content Design" },
   { href: "/work/ai", label: "IA" },
   { href: "/work/other", label: "Otros" },

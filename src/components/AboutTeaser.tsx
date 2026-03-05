@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { SectionHeader } from "./SectionHeader";
 
 export function AboutTeaser() {
@@ -47,45 +46,25 @@ export function AboutTeaser() {
             }}
             className="lg:col-span-7"
           >
-            <blockquote className="font-[family-name:var(--font-display)] text-2xl md:text-3xl lg:text-4xl font-medium leading-snug mb-8 text-fg-primary">
-              Creo historias que mueven personas{" "}
-              <span className="text-terracotta italic">
-                porque el movimiento 
-              </span>{" "}
-              me cambió a mí
-            </blockquote>
-
             <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-6 max-w-xl">
-              Sé lo que se siente buscar inspiración y sé el impacto que tiene una historia cuando realmente conecta.
+              Soy UX Writer y Content Designer con formación en periodismo y comunicación estratégica. A lo largo de mi carrera he trabajado diseñando contenido para productos digitales, plataformas tecnológicas y estrategias de comunicación orientadas a usuarios.
             </p>
-
+            <br />
+            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-6 max-w-xl">
+              Mi trabajo se centra en transformar sistemas complejos, como métricas, dashboards o herramientas de negocio, en experiencias claras, útiles y accionables para las personas.
+            </p>
+            <br />  
+            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-6 max-w-xl">
+              En Mercado Libre participé en el diseño de productos orientados a vendedores, ayudándoles a comprender su desempeño, mejorar su reputación y tomar mejores decisiones dentro de la plataforma. Esto implicó diseñar sistemas de contenido para dashboards, planes de comunicación para cambios de producto y experiencias que integran inteligencia artificial para ofrecer recomendaciones a los usuarios.
+            </p>
+            <br />
+            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-6 max-w-xl">
+              En otras experiencias, desarrollé estrategias de comunicación digital, marketing de contenidos y copywriting para fintech y agencias. Esa experiencia me permitió entender el contenido desde una perspectiva más amplia: como una herramienta para explicar, posicionar productos y construir relaciones de confianza con las personas.
+            </p>
+            <br />
             <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-              Soy estratega de contenidos y trabajo en la intersección entre disciplina, emoción y estructura. Creo que las marcas no necesitan hablar más fuerte, sino con más claridad, coherencia y propósito.
+              Me interesa especialmente trabajar en productos donde el contenido puede reducir la complejidad, mejorar la comprensión y ayudar a las personas a tomar decisiones más informadas.
             </p>
-
-            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-              Diseño ecosistemas de contenido que escalan, alineando narrativa, equipos y métricas para generar impacto real. Pero nunca olvido que al otro lado hay una persona: alguien que quiere entender, confiar y pertenecer.
-            </p>
-
-            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-              Correr me enseñó que la consistencia construye fuerza y el contenido me enseñó que la claridad construye confianza. Estoy segura de que el contenido no se trata solamete de publicar, se trata de mover algo en quien lo recibe.
-            </p>
-
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-3 text-fg-primary transition-colors duration-300 group"
-            >
-              <span className="text-sm font-bold tracking-wide uppercase text-terracotta">
-                Mas sobre mí
-              </span>
-              <motion.span
-                className="inline-block text-terracotta font-bold"
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.3 }}
-              >
-                →
-              </motion.span>
-            </Link>
           </motion.div>
         </div>
       </div>
