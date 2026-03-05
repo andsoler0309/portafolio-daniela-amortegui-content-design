@@ -292,6 +292,16 @@ function RolSection({ project }: { project: UXContentProject }) {
         <p className="text-fg-primary font-normal" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.2rem)", lineHeight: 1.85 }}>
           <T>{project.rol.text}</T>
         </p>
+        {/* Rich blocks */}
+        {project.rol.blocks && (
+          <div>
+            {project.rol.blocks.map((block, i) => (
+              <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+                <ContentBlockItem block={block} index={i} />
+              </div>
+            ))}
+          </div>
+        )}
         {project.rol.bullets && (
           <ul className="">
             {project.rol.bullets.map((bullet, i) => (
@@ -331,8 +341,18 @@ function ObjetivoSection({ project }: { project: UXContentProject }) {
           <ImageSlot src={project.objetivoGeneral.image} alt={`Objetivo — ${project.client}`} aspect="3/4" />
         </div>
       )}
-      <div className={project.objetivoGeneral.image ? 'lg:col-span-7 lg:order-1' : 'max-w-3xl'}>
+      <div className={`${project.objetivoGeneral.image ? 'lg:col-span-7 lg:order-1' : 'max-w-3xl'} space-y-8`}>
         <p className="text-fg-secondary font-normal" style={{ fontSize: "clamp(1rem, 1.4vw, 1.1rem)", lineHeight: 1.9 }}><T>{project.objetivoGeneral.text}</T></p>
+        {/* Rich blocks */}
+        {project.objetivoGeneral.blocks && (
+          <div>
+            {project.objetivoGeneral.blocks.map((block, i) => (
+              <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+                <ContentBlockItem block={block} index={i} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -359,6 +379,16 @@ function DesafioSection({ project }: { project: UXContentProject }) {
             >
               <T>{project.desafio.text}</T>
             </p>
+            {/* Rich blocks */}
+            {project.desafio.blocks && (
+              <div>
+                {project.desafio.blocks.map((block, i) => (
+                  <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+                    <ContentBlockItem block={block} index={i} />
+                  </div>
+                ))}
+              </div>
+            )}
             {project.desafio.bullets && (
               <ul className="">
                 {project.desafio.bullets.map((bullet, i) => (
@@ -395,87 +425,122 @@ function DesafioSection({ project }: { project: UXContentProject }) {
 
 /* ─── ESTRATEGIA — numbered list ─── */
 function EstrategiaSection({ project }: { project: UXContentProject }) {
+  const hasPhoneMockup = !!project.estrategia.image && !project.estrategia.imageSide;
+  const hasSideImage = !!project.estrategia.image && !!project.estrategia.imageSide;
+  const hasImageGrid = !!(project.estrategia.images && project.estrategia.images.length > 0);
   return (
-    <div className={`grid grid-cols-1 ${project.estrategia.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-24 items-start`}>
-      <div className={project.estrategia.image ? 'lg:col-span-7' : ''}>
-        <div className="space-y-2">
-          {/* Intro paragraph */}
-          {project.estrategia.intro && (
-            <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.9, paddingBottom: "1rem" }}>
-              <T>{project.estrategia.intro}</T>
-            </p>
-          )}
-          {/* Rich blocks */}
-          {project.estrategia.blocks && (
-            <div>
-              {project.estrategia.blocks.map((block, i) => (
-                <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
-                  <ContentBlockItem block={block} index={i} />
-                </div>
-              ))}
-            </div>
-          )}
-          {/* Legacy plain bullets */}
-          {project.estrategia.bullets && (
-            <ul className="">
-              {project.estrategia.bullets.map((bullet, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex gap-5 items-start"
-                  style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.estrategia.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
-                >
-                  <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
-                  <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></p>
-                </motion.li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-      {project.estrategia.image && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex justify-center lg:justify-end items-start pt-4"
-        >
-          <div
-            className="relative"
-            style={{
-              width: "clamp(200px, 22vw, 280px)",
-              borderRadius: "2.8rem",
-              border: "2px solid rgba(212,197,176,0.3)",
-              padding: "0.85rem",
-              background: "var(--bg-secondary)",
-              boxShadow: "0 0 0 1px rgba(212,197,176,0.07), 0 32px 64px -16px rgba(0,0,0,0.4)",
-            }}
-          >
-            <div className="flex justify-center mb-3">
-              <div style={{ width: "2.8rem", height: "0.25rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
-            </div>
-            <div
-              className="relative w-full overflow-hidden cursor-zoom-in"
-              style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
-              onClick={() => window.open(project.estrategia.image, "_blank")}
-            >
-              <Image
-                src={project.estrategia.image}
-                alt="Estrategia — captura de pantalla"
-                fill
-                className="object-cover object-top"
-                sizes="280px"
-              />
-            </div>
-            <div className="flex justify-center mt-3">
-              <div style={{ width: "3.5rem", height: "0.24rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
-            </div>
+    <div className="flex flex-col gap-14">
+      <div className={`grid grid-cols-1 ${(hasPhoneMockup || hasSideImage) ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-24 items-start`}>
+        <div className={(hasPhoneMockup || hasSideImage) ? 'lg:col-span-7' : ''}>
+          <div className="space-y-2">
+            {/* Intro paragraph */}
+            {project.estrategia.intro && (
+              <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.9, paddingBottom: "1rem" }}>
+                <T>{project.estrategia.intro}</T>
+              </p>
+            )}
+            {/* Rich blocks */}
+            {project.estrategia.blocks && (
+              <div>
+                {project.estrategia.blocks.map((block, i) => (
+                  <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+                    <ContentBlockItem block={block} index={i} />
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* Legacy plain bullets */}
+            {project.estrategia.bullets && (
+              <ul className="">
+                {project.estrategia.bullets.map((bullet, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex gap-5 items-start"
+                    style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.estrategia.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+                  >
+                    <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
+                    <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></p>
+                  </motion.li>
+                ))}
+              </ul>
+            )}
           </div>
-        </motion.div>
+        </div>
+        {/* Phone mockup — side column (single image, e.g. Proyecto-1) */}
+        {hasPhoneMockup && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center lg:justify-end items-start pt-4"
+          >
+            <div
+              className="relative"
+              style={{
+                width: "clamp(200px, 22vw, 280px)",
+                borderRadius: "2.8rem",
+                border: "2px solid rgba(212,197,176,0.3)",
+                padding: "0.85rem",
+                background: "var(--bg-secondary)",
+                boxShadow: "0 0 0 1px rgba(212,197,176,0.07), 0 32px 64px -16px rgba(0,0,0,0.4)",
+              }}
+            >
+              <div className="flex justify-center mb-3">
+                <div style={{ width: "2.8rem", height: "0.25rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+              </div>
+              <div
+                className="relative w-full overflow-hidden cursor-zoom-in"
+                style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
+                onClick={() => window.open(project.estrategia.image, "_blank")}
+              >
+                <Image
+                  src={project.estrategia.image!}
+                  alt="Estrategia — captura de pantalla"
+                  fill
+                  className="object-cover object-top"
+                  sizes="280px"
+                />
+              </div>
+              <div className="flex justify-center mt-3">
+                <div style={{ width: "3.5rem", height: "0.24rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {/* Plain ImageSlot — side column (when imageSide: true, e.g. Proyecto-3) */}
+        {hasSideImage && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5"
+          >
+            <ImageSlot src={project.estrategia.image!} alt={`Estrategia — ${project.client}`} />
+          </motion.div>
+        )}
+      </div>
+
+      {/* Image grid — full width below content (multiple images, e.g. Proyecto-2) */}
+      {hasImageGrid && (
+        <div className={`grid gap-5 ${project.estrategia.images!.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+          {project.estrategia.images!.map((src, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ImageSlot src={src} alt={`Estrategia imagen ${i + 1} — ${project.client}`} />
+            </motion.div>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -483,48 +548,97 @@ function EstrategiaSection({ project }: { project: UXContentProject }) {
 
 /* ─── SOLUCIÓN ─── */
 function SolucionSection({ project }: { project: UXContentProject }) {
+  const imageSide = project.solucion.imageSide && project.solucion.image;
+  const content = (
+    <div className="space-y-8">
+      {/* Intro / statement text */}
+      {(project.solucion.intro || project.solucion.text) && (
+        <p
+          className="text-fg-primary"
+          style={{ fontSize: "clamp(1rem, 1.4vw, 1.15rem)", lineHeight: 1.85 }}
+        >
+          <T>{(project.solucion.intro ?? project.solucion.text)!}</T>
+        </p>
+      )}
+      {/* Rich blocks */}
+      {project.solucion.blocks && (
+        <div>
+          {project.solucion.blocks.map((block, i) => (
+            <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+              <ContentBlockItem block={block} index={i} />
+            </div>
+          ))}
+        </div>
+      )}
+      {/* Legacy plain bullets */}
+      {project.solucion.bullets && (
+        <ul className="pt-2">
+          {project.solucion.bullets.map((bullet, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="flex gap-5 items-start"
+              style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.solucion.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+            >
+              <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
+              <span className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></span>
+            </motion.li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
+  const hasImageGrid = !!(project.solucion.images && project.solucion.images.length > 0);
+
+  if (imageSide) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        <div className="lg:col-span-7">{content}</div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5"
+        >
+          <ImageSlot src={project.solucion.image!} alt={`Solución — ${project.client}`} />
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (hasImageGrid) {
+    return (
+      <div className="flex flex-col gap-14">
+        {content}
+        <div className={`grid gap-5 ${
+          project.solucion.images!.length === 1 ? 'grid-cols-1' :
+          project.solucion.images!.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
+          'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+        }`}>
+          {project.solucion.images!.map((src, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ImageSlot src={src} alt={`Solución imagen ${i + 1} — ${project.client}`} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-14">
-      <div className="space-y-8">
-        {/* Intro / statement text */}
-        {(project.solucion.intro || project.solucion.text) && (
-          <p
-            className="text-fg-primary"
-            style={{ fontSize: "clamp(1rem, 1.4vw, 1.15rem)", lineHeight: 1.85 }}
-          >
-            <T>{(project.solucion.intro ?? project.solucion.text)!}</T>
-          </p>
-        )}
-        {/* Rich blocks */}
-        {project.solucion.blocks && (
-          <div>
-            {project.solucion.blocks.map((block, i) => (
-              <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
-                <ContentBlockItem block={block} index={i} />
-              </div>
-            ))}
-          </div>
-        )}
-        {/* Legacy plain bullets */}
-        {project.solucion.bullets && (
-          <ul className="pt-2">
-            {project.solucion.bullets.map((bullet, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="flex gap-5 items-start"
-                style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.solucion.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
-              >
-                <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
-                <span className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></span>
-              </motion.li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {content}
       {project.solucion.image && (
         <ImageSlot src={project.solucion.image} alt={`Solución — ${project.client}`} />
       )}
@@ -536,7 +650,18 @@ function SolucionSection({ project }: { project: UXContentProject }) {
 function ResultadosSection({ project }: { project: UXContentProject }) {
   return (
     <div className={`grid grid-cols-1 ${project.resultados.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+      {/* Rich blocks (alternative to cards) */}
+      {project.resultados.blocks && (
+        <div className={project.resultados.image ? 'lg:col-span-7' : ''}>
+          {project.resultados.blocks.map((block, i) => (
+            <div key={i} style={{ borderTop: "1px solid rgba(212,197,176,0.15)" }}>
+              <ContentBlockItem block={block} index={i} />
+            </div>
+          ))}
+        </div>
+      )}
       {/* Cards */}
+      {project.resultados.bullets && (
       <div className={`${project.resultados.image ? 'lg:col-span-7' : ''} grid grid-cols-1 sm:grid-cols-2 gap-5`}>
         {project.resultados.bullets.map((bullet, i) => (
           <motion.div
@@ -557,6 +682,7 @@ function ResultadosSection({ project }: { project: UXContentProject }) {
           </motion.div>
         ))}
       </div>
+      )}
 
       {/* Phone mockup — side column */}
       {project.resultados.image && (

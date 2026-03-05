@@ -385,21 +385,26 @@ export interface UXContentProject {
     text: string;
     image?: string;
     bullets?: string[];
+    blocks?: ContentBlock[];
   };
   objetivoGeneral: {
     text: string;
     image?: string;
+    blocks?: ContentBlock[];
   };
   desafio: {
     text: string;
     bullets?: string[];
+    blocks?: ContentBlock[];
     image?: string;
   };
   estrategia: {
     intro?: string;
     blocks?: ContentBlock[];
     bullets?: string[];
-    image?: string;
+    image?: string;     // single phone mockup in side column
+    imageSide?: boolean; // when true renders image as plain ImageSlot in side column instead of phone mockup
+    images?: string[];  // multiple images shown as grid below content
   };
   solucion: {
     intro?: string;
@@ -407,9 +412,12 @@ export interface UXContentProject {
     blocks?: ContentBlock[];
     bullets?: string[];
     image?: string;
+    imageSide?: boolean; // when true renders image in a side column instead of below
+    images?: string[];  // multiple images shown as grid below content
   };
   resultados: {
-    bullets: string[];
+    bullets?: string[];
+    blocks?: ContentBlock[];
     image?: string;
   };
 }
@@ -511,83 +519,236 @@ export const uxContentProjects: UXContentProject[] = [
     },
   },
   {
-    id: "triario",
-    title: "Gestión de proyectos de comunicación digital",
-    client: "TRIARIO",
-    year: "2021",
-    coverImage: "/images/project-2.jpg",
-    gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
+    id: "Proyecto-2",
+    title: "Diseño del producto Experiencia de compra",
+    client: "Proyecto 2",
+    year: "2021–2026",
+    coverImage: "/images/content-design-projecto-2-imagen-1.png",
+    gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
     rol: {
-      text: "Project Manager de comunicación digital, liderando la ejecución integral de proyectos de contenido para múltiples marcas, coordinando equipos multidisciplinarios y gestionando flujos en HubSpot.",
+      text: "Participé en el diseño del producto Experiencia de compra, una herramienta creada para ayudar a los vendedores a identificar y mejorar los problemas que afectan la experiencia de los compradores en sus publicaciones.\n\nTrabajé en dos fases del producto: su creación desde cero y su posterior rediseño.",
+      blocks: [
+        {
+          title: "En la fase de creación",
+          bullets: [
+            "Creé el nombre del producto: \"Experiencia de compra\".",
+            "Participé en la definición de la estructura del dashboard.",
+            "Realicé benchmark de productos similares en otras plataformas.",
+            "Diseñé los casos de uso y los mensajes en todos los puntos del journey.",
+            "Definí la estrategia de comunicación para el lanzamiento.",
+            "Unifiqué contenidos y flujos con otros productos del ecosistema de vendedores.",
+          ],
+        },
+        {
+          title: "En el rediseño",
+          bullets: [
+            "Realicé research para identificar los principales dolores de los vendedores.",
+            "Participé en la redefinición de la estructura del dashboard.",
+            "Trabajé en la lógica del producto y sus casos de uso.",
+            "Diseñé la estrategia de contenido para todo el journey.",
+            "Escribí y optimicé el prompt para un agente de IA que ofrecía recomendaciones para mejorar la experiencia de compra.",
+            "Iteré el prompt en múltiples ciclos de pruebas para mejorar la calidad de las respuestas.",
+          ],
+        },
+      ],
     },
     objetivoGeneral: {
-      text: "Asegurar la ejecución eficiente de proyectos de comunicación digital para marcas como Bancolombia (Renting Colombia) y Prosalon, integrando estrategia, contenido, diseño y performance con coherencia narrativa y cumplimiento en todo el funnel.",
+      text: "Ayudar a los vendedores a identificar los principales problemas en sus publicaciones y entender cómo estos impactan la experiencia de compra de los usuarios.\n\nEl producto buscaba complementar el sistema de reputación, permitiendo entender qué aspectos específicos de sus publicaciones estaban generando fricción en la experiencia del comprador.",
     },
     desafio: {
-      text: "Las marcas necesitaban ejecutar estrategias digitales integrales en entornos dinámicos, con múltiples equipos, entregables simultáneos y plazos ajustados. El reto era estructurar un sistema operativo claro que integrara estrategia, contenido, diseño y performance, garantizando coherencia narrativa, cumplimiento y calidad en todo el funnel.",
+      text: "Uno de los principales desafíos era diferenciar este producto de Reputación.\n\nMientras que la reputación evaluaba el desempeño del vendedor en general, la experiencia de compra analizaba la calidad de cada publicación individual.\n\nEsto generaba varios retos:",
+      bullets: [
+        "Los vendedores debían entender que cada publicación tenía su propia experiencia de compra.",
+        "La suma de estas experiencias impactaba posteriormente la reputación del vendedor.",
+        "Era necesario ayudarles a identificar rápidamente cuál era su principal problema entre múltiples variables.",
+        "Además, debíamos evitar generar confusión entre ambos productos, manteniendo una narrativa clara entre ellos.",
+      ],
     },
     estrategia: {
-      bullets: [
-        "Estructuré flujos de trabajo en HubSpot para asegurar visibilidad, control y eficiencia.",
-        "Organicé y prioricé tareas, cronogramas y asignaciones entre equipos creativos, performance y cliente.",
-        "Implementé seguimiento estructurado para gestionar el funnel completo de contenidos.",
-        "Supervisé y validé cada pieza antes de producción, asegurando calidad editorial y coherencia de tono.",
+      intro: "La estrategia de contenido se centró en tres pilares:",
+      blocks: [
+        {
+          title: "1. Diagnóstico claro del problema",
+          text: "Diseñamos el producto para que el vendedor pudiera identificar cuál era el principal problema en sus publicaciones.",
+        },
+        {
+          title: "2. Priorizar acciones",
+          text: "El contenido ayudaba a entender qué problema resolver primero para mejorar su desempeño.",
+        },
+        {
+          title: "3. Ofrecer soluciones concretas",
+          text: "A través de mensajes contextuales y del agente de IA, los vendedores recibían recomendaciones claras para mejorar sus publicaciones.\n\nEl agente de IA fue diseñado como un asistente que interpretaba los problemas detectados y sugería acciones específicas.",
+        },
+      ],
+      images: [
+        "/images/content-design-projecto-2-imagen-2.png",
+        "/images/content-design-projecto-2-imagen-4.png",
       ],
     },
     solucion: {
-      text: "Implementé un sistema de gestión que conectó equipos, procesos y entregables bajo una operación ordenada y eficiente.",
-      bullets: [
-        "Coordiné la comunicación entre equipos internos y stakeholders externos para mantener claridad y enfoque en objetivos de negocio.",
-        "Optimicé procesos para reducir fricciones y mejorar tiempos de entrega.",
+      intro: "El producto final fue un dashboard que permitía a los vendedores:",
+      image: "/images/content-design-projecto-2-imagen-3.png",
+      imageSide: true,
+      blocks: [
+        {
+          bullets: [
+            "Entender el estado de la experiencia de compra de cada publicación.",
+            "Identificar qué métricas estaban afectando la experiencia del comprador.",
+            "Recibir recomendaciones para mejorar sus publicaciones.",
+          ],
+        },
+        {
+          text: "Entre los principales componentes de la solución estuvieron:",
+          bullets: [
+            "Mensajes contextualizados según el estado de cada publicación.",
+            "Recomendaciones accionables para mejorar la experiencia de compra.",
+            "Integración con otros productos del ecosistema de vendedores.",
+            "Un agente de IA diseñado con prompts iterados y optimizados, capaz de ofrecer sugerencias personalizadas.",
+          ],
+        },
       ],
     },
     resultados: {
       bullets: [
-        "Mayor eficiencia y orden en la operación de contenidos digitales.",
-        "Consistencia narrativa y control de calidad en cada entrega.",
-        "Integración efectiva entre estrategia, ejecución y performance.",
-        "Cumplimiento sostenido de cronogramas en entornos de alta exigencia.",
+        "Mejorar la comprensión de los vendedores sobre los factores que afectan la experiencia de compra.",
+        "Ayudarles a identificar problemas específicos en sus publicaciones.",
+        "Ofrecer recomendaciones claras para mejorar su desempeño.",
+        "Esto convirtió al producto en una herramienta que no solo mostraba métricas, sino que guiaba a los vendedores hacia acciones concretas de mejora.",
       ],
     },
   },
   {
-    id: "mesfix",
-    title: "Estrategia integral de contenidos y posicionamiento de marca",
-    client: "MESFIX",
-    year: "2018–2021",
-    coverImage: "/images/project-3.jpg",
-    gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
+    id: "Proyecto-3",
+    title: "Diseño del Programa de Despegue",
+    client: "Proyecto 3",
+    year: "2021–2026",
+    coverImage: "/images/content-design-projecto-3-imagen-1.png",
+    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
     rol: {
-      text: "Communications Specialist, responsable de diseñar y ejecutar la estrategia 360 de contenidos digitales incluyendo redes, blog, SEO, PR e influenciadores.",
-    },
-    objetivoGeneral: {
-      text: "Construir posicionamiento, confianza y claridad para una fintech en crecimiento, desarrollando una narrativa sólida que explicara un producto financiero complejo y acompañara momentos clave de crecimiento y comunicación sensible.",
-    },
-    desafio: {
-      text: "Como startup fintech en crecimiento, Mesfix necesitaba construir posicionamiento, confianza y claridad en un mercado altamente competitivo y regulado. El reto era desarrollar una narrativa sólida que explicara un producto financiero complejo, generara credibilidad y acompañara momentos clave de crecimiento y comunicación sensible.",
-    },
-    estrategia: {
-      bullets: [
-        "Diseñé y ejecuté la estrategia integral de contenidos digitales, integrando narrativa de marca, educación financiera y posicionamiento estratégico.",
-        "Definí la voz y los pilares editoriales para redes sociales, blog, SEO y PR.",
-        "Traduje conceptos financieros y técnicos en mensajes claros, educativos y accionables.",
-        "Lideré campañas con influenciadores y medios para fortalecer visibilidad y credibilidad.",
+      text: "Participé en el diseño del Programa de Despegue, una iniciativa creada para ayudar a nuevos vendedores a impulsar sus primeras ventas dentro de Mercado Libre.\n\nTrabajé en el producto de principio a fin, desde la conceptualización hasta la implementación del contenido en todos los puntos del journey.",
+      blocks: [
+        {
+          title: "Entre mis responsabilidades principales estuvieron:",
+          bullets: [
+            "Crear el nombre del programa: \"Programa de Despegue\".",
+            "Diseñar la estrategia de contenido para todo el journey del vendedor.",
+            "Diseñar y escribir los mensajes de invitación al programa en distintos canales: mensajes dentro del dashboard del vendedor, banners, push notifications, WhatsApp y email.",
+            "Diseñar y escribir el contenido de la landing page del programa.",
+            "Crear FAQs y contenido educativo para el blog.",
+            "Diseñar los mensajes dentro del dashboard del programa, adaptados a distintos estados del usuario.",
+            "Crear mensajes para momentos clave: cuando el vendedor estaba en riesgo de perder el beneficio, cuando se mantenía estable y cuando lograba completarlo exitosamente.",
+            "Realizar research para evaluar el entendimiento del producto.",
+            "Iterar el contenido en múltiples ciclos de mejora.",
+          ],
+        },
+        {
+          text: "Este fue uno de los productos en los que más iteraciones de contenido realicé durante mi tiempo en Mercado Libre.",
+        },
       ],
     },
-    solucion: {
-      text: "Creé un ecosistema de contenidos coherente que posicionó a Mesfix como referente confiable en su sector.",
+    objetivoGeneral: {
+      text: "Activar a nuevos vendedores dentro de la plataforma y ayudarles a generar sus primeras ventas, reduciendo la barrera inicial que existe al empezar a vender en un marketplace.",
+      blocks: [
+        {
+          title: "El programa buscaba:",
+          bullets: [
+            "Mejorar la visibilidad de nuevos vendedores.",
+            "Aumentar su confianza frente a los compradores.",
+            "Acelerar el proceso de activación y generación de ventas.",
+          ],
+        },
+      ],
+    },
+    desafio: {
+      text: "Los nuevos vendedores enfrentan un problema común en marketplaces: no tienen historial ni reputación visible, lo que reduce la confianza de los compradores.\n\nEsto genera un círculo difícil de romper:",
       bullets: [
-        "Analicé métricas de desempeño y ajusté la estrategia con base en resultados.",
-        "Aporté desde comunicación y experiencia de usuario en el desarrollo y lanzamiento de nuevos productos.",
-        "Gestioné eventos estratégicos para posicionar la marca en el ecosistema fintech.",
+        "Sin reputación → menos confianza.",
+        "Menos confianza → menos ventas.",
+        "Menos ventas → más difícil construir reputación.",
+      ],
+      image: "/images/content-design-projecto-3-imagen-2.png",
+      blocks: [
+        {
+          title: "Además, el programa tenía una lógica compleja de beneficios y condiciones, lo que hacía necesario explicar claramente:",
+          bullets: [
+            "Cómo funcionaba el programa.",
+            "Qué beneficios ofrecía.",
+            "Qué debía hacer el vendedor para mantenerlos.",
+            "Qué pasaba si no cumplía las condiciones.",
+          ],
+        },
+        {
+          text: "El desafío era diseñar una experiencia que fuera fácil de entender, motivadora y transparente.",
+        },
+      ],
+    },
+    estrategia: {
+      intro: "La estrategia de contenido se centró en tres principios:",
+      blocks: [
+        {
+          title: "1. Explicar claramente el valor del programa",
+          text: "Diseñé mensajes que explicaban rápidamente por qué el programa podía ayudar a impulsar las primeras ventas del vendedor.",
+        },
+        {
+          title: "2. Acompañar al vendedor durante todo el proceso",
+          text: "El contenido no se limitaba a la invitación inicial. Diseñamos un sistema de mensajes que acompañaba al vendedor durante los 180 días de duración del programa.",
+        },
+        {
+          title: "3. Mostrar progreso y motivación",
+          text: "El dashboard del programa permitía a los vendedores ver diariamente su progreso, reforzando la sensación de avance y claridad sobre lo que debían lograr.",
+        },
+        {
+          title: "Estrategia diferenciada por versión",
+          text: "También diseñé una estrategia diferenciada para la versión paga del programa y la versión gratuita, utilizada en mercados donde no era posible cobrar por el beneficio. Cada versión tenía mensajes adaptados a su lógica de beneficios.",
+        },
+      ],
+      image: "/images/content-design-projecto-3-imagen-3.png",
+      imageSide: true,
+    },
+    solucion: {
+      intro: "El resultado fue una experiencia completa que incluía:",
+      images: [
+        "/images/content-design-projecto-3-imagen-4.png",
+        "/images/content-design-projecto-3-imagen-5.png",
+        "/images/content-design-projecto-3-imagen-6.png",
+      ],
+      blocks: [
+        {
+          title: "1. Un sistema de invitación multicanal",
+          bullets: [
+            "Banners en el dashboard.",
+            "Mensajes in-product.",
+            "Push notifications.",
+            "WhatsApp.",
+            "Email.",
+          ],
+        },
+        {
+          title: "2. Una landing page explicativa",
+          bullets: [
+            "Beneficios del programa.",
+            "Condiciones.",
+            "Funcionamiento.",
+            "Preguntas frecuentes.",
+          ],
+        },
+        {
+          title: "3. Un dashboard del programa",
+          text: "Que permitía al vendedor ver el progreso de su participación, entender su estado actual y saber qué debía hacer para mantener los beneficios.\n\nLos mensajes dentro del dashboard se adaptaban según el estado del vendedor:",
+          bullets: [
+            "Riesgo de perder el programa.",
+            "Estado estable.",
+            "Finalización exitosa.",
+          ],
+        },
       ],
     },
     resultados: {
       bullets: [
-        "Consolidación de una narrativa clara y coherente en todos los canales digitales.",
-        "Mayor posicionamiento y visibilidad en el sector fintech.",
-        "Optimización continua de la estrategia basada en métricas de rendimiento.",
-        "Integración efectiva entre comunicación, producto y crecimiento.",
+        "Acelerar la activación de nuevos vendedores, ayudándolos a construir reputación y generar sus primeras ventas.",
+        "Mejorar el entendimiento del programa entre los participantes.",
+        "Acompañar al vendedor durante todo su proceso dentro del programa.",
+        "Reducir la fricción en un producto con una lógica compleja de beneficios y condiciones.",
       ],
     },
   },
