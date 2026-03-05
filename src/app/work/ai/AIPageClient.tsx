@@ -1183,8 +1183,6 @@ function Type3Sections({ project }: { project: AIProjectType3 }) {
   return (
     <>
       <section id={`${project.id}-descripcion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Descripción" />
-        <br />
         <Type3DescriptionSection project={project} />
       </section>
 

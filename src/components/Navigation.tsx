@@ -21,7 +21,7 @@ export function Navigation() {
   const [isInWorkSection, setIsInWorkSection] = useState(false);
   const [isInPersonalProjects, setIsInPersonalProjects] = useState(false);
   const [isInServices, setIsInServices] = useState(false);
-
+  const [isInAboutTeaser, setIsInAboutTeaser] = useState(false);
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
@@ -37,6 +37,7 @@ export function Navigation() {
     setIsInWorkSection(false);
     setIsInPersonalProjects(false);
     setIsInServices(false);
+    setIsInAboutTeaser(false);
   }, [pathname]);
 
   // Single IntersectionObserver for all tracked sections
@@ -45,6 +46,7 @@ export function Navigation() {
       work: setIsInWorkSection,
       "three-pillars": setIsInPersonalProjects,
       services: setIsInServices,
+      "about-teaser": setIsInAboutTeaser,
     };
 
     const observer = new IntersectionObserver(
@@ -70,8 +72,8 @@ export function Navigation() {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{
-          y: (isInWorkSection || isInPersonalProjects || isInServices) ? -80 : 0,
-          opacity: (isInWorkSection || isInPersonalProjects || isInServices) ? 0 : 1,
+          y: ((isInWorkSection || isInPersonalProjects || isInServices) && !isInAboutTeaser) ? -80 : 0,
+          opacity: ((isInWorkSection || isInPersonalProjects || isInServices) && !isInAboutTeaser) ? 0 : 1,
         }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${

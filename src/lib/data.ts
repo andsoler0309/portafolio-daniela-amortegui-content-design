@@ -317,7 +317,7 @@ export const pillars: Pillar[] = [
     title: "Content\nDesign",
     subtitle: "Proyectos",
     description:
-      "Estrategia de contenidos, UX Writing y narrativa de marca para productos digitales a gran escala.",
+      "Estrategia de contenido, UX Writing y sistemas de mensajes para productos digitales a gran escala.",
     href: "/work/ux-content",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
     accentColor: "#A8B89A",
@@ -328,7 +328,7 @@ export const pillars: Pillar[] = [
     title: "Proyectos con IA",
     subtitle: "Proyectos",
     description:
-      "Exploración y aplicación de inteligencia artificial en contenido, automatización y nuevas narrativas.",
+      "Exploración y diseño de experiencias con inteligencia artificial aplicadas a contenido, automatización y toma de decisiones.",
     href: "/work/ai",
     gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
     accentColor: "#D4896A",
@@ -339,7 +339,7 @@ export const pillars: Pillar[] = [
     title: "Otros Proyectos",
     subtitle: "Proyectos",
     description:
-      "Proyectos personales, experimentación editorial y contenido en formatos diversos.",
+      "Otras experiencias laborales en donde trabajé con contenido y formatos digitales.",
     href: "/work/other",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
     accentColor: "#D4C5B0",
@@ -1152,7 +1152,7 @@ export const aiProjects: AIProject[] = [
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #2A1A2E 0%, #4A2D4A 30%, #8B5B8B 70%, #AB8BAB 100%)",
-    description: "Además de diseñar prompts y sistemas de contenido para productos que utilizan inteligencia artificial, también incorporo herramientas de IA en mi proceso de trabajo para optimizar investigación, ideación y producción de contenido.\n\nUsé IA para:",
+    description: "Además de diseñar prompts y sistemas de contenido para productos que utilizan inteligencia artificial, también incorporo herramientas de IA en mi proceso de trabajo para optimizar investigación, ideación y producción de contenido.\n\nUso IA para:",
     blocks: [
       {
         bullets: [

@@ -25,7 +25,7 @@ export function AboutTeaser() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-bg-secondary">
               <Image
-                src="/images/about-image.jpg"
+                src="/images/about-image.JPG"
                 alt="Daniela Amórtegui"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"

@@ -176,7 +176,7 @@ function LetterField() {
 
 // ─── ambient dot particles ────────────────────────────────────────────────────
 function Particles() {
-  const count = 20;
+  const count = 40;
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -214,20 +214,14 @@ export function Scene3D() {
       >
         <LetterField />
         <Particles />
-        <ThrottledInvalidate />
+        <ContinuousInvalidate />
       </Canvas>
     </div>
   );
 }
 
-/** Invalidate at ~30 fps instead of every frame to save GPU cycles */
-function ThrottledInvalidate() {
-  const last = useRef(0);
-  useFrame(({ clock, invalidate }) => {
-    if (clock.elapsedTime - last.current > 0.033) {
-      last.current = clock.elapsedTime;
-      invalidate();
-    }
-  });
+/** Invalidate on each frame so "demand" mode still animates */
+function ContinuousInvalidate() {
+  useFrame(({ invalidate }) => { invalidate(); });
   return null;
 }
