@@ -36,7 +36,7 @@ function ContentBlockItem({ block, index }: { block: ContentBlock; index: number
           {block.bullets.map((bullet, i) => (
             <li key={i} className="flex gap-4 items-start" style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
               <span className="shrink-0 w-1.5 h-1.5 rounded-full bg-terracotta/50" style={{ marginTop: "0.55em" }} />
-              <span className="text-fg-secondary" style={{ fontSize: "clamp(0.92rem, 1.2vw, 1rem)", lineHeight: 1.8 }}><T>{bullet}</T></span>
+              <span className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}><T>{bullet}</T></span>
             </li>
           ))}
         </ul>

@@ -667,7 +667,7 @@ export const uxContentProjects: UXContentProject[] = [
       image: "/images/content-design-projecto-3-imagen-2.png",
       blocks: [
         {
-          title: "Además, el programa tenía una lógica compleja de beneficios y condiciones, lo que hacía necesario explicar claramente:",
+          text: "Además, el programa tenía una lógica compleja de beneficios y condiciones, lo que hacía necesario explicar claramente:",
           bullets: [
             "Cómo funcionaba el programa.",
             "Qué beneficios ofrecía.",
@@ -789,11 +789,11 @@ export const uxContentProjects: UXContentProject[] = [
       blocks: [
         {
           title: "1. Explicar el valor antes que la funcionalidad",
-          text: "En lugar de empezar explicando cómo funciona la herramienta, la comunicación comienza con el beneficio principal para el vendedor: vender más y ser más competitivo.\n\nEsto se refleja desde el subject y el headline:\n\n\"Gánale a la competencia y vende hasta un 37% más automatizando tus precios.\"",
+          text: "En lugar de empezar explicando cómo funciona la herramienta, la comunicación comienza con el beneficio principal para el vendedor: vender más y ser más competitivo. Esto se refleja desde el subject y el headline:\n\n\"Gánale a la competencia y vende hasta un 37% más automatizando tus precios.\"",
         },
         {
           title: "2. Reducir el miedo a perder control",
-          text: "Uno de los principales frenos para adoptar la herramienta era la percepción de que el sistema tomaría el control del precio.\n\nPara reducir esta fricción, el contenido enfatiza que el vendedor define los límites y el sistema solo optimiza dentro de ese rango.\n\nEsto se comunica claramente con frases como:\n\n\"Haz la prueba, tú defines los límites.\"",
+          text: "Uno de los principales frenos para adoptar la herramienta era la percepción de que el sistema tomaría el control del precio. Para reducir esta fricción, el contenido enfatiza que el vendedor define los límites y el sistema solo optimiza dentro de ese rango. Esto se comunica claramente con frases como:\n\n\"Haz la prueba, tú defines los límites.\"",
         },
         {
           title: "3. Explicar el funcionamiento de forma simple",
@@ -1148,7 +1148,7 @@ export const aiProjects: AIProject[] = [
     type: "type3",
     id: "ai-en-mi-flujo",
     title: "IA en mi workflow",
-    client: "Mi Workflow",
+    client: "IA en mi Workflow",
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #2A1A2E 0%, #4A2D4A 30%, #8B5B8B 70%, #AB8BAB 100%)",
