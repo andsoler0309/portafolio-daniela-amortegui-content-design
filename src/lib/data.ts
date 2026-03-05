@@ -368,6 +368,12 @@ export const philosophyPoints = [
    UX CONTENT DESIGN — Pillar detail projects
    ────────────────────────────────────────────── */
 
+export interface ContentBlock {
+  title?: string;
+  text?: string;
+  bullets?: string[];
+}
+
 export interface UXContentProject {
   id: string;
   title: string;
@@ -378,6 +384,7 @@ export interface UXContentProject {
   rol: {
     text: string;
     image?: string;
+    bullets?: string[];
   };
   objetivoGeneral: {
     text: string;
@@ -385,14 +392,19 @@ export interface UXContentProject {
   };
   desafio: {
     text: string;
+    bullets?: string[];
     image?: string;
   };
   estrategia: {
-    bullets: string[];
+    intro?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
     image?: string;
   };
   solucion: {
-    text: string;
+    intro?: string;
+    text?: string;
+    blocks?: ContentBlock[];
     bullets?: string[];
     image?: string;
   };
@@ -404,47 +416,97 @@ export interface UXContentProject {
 
 export const uxContentProjects: UXContentProject[] = [
   {
-    id: "mercado-libre",
-    title: "Estrategia de contenidos para Mercado Libre",
-    client: "MERCADO LIBRE",
+    id: "Proyecto-1",
+    title: "Rediseño del dashboard de reputación",
+    client: "Proyecto 1",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
     rol: {
-      text: "UX Writer y Content Strategist dentro del equipo de producto, responsable de la narrativa y estructura de contenidos para flujos clave de la experiencia de vendedores en el marketplace.",
+      text: "Trabajé en el rediseño del dashboard de Reputación para vendedores en Mercado Libre. Mi rol consistió en diseñar la estrategia de contenido del producto para ayudar a los vendedores a comprender cómo se medía su desempeño dentro de la plataforma.\n\nEntre mis responsabilidades principales estuvieron:",
+      bullets: [
+        "Diseñar y escribir los contenidos del nuevo dashboard de reputación.",
+        "Cocrear la arquitectura de información del dashboard junto al equipo de producto y diseño.",
+        "Diseñar matrices de contenido para cada caso de uso y estado de reputación.",
+        "Definir la estrategia de comunicación de las nuevas funcionalidades.",
+        "Actualizar FAQs y documentación de ayuda.",
+        "Crear contenidos educativos para el blog orientados a explicar las métricas de reputación."
+      ],
     },
     objetivoGeneral: {
-      text: "Diseñar y estructurar un ecosistema integral de contenidos que educara, motivara y acompañara a vendedores en su crecimiento dentro de Mercado Libre, alineando storytelling, data y equipos multidisciplinarios para garantizar coherencia de marca, claridad en la experiencia y resultados medibles a gran escala.",
+      text: "Ayudar a los vendedores a entender sus métricas de desempeño, identificar rápidamente sus principales áreas de mejora y tomar acciones concretas para mejorar su reputación dentro de la plataforma.",
     },
     desafio: {
-      text: "Los vendedores dentro del ecosistema necesitaban comprender cómo construir una buena reputación y ofrecer experiencias de compra que impactaran directamente su visibilidad, crecimiento y métricas como NPS. El reto era educar, motivar y acompañar a miles de usuarios en procesos complejos, como la sección de Reputación, sin generar fricción ni saturación informativa. Debíamos transformar reglas, métricas y conceptos técnicos en herramientas claras para que los vendedores entendieran cómo 'tener una vitrina atractiva' y crecer dentro del marketplace.",
+      text: "Antes del rediseño, muchos vendedores no entendían cómo se calculaba su reputación ni qué acciones debían tomar para mejorarla.\n\nAlgunos de los principales problemas eran:",
+      bullets: [
+        "Las métricas y porcentajes no eran intuitivos ni fáciles de interpretar.",
+        "Los vendedores no sabían cuál era su principal problema dentro de su desempeño.",
+        "No estaba claro qué impacto tenía cada variable en su reputación.",
+        "Las comunicaciones eran fragmentadas y poco accionables.",
+        "El reto era transformar un sistema complejo de métricas en una experiencia clara, educativa y orientada a la acción."
+      ]
     },
     estrategia: {
       image: "/images/content-design-projecto-1-imagen-3.jpg",
-      bullets: [
-        "Lideré la estrategia de contenidos para flujos relacionados con Reputación y programas de crecimiento como el Programa de Despegue, diseñando una narrativa educativa orientada a la acción.",
-        "Traduje métricas como NPS y criterios de desempeño en mensajes claros y accionables.",
-        "Estructuré contenidos que enseñaban buenas prácticas para mejorar experiencia de compra y posicionamiento.",
-        "Diseñé comunicaciones omnicanal (in-app, emails, notificaciones, FAQs y SEO).",
-        "Trabajé transversalmente con Producto, Data y equipos comerciales para alinear contenido con objetivos de crecimiento.",
+      intro: "Para abordar este desafío diseñé una estrategia de contenido centrada en claridad, jerarquía y acción.\n\nLa estrategia se basó en tres principios:",
+      blocks: [
+        {
+          title: "1. Traducir métricas complejas en información comprensible",
+          text: "Trabajé en simplificar el lenguaje y explicar las métricas en términos que fueran fáciles de entender para vendedores con distintos niveles de experiencia digital.",
+        },
+        {
+          title: "2. Priorizar lo importante",
+          text: "Diseñamos el dashboard para que los vendedores pudieran identificar rápidamente:",
+          bullets: [
+            "Su estado actual de reputación.",
+            "Qué métricas estaban afectando su desempeño.",
+            "Qué acciones debían tomar para mejorar.",
+          ],
+        },
+        {
+          title: "3. Convertir la información en recomendaciones accionables",
+          text: "En lugar de solo mostrar métricas, cada estado del sistema incluía explicaciones claras y sugerencias concretas para mejorar.\n\nPara lograrlo desarrollé:",
+          bullets: [
+            "Matrices de contenido por caso de uso.",
+            "Mensajes adaptados según el estado de cada métrica.",
+            "Contenidos educativos complementarios fuera del producto.",
+          ],
+        },
       ],
     },
     solucion: {
-      text: "Construí un sistema narrativo escalable que transformó conceptos técnicos en contenidos educativos claros, integrando múltiples canales y equipos bajo una misma voz.",
+      intro: "El resultado fue un nuevo dashboard de reputación, más claro y orientado a la acción.\n\nLa solución incluyó:",
       image: "/images/content-design-projecto-1-imagen-2.jpg",
-      bullets: [
-        "Definí y protegí lineamientos de tono y voz para garantizar coherencia con el ecosistema general de Mercado Libre.",
-        "Coordiné y alineé entregables desarrollados por agencias externas para asegurar consistencia narrativa en todos los puntos de contacto.",
-        "Documenté lineamientos editoriales para garantizar escalabilidad y estandarización.",
+      blocks: [
+        {
+          bullets: [
+            "Una estructura de información reorganizada, que permitía entender rápidamente el estado de la reputación.",
+            "Contenidos que explicaban cómo se calculaba cada métrica.",
+            "Mensajes contextualizados según el estado del vendedor.",
+            "Indicadores visuales claros (como estados en verde, amarillo o rojo) acompañados de explicaciones en lenguaje simple.",
+            "Recomendaciones específicas para mejorar el desempeño en cada métrica.",
+            "Recursos educativos complementarios como FAQs actualizadas y artículos en el blog.",
+          ],
+        },
+        {
+          text: "El contenido del dashboard se diseñó como una guía continua para mejorar el desempeño dentro de la plataforma.\n\nPosteriormente al rediseño, el sistema de reputación cambió los umbrales con los que se evaluaba a los vendedores. Este cambio implicaba que muchos sellers podían perder su reputación verde o su nivel de líder, lo que hacía especialmente importante comunicar el cambio de forma clara y reducir fricciones.\n\nPara esto diseñé un plan completo de comunicaciones orientado a explicar por qué se producían estos cambios y qué acciones debían tomar los vendedores para mejorar su desempeño.\n\nEl plan incluía:",
+          bullets: [
+            "Comunicaciones segmentadas según cada caso de uso y el impacto que el cambio tendría en cada vendedor.",
+            "Recordatorios periódicos cada 15 días para acompañar el proceso de transición.",
+            "Mensajes explicativos enfocados en ayudar a los sellers a entender por qué su reputación cambiaba y cómo podían mejorarla.",
+          ],
+        },
+        {
+          text: "Además, participé en el diseño de un simulador de reputación que permitía a los vendedores visualizar cómo quedaría su reputación con los nuevos umbrales. Este simulador incluía mensajes específicos según cada caso de uso para ayudar a interpretar los resultados y entender qué acciones debían priorizar.",
+        },
       ],
     },
     resultados: {
       bullets: [
-        "Mayor claridad en los criterios de reputación y desempeño para vendedores.",
-        "Educación estratégica que impulsó mejores prácticas y fortaleció experiencia de compra.",
-        "Alineación entre comunicación, métricas de negocio (NPS) y objetivos de crecimiento.",
-        "Consistencia de tono y narrativa en múltiples flujos y colaboraciones externas.",
-        "Escalamiento de una narrativa educativa adoptada transversalmente en el producto.",
+        "Mejorar el entendimiento de las métricas de reputación por parte de los vendedores.",
+        "Facilitar la identificación de problemas en su desempeño.",
+        "Promover comportamientos que mejoraran la calidad del servicio dentro de la plataforma.",
+        "El dashboard pasó de ser una herramienta informativa a convertirse en una herramienta de gestión para los vendedores.",
       ],
     },
   },
