@@ -41,55 +41,30 @@ export function Navigation() {
     setIsInAboutTeaser(false);
   }, [pathname]);
 
+  // Single IntersectionObserver for all tracked sections
   useEffect(() => {
-    const workSection = document.getElementById("work");
-    if (!workSection) return;
+    const sectionMap: Record<string, (v: boolean) => void> = {
+      work: setIsInWorkSection,
+      "three-pillars": setIsInPersonalProjects,
+      services: setIsInServices,
+      "about-teaser": setIsInAboutTeaser,
+    };
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInWorkSection(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    observer.observe(workSection);
-    return () => observer.disconnect();
-  }, [pathname]);
-
-  useEffect(() => {
-    const personalSection = document.getElementById("three-pillars");
-    if (!personalSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInPersonalProjects(entry.isIntersecting),
+      (entries) => {
+        entries.forEach((entry) => {
+          const setter = sectionMap[entry.target.id];
+          if (setter) setter(entry.isIntersecting);
+        });
+      },
       { threshold: 0.05 }
     );
 
-    observer.observe(personalSection);
-    return () => observer.disconnect();
-  }, [pathname]);
+    Object.keys(sectionMap).forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-  useEffect(() => {
-    const servicesSection = document.getElementById("services");
-    if (!servicesSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInServices(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    observer.observe(servicesSection);
-    return () => observer.disconnect();
-  }, [pathname]);
-
-  useEffect(() => {
-    const aboutTeaserSection = document.getElementById("about-teaser");
-    if (!aboutTeaserSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInAboutTeaser(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    observer.observe(aboutTeaserSection);
     return () => observer.disconnect();
   }, [pathname]);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { siteConfig } from "@/lib/data";
 
@@ -24,20 +24,13 @@ export function Footer() {
     offset: ["start end", "start 0.55"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001,
-  });
-
-  const y = useTransform(smoothProgress, [0, 1], ["8%", "0%"]);
-  const opacity = useTransform(smoothProgress, [0, 0.4], [0, 1]);
-  const scale = useTransform(smoothProgress, [0, 1], [0.97, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], ["8%", "0%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   return (
     <motion.footer
       ref={ref}
-      style={{ y, opacity, scale }}
+      style={{ y, opacity }}
       className="page-section border-t border-stone/20 origin-bottom"
       aria-label="Footer"
     >
@@ -58,16 +51,6 @@ export function Footer() {
             href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center gap-4 px-8 py-4 bg-forest text-fg-inverse rounded-full hover:bg-sage-dark transition-colors duration-300 group"
           >
-            {/* <span className="text-sm font-medium tracking-wide uppercase">
-              Get in touch
-            </span>
-            <motion.span
-              className="inline-block"
-              whileHover={{ x: 4 }}
-              transition={{ duration: 0.3 }}
-            >
-              →
-            </motion.span> */}
           </a>
         </motion.div>
 

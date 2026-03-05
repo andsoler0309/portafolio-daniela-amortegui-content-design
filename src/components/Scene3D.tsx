@@ -85,6 +85,13 @@ function LetterField() {
     [meta]
   );
 
+  // Dispose textures on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      textures.forEach((tex) => tex.dispose());
+    };
+  }, [textures]);
+
   const spritesRef = useRef<(THREE.Sprite | null)[]>([]);
   const positions = useRef<THREE.Vector3[]>([]);
   const velocities = useRef<THREE.Vector3[]>([]);
@@ -169,7 +176,7 @@ function LetterField() {
 
 // ─── ambient dot particles ────────────────────────────────────────────────────
 function Particles() {
-  const count = 80;
+  const count = 40;
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -201,12 +208,20 @@ export function Scene3D() {
       <Canvas
         camera={{ position: [0, 0, 8], fov: 50 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
+        frameloop="demand"
       >
         <LetterField />
         <Particles />
+        <ContinuousInvalidate />
       </Canvas>
     </div>
   );
+}
+
+/** Invalidate on each frame so "demand" mode still animates */
+function ContinuousInvalidate() {
+  useFrame(({ invalidate }) => { invalidate(); });
+  return null;
 }

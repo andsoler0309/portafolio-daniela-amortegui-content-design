@@ -36,15 +36,6 @@ const skills = [
   "Estrategia de Crecimiento y Funnel",
 ];
 
-const interests = [
-  { icon: "🏃‍♀️", label: "Trail Running" },
-  { icon: "🧘", label: "Breathwork & Meditation" },
-  { icon: "📚", label: "Behavioral Psychology" },
-  { icon: "🌿", label: "Herbalism & Wellness" },
-  { icon: "✍️", label: "Creative Writing" },
-  { icon: "🎧", label: "Podcast Junkie" },
-];
-
 export function AboutPageClient() {
   return (
     <div style={{ paddingTop: "var(--nav-height)" }}>
@@ -67,6 +58,7 @@ export function AboutPageClient() {
                   src="/images/about-image.jpg"
                   alt={siteConfig.name}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
                   className="object-cover"
                   priority
                 />

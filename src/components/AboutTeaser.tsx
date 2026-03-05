@@ -29,6 +29,7 @@ export function AboutTeaser() {
                 src="/images/about-image.jpg"
                 alt="Daniela Amórtegui"
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
             </div>

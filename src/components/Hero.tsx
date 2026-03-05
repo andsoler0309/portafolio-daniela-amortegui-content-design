@@ -62,7 +62,7 @@ export function Hero() {
             {/* Name — large display */}
             <h1 className="font-[family-name:var(--font-display)] font-medium tracking-tight leading-[0.95] mb-6 md:mb-8">
               {["Daniela", "Amórtegui"].map((word, wi) => (
-                <span key={word} className="overflow-hidden block text-[clamp(2.8rem,7vw,7.5rem)] leading-[1.25] pb-1">
+                <span key={word} className="overflow-hidden block text-[clamp(2.8rem,7vw,7.5rem)] lg:text-[clamp(2.8rem,4.5vw,5.5rem)] leading-[1.25] pb-1">
                   {word.split("").map((char, i) => (
                     <motion.span
                       key={i}
