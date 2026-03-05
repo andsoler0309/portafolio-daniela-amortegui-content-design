@@ -752,4 +752,91 @@ export const uxContentProjects: UXContentProject[] = [
       ],
     },
   },
+  {
+    id: "Proyecto-4",
+    title: "Relanzamiento de Automatización de precios",
+    client: "Proyecto 4",
+    year: "2021–2026",
+    coverImage: "",
+    gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
+    rol: {
+      text: "Participé en el relanzamiento de Automatización de precios, una herramienta para vendedores de Mercado Libre que ajusta automáticamente los precios de sus publicaciones según el mercado y la competencia.\n\nLa herramienta utilizaba un sistema automatizado que permitía al vendedor definir un precio mínimo y máximo, mientras el sistema optimizaba el precio dentro de ese rango para mejorar la competitividad de la publicación.\n\nMi trabajo consistió en rediseñar la comunicación del producto a través de una campaña de email, con el objetivo de aumentar el entendimiento de la herramienta y motivar su uso.",
+      bullets: [
+        "Rediseñar la comunicación del producto para explicar mejor su valor.",
+        "Escribir el contenido completo del email de relanzamiento.",
+        "Simplificar la explicación de cómo funciona la herramienta.",
+        "Destacar los beneficios clave para incentivar la adopción.",
+        "Diseñar una narrativa clara que llevara al usuario desde el problema hasta la acción.",
+      ],
+    },
+    objetivoGeneral: {
+      text: "Incrementar el uso de la herramienta Automatización de precios entre los vendedores, mejorando la claridad de la propuesta de valor y reduciendo la fricción para probarla.",
+    },
+    desafio: {
+      text: "Aunque la herramienta ya existía, su adopción era baja porque muchos vendedores no entendían claramente cómo funcionaba o qué beneficios les ofrecía.",
+      bullets: [
+        "La funcionalidad era percibida como compleja o poco transparente.",
+        "Muchos vendedores temían perder control sobre sus precios.",
+        "El valor de la herramienta no estaba comunicado de forma clara.",
+        "La comunicación previa no explicaba de forma sencilla cómo empezar a usarla.",
+      ],
+      blocks: [
+        {
+          text: "El reto era transformar una herramienta percibida como compleja en una propuesta simple, segura y beneficiosa para el vendedor.",
+        },
+      ],
+    },
+    estrategia: {
+      intro: "Para abordar este desafío diseñé una estrategia de contenido centrada en tres principios:",
+      blocks: [
+        {
+          title: "1. Explicar el valor antes que la funcionalidad",
+          text: "En lugar de empezar explicando cómo funciona la herramienta, la comunicación comienza con el beneficio principal para el vendedor: vender más y ser más competitivo.\n\nEsto se refleja desde el subject y el headline:\n\n\"Gánale a la competencia y vende hasta un 37% más automatizando tus precios.\"",
+        },
+        {
+          title: "2. Reducir el miedo a perder control",
+          text: "Uno de los principales frenos para adoptar la herramienta era la percepción de que el sistema tomaría el control del precio.\n\nPara reducir esta fricción, el contenido enfatiza que el vendedor define los límites y el sistema solo optimiza dentro de ese rango.\n\nEsto se comunica claramente con frases como:\n\n\"Haz la prueba, tú defines los límites.\"",
+        },
+        {
+          title: "3. Explicar el funcionamiento de forma simple",
+          text: "La comunicación incluye una sección clara que explica cómo empezar a usar la herramienta en tres pasos, permitiendo que el vendedor entienda rápidamente que el proceso es simple y reversible.",
+        },
+      ],
+    },
+    solucion: {
+      intro: "La solución fue una pieza de comunicación por email rediseñada, enfocada en explicar claramente el valor de la herramienta y facilitar su adopción.\n\nEl contenido se estructuró en cuatro bloques principales:",
+      image: "/images/content-design-projecto-4-imagen-1.png",
+      imageSide: true,
+      blocks: [
+        {
+          title: "Propuesta de valor clara",
+          text: "El email abre con un mensaje que comunica inmediatamente el beneficio de la herramienta: aumentar ventas automatizando los precios.",
+        },
+        {
+          title: "Beneficios concretos",
+          bullets: [
+            "Mayor exposición en las publicaciones.",
+            "Mayor competitividad frente a otros vendedores.",
+            "Mayor probabilidad de aparecer como opción destacada.",
+          ],
+        },
+        {
+          title: "Explicación visual del funcionamiento",
+          text: "La comunicación incluye una representación simple del funcionamiento de la herramienta, mostrando cómo el vendedor define un precio mínimo y máximo, mientras el sistema ajusta el precio dentro de ese rango.",
+        },
+        {
+          title: "Instrucciones claras para comenzar",
+          text: "Finalmente, se incluye una guía simple en tres pasos para activar la herramienta, acompañada de un llamado a la acción directo hacia la sección de Gestión de precios.",
+        },
+      ],
+    },
+    resultados: {
+      bullets: [
+        "Comunicar de forma más clara el valor de la herramienta y reducir la percepción de complejidad asociada a su uso.",
+        "Explicar mejor cómo funciona la automatización de precios.",
+        "Reducir la fricción para probar la herramienta.",
+        "Reforzar la percepción de control por parte del vendedor.",
+      ],
+    },
+  },
 ];
