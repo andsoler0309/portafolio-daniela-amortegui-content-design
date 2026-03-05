@@ -6,9 +6,11 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/data";
 
 const footerLinks = [
-  { label: "Home", href: "/" },
-  { label: "Experiencia", href: "/work" },
-  { label: "Sobre mí", href: "/about" },
+  { href: "/", label: "Inicio" },
+  { href: "/about", label: "Sobre mí" },
+  { href: "/work/ux-content", label: "Content Design" },
+  { href: "/work/ai", label: "IA" },
+  { href: "/work/other", label: "Otros" },
 ];
 
 const socialLinks = [
@@ -35,24 +37,6 @@ export function Footer() {
       aria-label="Footer"
     >
       <div className="container-main">
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-24"
-        >
-          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl lg:text-6xl font-medium leading-[1.05] max-w-3xl mb-8">
-            Vamos a crear algo que{" "}
-            <span className="text-terracotta italic">mueva personas.</span>
-          </h2>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="inline-flex items-center gap-4 px-8 py-4 bg-forest text-fg-inverse rounded-full hover:bg-sage-dark transition-colors duration-300 group"
-          >
-          </a>
-        </motion.div>
 
         {/* Footer grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8" style={{ marginBottom: "2rem" }}>
@@ -63,9 +47,6 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
-            {/* <p className="font-[family-name:var(--font-display)] text-2xl font-semibold mb-2">
-              {siteConfig.initials}
-            </p> */}
             <p className="text-fg-muted text-sm">
               © {siteConfig.initials} — {new Date().getFullYear()}
             </p>

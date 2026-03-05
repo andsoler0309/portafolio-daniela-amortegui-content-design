@@ -1174,3 +1174,127 @@ export const aiProjects: AIProject[] = [
     ],
   },
 ];
+
+/* ──────────────────────────────────────────────
+   OTHER PROJECTS (Experiencias) — Pillar detail
+   ────────────────────────────────────────────── */
+
+export interface Experiencia {
+  id: string;
+  title: string;
+  client: string;
+  year: string;
+  coverImage: string;
+  gradient: string;
+  desafio: {
+    text: string;
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+  enfoque: {
+    intro?: string;
+    text?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  impacto: {
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+}
+
+export const experiencias: Experiencia[] = [
+  {
+    id: "experiencia-1",
+    title: "Estrategia Integral de Contenidos y Posicionamiento de Marca",
+    client: "MESFIX",
+    year: "2018-2021",
+    coverImage: "/images/other-projecto-1-imagen-1.jpg",
+    gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
+    desafio: {
+      text: "Como startup fintech en crecimiento, Mesfix necesitaba construir posicionamiento, confianza y claridad en un mercado altamente competitivo y regulado. El reto era desarrollar una narrativa sólida que explicara un producto financiero complejo, generara credibilidad y acompañara momentos clave de crecimiento y comunicación sensible.",
+    },
+    enfoque: {
+      intro: "Diseñé y ejecuté la estrategia integral de contenidos digitales, integrando narrativa de marca, educación financiera y posicionamiento estratégico.",
+      bullets: [
+        "Definí la voz y los pilares editoriales para redes sociales, blog, SEO y PR.",
+        "Traducí conceptos financieros y técnicos en mensajes claros, educativos y accionables.",
+        "Lideré campañas con influenciadores y medios para fortalecer visibilidad y credibilidad.",
+        "Analicé métricas de desempeño y ajusté la estrategia con base en resultados.",
+        "Aporté desde comunicación y experiencia de usuario en el desarrollo y lanzamiento de nuevos productos.",
+        "Gestioné eventos estratégicos para posicionar la marca en el ecosistema fintech.",
+      ],
+    },
+    impacto: {
+      bullets: [
+        "Consolidación de una narrativa clara y coherente en todos los canales digitales.",
+        "Mayor posicionamiento y visibilidad en el sector fintech.",
+        "Optimización continua de la estrategia basada en métricas de rendimiento.",
+        "Integración efectiva entre comunicación, producto y crecimiento.",
+      ],
+    },
+  },
+  {
+    id: "experiencia-2",
+    title: "Gestión y Análisis de Contenidos Digitales",
+    client: "DATTIS",
+    year: "2018",
+    coverImage: "/images/other-projecto-1-imagen-2.jpg",
+    gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
+    desafio: {
+      text: "Gestionar múltiples marcas (BBC, EY, Iqos, Águila, Colsanitas y Yamaha) con necesidades y audiencias distintas, asegurando coherencia en comunicación digital y cumplimiento de objetivos de alcance y engagement. El reto era estructurar parrillas de contenido estratégicas y optimizar desempeño en un entorno multitarea y de alta exigencia.",
+    },
+    enfoque: {
+      intro: "Construí y ejecuté parrillas editoriales para diversas marcas, alineando tono, objetivos y formatos a cada audiencia.",
+      bullets: [
+        "Monitoreé métricas clave como alcance, engagement y cumplimiento de metas digitales.",
+        "Analicé resultados y ajusté estrategias con base en data.",
+        "Elaboré reportes de desempeño para clientes y equipos internos.",
+        "Apoyé campañas digitales y acciones de PR en medios digitales.",
+        "Gestioné múltiples cuentas en simultáneo, organizando prioridades y entregables con enfoque estratégico.",
+      ],
+    },
+    impacto: {
+      bullets: [
+        "Optimización continua del contenido a partir de métricas reales de desempeño.",
+        "Mejora en coherencia editorial entre marcas y campañas.",
+        "Cumplimiento consistente de objetivos digitales en entornos multitarea.",
+        "Desarrollo de una base sólida en análisis, estrategia y ejecución digital.",
+      ],
+    },
+  },
+  {
+    id: "experiencia-3",
+    title: "Gestión de proyectos de comunicación digital",
+    client: "TRIARIO",
+    year: "2021",
+    coverImage: "/images/other-projecto-1-imagen-3.jpg",
+    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
+    desafio: {
+      text: "Las marcas (Bancolombia y Renting) necesitaban ejecutar estrategias digitales integrales en entornos dinámicos, con múltiples equipos, entregables simultáneos y plazos ajustados. El reto era estructurar un sistema operativo claro que integrara estrategia, contenido, diseño y performance, garantizando coherencia narrativa, cumplimiento y calidad en todo el funnel.",
+    },
+    enfoque: {
+      intro: "Lideré la gestión integral de proyectos digitales para marcas como Bancolombia (Renting Colombia) y Prosalon, estructurando flujos de trabajo en HubSpot para asegurar visibilidad, control y eficiencia.",
+      bullets: [
+        "Organicé y prioricé tareas, cronogramas y asignaciones entre equipos creativos, performance y cliente.",
+        "Implementé seguimiento estructurado en HubSpot para gestionar el funnel completo de contenidos.",
+        "Supervisé y validé cada pieza antes de producción, asegurando calidad editorial, coherencia de tono y alineación estratégica.",
+        "Coordiné la comunicación entre equipos internos y stakeholders externos para mantener claridad y enfoque en objetivos de negocio.",
+        "Optimicé procesos para reducir fricciones y mejorar tiempos de entrega.",
+      ],
+    },
+    impacto: {
+      bullets: [
+        "Mayor eficiencia y orden en la operación de contenidos digitales.",
+        "Consistencia narrativa y control de calidad en cada entrega.",
+        "Integración efectiva entre estrategia, ejecución y performance.",
+        "Cumplimiento sostenido de cronogramas en entornos de alta exigencia.",
+      ],
+    },
+  },
+];

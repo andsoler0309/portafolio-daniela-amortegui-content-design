@@ -8,10 +8,10 @@ import { siteConfig } from "@/lib/data";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Inicio" },
   { href: "/about", label: "Sobre mí" },
-  { href: "/work/ux-content", label: "UX Content" },
-  { href: "/work/ai", label: "AI" },
+  { href: "/work/ux-content", label: "Content Design" },
+  { href: "/work/ai", label: "IA" },
   { href: "/work/other", label: "Otros" },
 ];
 
