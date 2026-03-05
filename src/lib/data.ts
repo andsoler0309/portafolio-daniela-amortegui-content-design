@@ -838,3 +838,339 @@ export const uxContentProjects: UXContentProject[] = [
     },
   },
 ];
+
+/* ──────────────────────────────────────────────
+   AI PROJECTS — Pillar detail projects
+   ────────────────────────────────────────────── */
+
+/** Project type 1 — same sections as Content Design */
+export interface AIProjectType1 {
+  type: "type1";
+  id: string;
+  title: string;
+  client: string;
+  year: string;
+  coverImage: string;
+  gradient: string;
+  rol: {
+    text: string;
+    image?: string;
+    bullets?: string[];
+    blocks?: ContentBlock[];
+  };
+  objetivoGeneral: {
+    text: string;
+    image?: string;
+    blocks?: ContentBlock[];
+  };
+  desafio: {
+    text: string;
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+  estrategia: {
+    intro?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  solucion: {
+    intro?: string;
+    text?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  resultados: {
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+}
+
+/** Project type 2 — with Iteración y pruebas + Herramientas */
+export interface AIProjectType2 {
+  type: "type2";
+  id: string;
+  title: string;
+  client: string;
+  year: string;
+  coverImage: string;
+  gradient: string;
+  rol: {
+    text: string;
+    image?: string;
+    bullets?: string[];
+    blocks?: ContentBlock[];
+  };
+  objetivoGeneral: {
+    text: string;
+    image?: string;
+    blocks?: ContentBlock[];
+  };
+  desafio: {
+    text: string;
+    bullets?: string[];
+    blocks?: ContentBlock[];
+    image?: string;
+  };
+  estrategia: {
+    intro?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  iteracionPruebas: {
+    intro?: string;
+    text?: string;
+    blocks?: ContentBlock[];
+    bullets?: string[];
+    image?: string;
+    imageSide?: boolean;
+    images?: string[];
+  };
+  herramientas: {
+    intro?: string;
+    tools: { name: string; description?: string; icon?: string }[];
+    blocks?: ContentBlock[];
+  };
+}
+
+/** Project type 3 — AI in my workflow (simple) */
+export interface AIProjectType3 {
+  type: "type3";
+  id: string;
+  title: string;
+  client: string;
+  year: string;
+  coverImage: string;
+  gradient: string;
+  description: string;
+  blocks?: ContentBlock[];
+  tools: { name: string; description?: string; category?: string }[];
+}
+
+export type AIProject = AIProjectType1 | AIProjectType2 | AIProjectType3;
+
+export const aiProjects: AIProject[] = [
+  {
+    type: "type1",
+    id: "ai-proyecto-1",
+    title: "Agente interno – Biblioteca de conocimiento",
+    client: "Proyecto 1",
+    year: "",
+    coverImage: "",
+    gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
+    rol: {
+      text: "Diseñé una biblioteca de conocimiento para un agente interno de reputación, con el objetivo de centralizar toda la información necesaria para que equipos internos pudieran entender cómo funciona el sistema de reputación dentro de Mercado Libre.\n\nEl proyecto consistió en estructurar y documentar la información clave del producto para que pudiera ser utilizada tanto por personas como por herramientas de inteligencia artificial.",
+    },
+    objetivoGeneral: {
+      text: "Crear una fuente única de conocimiento sobre el sistema de reputación que permitiera:",
+      blocks: [
+        {
+          bullets: [
+            "Consultar rápidamente conceptos y métricas.",
+            "Entender cómo funcionan los productos relacionados.",
+            "Acceder a contenidos y decisiones de diseño previas.",
+            "Facilitar el uso de esta información por herramientas de IA internas.",
+          ],
+        },
+      ],
+    },
+    desafio: {
+      text: "La información sobre reputación estaba distribuida en múltiples documentos y equipos, lo que hacía difícil:",
+      blocks: [
+        {
+          bullets: [
+            "Entender rápidamente el sistema.",
+            "Reutilizar contenidos existentes.",
+            "Mantener consistencia en la comunicación.",
+          ],
+        },
+        {
+          text: "Además, para poder usar esta información en herramientas de IA era necesario organizar el conocimiento de forma estructurada y clara.",
+        },
+      ],
+    },
+    estrategia: {
+      intro: "Diseñé una biblioteca de conocimiento estructurada en distintas capas:",
+      blocks: [
+        {
+          title: "1. Contenidos del producto",
+          text: "Documentación de mensajes, casos de uso y contenidos existentes dentro del sistema de reputación.",
+        },
+        {
+          title: "2. Glosario y términos",
+          text: "Definición de conceptos clave utilizados en el producto.",
+        },
+        {
+          title: "3. Manual de voz y tono",
+          text: "Guía para mantener consistencia en la comunicación del sistema de reputación.",
+        },
+        {
+          title: "4. Registro de proyectos",
+          text: "Documentación de iniciativas y evoluciones del producto.",
+        },
+        {
+          text: "Esta estructura permitía navegar fácilmente la información y reutilizar contenidos en distintos contextos.",
+        },
+      ],
+    },
+    solucion: {
+      intro: "El resultado fue una biblioteca centralizada de reputación que incluía:",
+      blocks: [
+        {
+          bullets: [
+            "Contenidos del producto.",
+            "Definiciones y glosario.",
+            "Manual de voz y tono.",
+            "Registro de proyectos.",
+            "Recursos reutilizables.",
+          ],
+        },
+        {
+          text: "Este sistema permitió que distintos equipos pudieran consultar información de forma rápida y consistente, y sentó las bases para utilizar este conocimiento en herramientas de IA.",
+        },
+      ],
+    },
+    resultados: {
+      bullets: [
+        "La consulta rápida de información sobre reputación.",
+        "La reutilización de contenidos.",
+        "Mayor consistencia en la comunicación del producto.",
+        "Preparar la información para su uso en herramientas de inteligencia artificial internas.",
+      ],
+    },
+  },
+  {
+    type: "type2",
+    id: "ai-proyecto-2",
+    title: "Diseño de prompt para recomendaciones",
+    client: "Proyecto 2",
+    year: "2024–2025",
+    coverImage: "",
+    gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
+    rol: {
+      text: "Diseñé el prompt utilizado por un agente de inteligencia artificial dentro del producto Experiencia de compra, cuyo objetivo era ofrecer a los vendedores recomendaciones para mejorar el desempeño de sus publicaciones.\n\nEl trabajo incluyó definir cómo debía interpretar la información del producto y cómo debía comunicar las recomendaciones a los vendedores.",
+    },
+    objetivoGeneral: {
+      text: "Utilizar IA para ayudar a los vendedores a entender sus principales problemas y recibir sugerencias concretas para mejorar la experiencia de compra de sus publicaciones.",
+    },
+    desafio: {
+      text: "El principal desafío era lograr que la IA generara respuestas que fueran:",
+      blocks: [
+        {
+          bullets: [
+            "Claras.",
+            "Accionables.",
+            "Consistentes con la voz del producto.",
+          ],
+        },
+        {
+          title: "Además, debía evitar:",
+          bullets: [
+            "Lenguaje técnico innecesario.",
+            "Respuestas ambiguas.",
+            "Recomendaciones poco útiles.",
+          ],
+        },
+      ],
+    },
+    estrategia: {
+      intro: "Diseñé un prompt que incluía:",
+      blocks: [
+        {
+          title: "1. Instrucciones de comportamiento",
+          text: "Definí cómo debía actuar el modelo, priorizando respuestas claras y útiles para vendedores.",
+        },
+        {
+          title: "2. Guías de lenguaje",
+          text: "Incluí:",
+          bullets: [
+            "Palabras recomendadas.",
+            "Términos que debían evitarse.",
+            "Estructura de las respuestas.",
+          ],
+        },
+        {
+          title: "3. Contexto del producto",
+          text: "El prompt incluía información sobre:",
+          bullets: [
+            "Métricas de experiencia de compra.",
+            "Problemas frecuentes de los vendedores.",
+            "Posibles recomendaciones.",
+          ],
+        },
+      ],
+      images: [
+        "/images/ai-projecto-2-imagen-1.png",
+        "/images/ai-projecto-2-imagen-2.png",
+      ],
+    },
+    iteracionPruebas: {
+      intro: "Realicé múltiples iteraciones del prompt utilizando casos reales de vendedores, evaluando:",
+      blocks: [
+        {
+          bullets: [
+            "Claridad de las respuestas.",
+            "Utilidad de las recomendaciones.",
+            "Consistencia en el tono.",
+          ],
+        },
+        {
+          text: "También trabajé en la adaptación del prompt al inglés.",
+        },
+      ],
+    },
+    herramientas: {
+      intro: "Durante el proceso utilicé herramientas de IA como:",
+      tools: [
+        { name: "Gemini", description: "Pruebas de prompts y evaluación de respuestas del modelo." },
+        { name: "Claude", description: "Pruebas de prompts y evaluación de comportamiento del modelo." },
+        { name: "Cursor", description: "Iteración rápida y ajuste de prompts en entorno de desarrollo." },
+        { name: "NotebookLM", description: "Organización de conocimiento y pruebas de contexto." },
+      ],
+      blocks: [
+        {
+          text: "Estas herramientas me permitieron probar distintos enfoques de prompts y evaluar el comportamiento de los modelos.",
+        },
+      ],
+    },
+  },
+  {
+    type: "type3",
+    id: "ai-en-mi-flujo",
+    title: "IA en mi workflow",
+    client: "Mi Workflow",
+    year: "",
+    coverImage: "",
+    gradient: "linear-gradient(160deg, #2A1A2E 0%, #4A2D4A 30%, #8B5B8B 70%, #AB8BAB 100%)",
+    description: "Además de diseñar prompts y sistemas de contenido para productos que utilizan inteligencia artificial, también incorporo herramientas de IA en mi proceso de trabajo para optimizar investigación, ideación y producción de contenido.\n\nUsé IA para:",
+    blocks: [
+      {
+        bullets: [
+          "Acelerar procesos de research y exploración de información.",
+          "Generar primeros borradores de contenido.",
+          "Probar variaciones de microcopy.",
+          "Estructurar documentación y sistemas de contenido.",
+          "Analizar casos de uso y escenarios de usuario.",
+          "Evaluar respuestas generadas por modelos de lenguaje.",
+        ],
+      },
+    ],
+    tools: [
+      { name: "OpenAI – GPT", description: "Research.", category: "AI Tools" },
+      { name: "Anthropic – Claude", description: "Prompt testing.", category: "AI Tools" },
+      { name: "Google – Gemini", description: "Content ideation.", category: "AI Tools" },
+      { name: "Cursor", description: "Prompt iteration.", category: "AI Tools" },
+      { name: "NotebookLM", description: "Documentation.", category: "AI Tools" },
+    ],
+  },
+];
