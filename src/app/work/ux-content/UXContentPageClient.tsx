@@ -1,0 +1,640 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { uxContentProjects } from "@/lib/data";
+import type { UXContentProject } from "@/lib/data";
+
+/* ─── SECTION IDs ─── */
+const SECTIONS = [
+  { id: "rol", label: "Rol" },
+  { id: "objetivo", label: "Objetivo" },
+  { id: "desafio", label: "Desafío" },
+  { id: "estrategia", label: "Estrategia" },
+  { id: "solucion", label: "Solución" },
+  { id: "resultados", label: "Resultados" },
+];
+
+/* ─── IMAGE PLACEHOLDER / SLOT ─── */
+function ImageSlot({ src, alt }: { src?: string; alt?: string; aspect?: string }) {
+  const [open, setOpen] = useState(false);
+  if (!src) return null;
+  return (
+    <>
+      <div
+        className="relative w-full overflow-hidden rounded-2xl border border-stone/10 group cursor-zoom-in"
+        onClick={() => setOpen(true)}
+      >
+        <Image
+          src={src}
+          alt={alt || ""}
+          width={0}
+          height={0}
+          sizes="(max-width:1024px) 100vw, 50vw"
+          className="w-full h-auto block transition-transform duration-700 group-hover:scale-[1.02]"
+        />
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-10"
+            style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(8px)" }}
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.93, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.93, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="relative max-w-5xl w-full max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={alt || ""}
+                className="w-full h-full object-contain rounded-2xl"
+                style={{ maxHeight: "90vh" }}
+              />
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 hover:bg-white/20"
+                style={{ background: "rgba(255,255,255,0.1)" }}
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 1l12 12M13 1L1 13" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/* ─── SECTION LABEL ─── */
+function SectionLabel({ label }: { label: string }) {
+  return (
+    <div className="mb-8">
+      <h2
+        className="font-[family-name:var(--font-display)] font-bold text-fg-primary"
+        style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+      >
+        {label}
+      </h2>
+    </div>
+  );
+}
+
+/* ─── SECTION NAV (scroll-spy anchors) ─── */
+function SectionNav({ activeSection, projectId }: { activeSection: string; projectId: string }) {
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(`${projectId}-${id}`);
+    if (!el) return;
+    const offset = 200;
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+  return (
+    <div className="hidden md:flex items-center overflow-x-auto scrollbar-hide" style={{ gap: "0.5rem", height: "2.8rem" }}>
+      {SECTIONS.map((s) => (
+        <button
+          key={s.id}
+          onClick={() => scrollTo(s.id)}
+          style={{ padding: "0.5rem 1.1rem" }}
+          className={`rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold transition-all duration-300 whitespace-nowrap ${
+            activeSection === s.id
+              ? "bg-terracotta/10 text-terracotta"
+              : "text-fg-muted hover:text-fg-secondary"
+          }`}
+        >
+          {s.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/* ─── ROL ─── */
+function RolSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className="flex flex-col gap-14">
+      <p className="text-fg-primary font-normal" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.2rem)", lineHeight: 1.85 }}>
+        {project.rol.text}
+      </p>
+      {project.rol.image && (
+        <ImageSlot src={project.rol.image} alt={`Rol — ${project.client}`} />
+      )}
+    </div>
+  );
+}
+
+/* ─── OBJETIVO ─── */
+function ObjetivoSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className={`grid grid-cols-1 ${project.objetivoGeneral.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+      {project.objetivoGeneral.image && (
+        <div className="lg:col-span-5 lg:order-2">
+          <ImageSlot src={project.objetivoGeneral.image} alt={`Objetivo — ${project.client}`} aspect="3/4" />
+        </div>
+      )}
+      <div className={project.objetivoGeneral.image ? 'lg:col-span-7 lg:order-1' : 'max-w-3xl'}>
+        <p className="text-fg-secondary font-normal" style={{ fontSize: "clamp(1rem, 1.4vw, 1.1rem)", lineHeight: 1.9 }}>{project.objetivoGeneral.text}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ─── DESAFÍO — dark callout card ─── */
+function DesafioSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className={`grid grid-cols-1 ${project.desafio.image ? 'lg:grid-cols-12' : ''} gap-8 lg:gap-12 items-stretch`}>
+      <div className={`${project.desafio.image ? 'lg:col-span-7' : ''} relative rounded-3xl overflow-hidden`} style={{ border: "1px solid rgba(212,197,176,0.25)" }}>
+        <div className="relative z-10" style={{ padding: "clamp(2.5rem, 5vw, 4.5rem)" }}>
+          <div className="flex items-center gap-3 mb-8">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-terracotta">
+              <path d="M8 1v8M8 13v2M3 3.5L5.5 6M13 3.5L10.5 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <span className="text-fg-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
+              El reto
+            </span>
+          </div>
+          <p
+            className="text-fg-secondary"
+            style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.1rem)", lineHeight: 1.9 }}
+          >
+            {project.desafio.text}
+          </p>
+        </div>
+      </div>
+      {project.desafio.image && (
+        <div className="lg:col-span-5">
+          <ImageSlot src={project.desafio.image} alt={`Desafío — ${project.client}`} aspect="1/1" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── ESTRATEGIA — numbered list ─── */
+function EstrategiaSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className={`grid grid-cols-1 ${project.estrategia.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-24 items-start`}>
+      <div className={project.estrategia.image ? 'lg:col-span-7' : ''}>
+        <ul className="">
+          {project.estrategia.bullets.map((bullet, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="flex gap-5 items-start"
+              style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < project.estrategia.bullets.length - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+            >
+              <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
+              <p className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}>{bullet}</p>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+      {project.estrategia.image && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 flex justify-center lg:justify-end items-start pt-4"
+        >
+          <div
+            className="relative"
+            style={{
+              width: "clamp(200px, 22vw, 280px)",
+              borderRadius: "2.8rem",
+              border: "2px solid rgba(212,197,176,0.3)",
+              padding: "0.85rem",
+              background: "var(--bg-secondary)",
+              boxShadow: "0 0 0 1px rgba(212,197,176,0.07), 0 32px 64px -16px rgba(0,0,0,0.4)",
+            }}
+          >
+            <div className="flex justify-center mb-3">
+              <div style={{ width: "2.8rem", height: "0.25rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+            </div>
+            <div
+              className="relative w-full overflow-hidden cursor-zoom-in"
+              style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
+              onClick={() => window.open(project.estrategia.image, "_blank")}
+            >
+              <Image
+                src={project.estrategia.image}
+                alt="Estrategia — captura de pantalla"
+                fill
+                className="object-cover object-top"
+                sizes="280px"
+              />
+            </div>
+            <div className="flex justify-center mt-3">
+              <div style={{ width: "3.5rem", height: "0.24rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+/* ─── SOLUCIÓN ─── */
+function SolucionSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className="flex flex-col gap-14">
+      <div className="space-y-8">
+        {/* Statement */}
+        <p
+          className="text-fg-primary"
+          style={{ fontSize: "clamp(1rem, 1.4vw, 1.15rem)", lineHeight: 1.85 }}
+        >
+          {project.solucion.text}
+        </p>
+        {/* Supporting bullets */}
+        {project.solucion.bullets && (
+          <ul className="pt-2">
+            {project.solucion.bullets.map((bullet, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="flex gap-5 items-start"
+                style={{ paddingTop: "1rem", paddingBottom: "1rem", borderBottom: i < (project.solucion.bullets?.length ?? 0) - 1 ? "1px solid rgba(212,197,176,0.15)" : "none" }}
+              >
+                <span className="shrink-0 w-2 h-2 rounded-full bg-terracotta/60" style={{ marginTop: "0.45em" }} />
+                <span className="text-fg-secondary" style={{ fontSize: "clamp(0.98rem, 1.35vw, 1.08rem)", lineHeight: 1.8 }}>{bullet}</span>
+              </motion.li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {project.solucion.image && (
+        <ImageSlot src={project.solucion.image} alt={`Solución — ${project.client}`} />
+      )}
+    </div>
+  );
+}
+
+/* ─── RESULTADOS — cards grid ─── */
+function ResultadosSection({ project }: { project: UXContentProject }) {
+  return (
+    <div className={`grid grid-cols-1 ${project.resultados.image ? 'lg:grid-cols-12' : ''} gap-12 lg:gap-20 items-start`}>
+      {/* Cards */}
+      <div className={`${project.resultados.image ? 'lg:col-span-7' : ''} grid grid-cols-1 sm:grid-cols-2 gap-5`}>
+        {project.resultados.bullets.map((bullet, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.07, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative overflow-hidden rounded-2xl border border-stone/20 bg-bg-card hover:border-terracotta/25 transition-all duration-500 hover:shadow-lg hover:shadow-terracotta/5"
+            style={{ padding: "2rem" }}
+          >
+            <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-terracotta/10 mb-5">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="text-terracotta">
+                <path d="M2.5 7.5l3 3 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <p className="relative z-10 text-fg-primary font-medium" style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)", lineHeight: 1.75 }}>{bullet}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Phone mockup — side column */}
+      {project.resultados.image && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 flex justify-center lg:justify-end items-start pt-4"
+        >
+          <div
+            className="relative"
+            style={{
+              width: "clamp(200px, 22vw, 280px)",
+              borderRadius: "2.8rem",
+              border: "2px solid rgba(212,197,176,0.3)",
+              padding: "0.85rem",
+              background: "var(--bg-secondary)",
+              boxShadow: "0 0 0 1px rgba(212,197,176,0.07), 0 32px 64px -16px rgba(0,0,0,0.4)",
+            }}
+          >
+            {/* Speaker notch */}
+            <div className="flex justify-center mb-3">
+              <div style={{ width: "2.8rem", height: "0.25rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+            </div>
+            {/* Screen — clickable */}
+            <div
+              className="relative w-full overflow-hidden cursor-zoom-in"
+              style={{ borderRadius: "1.65rem", aspectRatio: "9/19.5" }}
+              onClick={() => window.open(project.resultados.image, '_blank')}
+            >
+              <Image
+                src={project.resultados.image}
+                alt="Resultados — captura de pantalla"
+                fill
+                className="object-cover object-top"
+                sizes="280px"
+              />
+            </div>
+            {/* Home indicator */}
+            <div className="flex justify-center mt-3">
+              <div style={{ width: "3.5rem", height: "0.24rem", borderRadius: "99px", background: "rgba(212,197,176,0.2)" }} />
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+/* ─── PROJECT HERO — clean editorial, no background image ─── */
+function ProjectHero({ project }: { project: UXContentProject }) {
+  return (
+    <div className="bg-bg-primary" style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3.5rem, 6vw, 5rem)" }}>
+      <div className="container-main">
+        {/* Top label row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-4 mb-12"
+        >
+          <span
+            className="text-[10px] tracking-[0.28em] uppercase font-semibold"
+            style={{ color: "var(--terracotta)" }}
+          >
+            Content Design
+          </span>
+          <span style={{ width: "2rem", height: "1px", background: "var(--stone)" }} />
+          <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-fg-muted">
+            {project.client}
+          </span>
+          <span className="text-[10px] text-fg-muted" style={{ opacity: 0.5 }}>{project.year}</span>
+        </motion.div>
+
+        {/* Giant title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.08, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="font-[family-name:var(--font-display)] font-bold text-fg-primary leading-[0.95] tracking-tight"
+          style={{ fontSize: "clamp(2.7rem, 6.3vw, 5.4rem)", maxWidth: "17ch", lineHeight: 1.02 }}
+        >
+          {project.title}
+        </motion.h2>
+
+        {/* Cover image */}
+        {project.coverImage && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-2xl overflow-hidden border border-stone/10"
+            style={{ marginTop: "clamp(2.75rem, 5vw, 4.25rem)" }}
+          >
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              width={0}
+              height={0}
+              sizes="(max-width:1400px) 100vw, 1400px"
+              className="w-full h-auto block"
+              priority
+            />
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ─── PROJECT CARD (bottom nav) ─── */
+function ProjectCard({ project, isActive, onClick }: {
+  project: UXContentProject;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`group relative text-left w-full overflow-hidden rounded-2xl transition-all duration-500 ${
+        isActive ? "ring-2 ring-terracotta/60 ring-offset-2 ring-offset-bg-secondary" : "hover:ring-1 hover:ring-stone/50"
+      }`}
+    >
+      <div className="relative aspect-[16/9]">
+        {project.coverImage ? (
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width:768px) 100vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0" style={{ background: project.gradient }} />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-5">
+        <span className="block text-white/50 text-[9px] tracking-[0.2em] uppercase font-semibold mb-1">{project.client}</span>
+        <span className="block text-white text-sm font-medium leading-snug line-clamp-2">{project.title}</span>
+      </div>
+      {isActive && (
+        <div className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-terracotta shadow-lg" />
+      )}
+    </button>
+  );
+}
+
+/* ─── SINGLE PROJECT VIEW ─── */
+function ProjectView({ project }: { project: UXContentProject }) {
+  const [activeSection, setActiveSection] = useState("rol");
+
+  const handleIntersect = useCallback((id: string, visible: boolean) => {
+    if (visible) setActiveSection(id);
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    SECTIONS.forEach((s) => {
+      const el = document.getElementById(`${project.id}-${s.id}`);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => handleIntersect(s.id, entry.isIntersecting),
+        { rootMargin: "-35% 0px -55% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [project.id, handleIntersect]);
+
+  return (
+    <motion.div
+      key={project.id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Hero */}
+      <ProjectHero project={project} />
+
+      {/* Sticky section anchor nav */}
+      <div
+        className="sticky z-20 bg-bg-primary/85 backdrop-blur-xl border-b border-stone/15"
+        style={{ top: "calc(var(--nav-height) + 68px)" }}
+      >
+        <div className="container-main py-5">
+          <SectionNav activeSection={activeSection} projectId={project.id} />
+        </div>
+      </div>
+
+      {/* 6 sections */}
+      <div className="container-main">
+
+        <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+          <SectionLabel label="Rol" />
+          <br/>
+          <RolSection project={project} />
+        </section>
+
+        <div className="border-t border-stone/20" />
+
+        <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+          <SectionLabel label="Objetivo General" />
+          <br/>
+          <ObjetivoSection project={project} />
+        </section>
+
+        <div className="border-t border-stone/20" />
+
+        <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+          <SectionLabel label="Desafío" />
+          <br/>
+          <DesafioSection project={project} />
+        </section>
+
+        <div className="border-t border-stone/20" />
+
+        <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+          <SectionLabel label="Estrategia" />
+          <br/>
+          <EstrategiaSection project={project} />
+        </section>
+
+        <div className="border-t border-stone/20" />
+
+        <section id={`${project.id}-solucion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
+          <SectionLabel label="Solución" />
+          <br/>
+          <SolucionSection project={project} />
+        </section>
+
+        <div className="border-t border-stone/20" />
+
+        <section id={`${project.id}-resultados`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
+          <SectionLabel label="Resultados" />
+          <br/>
+          <ResultadosSection project={project} />
+        </section>
+
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── PAGE FRAME ─── */
+export function UXContentPageClient() {
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const activeProject = uxContentProjects[activeProjectIndex];
+
+  const switchProject = (i: number) => {
+    setActiveProjectIndex(i);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <div className="min-h-screen bg-bg-primary">
+      {/* ── Top strip: back + project tabs + counter ── */}
+      <div
+        className="fixed left-0 right-0 z-40 bg-bg-primary/95 backdrop-blur-xl border-b border-stone/20"
+        style={{ top: "var(--nav-height)", height: "68px" }}
+      >
+        <div className="container-main h-full flex items-center justify-between gap-6">
+          {/* Back */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-fg-muted hover:text-fg-primary transition-colors duration-300 text-[10px] tracking-widest uppercase font-semibold shrink-0"
+          >
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+              <path d="M12 8H4M4 8l4-4M4 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Inicio
+          </Link>
+
+          <span className="h-4 w-px bg-stone/40 hidden sm:block" />
+
+          {/* Project tabs */}
+          <div className="flex items-center overflow-x-auto scrollbar-hide flex-1" style={{ gap: 0 }}>
+            {uxContentProjects.map((project, i) => (
+              <button
+                key={project.id}
+                onClick={() => switchProject(i)}
+                style={{ height: "68px", padding: "0 2.25rem", borderRight: "1px solid rgba(212,197,176,0.25)" }}
+                className={`relative text-[11px] tracking-[0.2em] uppercase font-bold whitespace-nowrap transition-colors duration-300 ${
+                  i === activeProjectIndex
+                    ? "text-fg-primary"
+                    : "text-fg-muted hover:text-fg-secondary"
+                }`}
+              >
+                {project.client}
+                {i === activeProjectIndex && (
+                  <motion.span
+                    layoutId="projectTab"
+                    className="absolute bg-terracotta rounded-full"
+                    style={{ bottom: 0, left: "1.5rem", right: "1.5rem", height: "2px" }}
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Counter */}
+          <span className="text-fg-muted text-[10px] font-mono shrink-0 hidden sm:block">
+            {String(activeProjectIndex + 1).padStart(2, "0")} / {String(uxContentProjects.length).padStart(2, "0")}
+          </span>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div style={{ paddingTop: "calc(var(--nav-height) + 68px)" }}>
+        <AnimatePresence mode="wait">
+          <ProjectView key={activeProject.id} project={activeProject} />
+        </AnimatePresence>
+
+
+      </div>
+    </div>
+  );
+}
