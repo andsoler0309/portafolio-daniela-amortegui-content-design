@@ -4,13 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { siteConfig } from "@/lib/data";
-
-const footerLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/work/ux-content", label: "Content Design" },
-  { href: "/work/ai", label: "IA" },
-  { href: "/work/other", label: "Otros" },
-];
+import { useI18n } from "@/lib/i18n";
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.linkedin },
@@ -20,10 +14,18 @@ const socialLinks = [
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
+  const { t } = useI18n();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "start 0.55"],
   });
+
+  const footerLinks = [
+    { href: "/", label: t("nav.home") },
+    { href: "/work/ux-content", label: t("nav.contentDesign") },
+    { href: "/work/ai", label: t("nav.ai") },
+    { href: "/work/other", label: t("nav.other") },
+  ];
 
   const y = useTransform(scrollYProgress, [0, 1], ["8%", "0%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
@@ -58,7 +60,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <p className="section-label mb-4">Menu</p>
+            <p className="section-label mb-4">{t("footer.menu")}</p>
             <nav className="flex flex-col gap-3" aria-label="Footer navigation">
               {footerLinks.map((link) => (
                 <Link
@@ -79,7 +81,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <p className="section-label mb-4">Contacto</p>
+            <p className="section-label mb-4">{t("footer.contact")}</p>
             <nav className="flex flex-col gap-3" aria-label="Social links">
               {socialLinks.map((link) => (
                 <a
@@ -109,7 +111,7 @@ export function Footer() {
             className="text-fg-muted hover:text-fg-primary transition-colors duration-300 text-xs tracking-widest uppercase flex items-center gap-2"
             aria-label="Back to top"
           >
-            Volver arriba
+            {t("footer.backToTop")}
             <svg
               width="12"
               height="12"

@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { aiProjects } from "@/lib/data";
+import { aiProjects, aiProjectsEn } from "@/lib/data";
 import type { AIProject, AIProjectType1, AIProjectType2, AIProjectType3, ContentBlock } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 
 /* ─── CONTENT BLOCK — shared block renderer (title + text + bullets) ─── */
 function ContentBlockItem({ block, index }: { block: ContentBlock; index: number }) {
@@ -164,35 +165,42 @@ function InflateText({
   );
 }
 
-/* ─── SECTION IDs per project type ─── */
-const SECTIONS_TYPE1 = [
-  { id: "rol", label: "Rol" },
-  { id: "objetivo", label: "Objetivo" },
-  { id: "desafio", label: "Desafío" },
-  { id: "estrategia", label: "Estrategia" },
-  { id: "solucion", label: "Solución" },
-  { id: "resultados", label: "Resultados" },
-];
+/* ─── SECTION IDs per project type (i18n-aware) ─── */
+function useAISections() {
+  const { t } = useI18n();
+  const SECTIONS_TYPE1 = [
+    { id: "rol", label: t("ai.sectionNav.rol") },
+    { id: "objetivo", label: t("ai.sectionNav.objetivo") },
+    { id: "desafio", label: t("ai.sectionNav.desafio") },
+    { id: "estrategia", label: t("ai.sectionNav.estrategia") },
+    { id: "solucion", label: t("ai.sectionNav.solucion") },
+    { id: "resultados", label: t("ai.sectionNav.resultados") },
+  ];
+  const SECTIONS_TYPE2 = [
+    { id: "rol", label: t("ai.sectionNav.rol") },
+    { id: "objetivo", label: t("ai.sectionNav.objetivo") },
+    { id: "desafio", label: t("ai.sectionNav.desafio") },
+    { id: "estrategia", label: t("ai.sectionNav.estrategia") },
+    { id: "iteracion", label: t("ai.sectionNav.iteracion") },
+    { id: "herramientas", label: t("ai.sectionNav.herramientas") },
+  ];
+  const SECTIONS_TYPE3 = [
+    { id: "descripcion", label: t("ai.sectionNav.descripcion") },
+    { id: "herramientas", label: t("ai.sectionNav.herramientas") },
+  ];
+  return { SECTIONS_TYPE1, SECTIONS_TYPE2, SECTIONS_TYPE3 };
+}
 
-const SECTIONS_TYPE2 = [
-  { id: "rol", label: "Rol" },
-  { id: "objetivo", label: "Objetivo" },
-  { id: "desafio", label: "Desafío" },
-  { id: "estrategia", label: "Estrategia" },
-  { id: "iteracion", label: "Iteración" },
-  { id: "herramientas", label: "Herramientas" },
-];
-
-const SECTIONS_TYPE3 = [
-  { id: "descripcion", label: "Descripción" },
-  { id: "herramientas", label: "Herramientas" },
-];
-
-function getSectionsForProject(project: AIProject) {
+function getSectionsForProject(
+  project: AIProject,
+  s1: { id: string; label: string }[],
+  s2: { id: string; label: string }[],
+  s3: { id: string; label: string }[],
+) {
   switch (project.type) {
-    case "type1": return SECTIONS_TYPE1;
-    case "type2": return SECTIONS_TYPE2;
-    case "type3": return SECTIONS_TYPE3;
+    case "type1": return s1;
+    case "type2": return s2;
+    case "type3": return s3;
   }
 }
 
@@ -377,6 +385,7 @@ function ObjetivoSection({ project }: { project: AIProjectType1 | AIProjectType2
 
 /* ─── DESAFÍO — dark callout card ─── */
 function DesafioSection({ project }: { project: AIProjectType1 | AIProjectType2 }) {
+  const { t } = useI18n();
   return (
     <div className={`grid grid-cols-1 ${project.desafio.image ? 'lg:grid-cols-12' : ''} gap-8 lg:gap-12 items-stretch`}>
       <div className={`${project.desafio.image ? 'lg:col-span-7' : ''} relative rounded-3xl overflow-hidden`} style={{ border: "1px solid rgba(212,197,176,0.25)" }}>
@@ -386,7 +395,7 @@ function DesafioSection({ project }: { project: AIProjectType1 | AIProjectType2 
               <path d="M8 1v8M8 13v2M3 3.5L5.5 6M13 3.5L10.5 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
             <span className="text-fg-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
-              El reto
+              {t("ai.challenge")}
             </span>
           </div>
           <div className="space-y-8">
@@ -923,6 +932,7 @@ function Type3ToolsSection({ project }: { project: AIProjectType3 }) {
 
 /* ─── PROJECT HERO ─── */
 function ProjectHero({ project }: { project: AIProject }) {
+  const { t } = useI18n();
   return (
     <div className="bg-bg-primary" style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3.5rem, 6vw, 5rem)" }}>
       <div className="container-main">
@@ -936,7 +946,7 @@ function ProjectHero({ project }: { project: AIProject }) {
             className="text-[10px] tracking-[0.28em] uppercase font-semibold"
             style={{ color: "var(--terracotta)" }}
           >
-            Proyectos con IA
+            {t("ai.heroLabel")}
           </span>
           <span style={{ width: "2rem", height: "1px", background: "var(--stone)" }} />
           <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-fg-muted">
@@ -1020,7 +1030,8 @@ function ProjectCard({ project, isActive, onClick }: {
    PROJECT VIEW — routes by project type
    ═══════════════════════════════════════════════ */
 function ProjectView({ project }: { project: AIProject }) {
-  const sections = getSectionsForProject(project);
+  const { SECTIONS_TYPE1, SECTIONS_TYPE2, SECTIONS_TYPE3 } = useAISections();
+  const sections = getSectionsForProject(project, SECTIONS_TYPE1, SECTIONS_TYPE2, SECTIONS_TYPE3);
   const [activeSection, setActiveSection] = useState(sections[0].id);
 
   const handleIntersect = useCallback((id: string, visible: boolean) => {
@@ -1074,10 +1085,11 @@ function ProjectView({ project }: { project: AIProject }) {
 
 /* ─── TYPE 1 SECTIONS: Rol → Objetivo → Desafío → Estrategia → Solución → Resultados ─── */
 function Type1Sections({ project }: { project: AIProjectType1 }) {
+  const { t } = useI18n();
   return (
     <>
       <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Rol" />
+        <SectionLabel label={t("ai.sectionLabel.rol")} />
         <br />
         <RolSection project={project} />
       </section>
@@ -1085,7 +1097,7 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Objetivo General" />
+        <SectionLabel label={t("ai.sectionLabel.objetivo")} />
         <br />
         <ObjetivoSection project={project} />
       </section>
@@ -1093,7 +1105,7 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Desafío" />
+        <SectionLabel label={t("ai.sectionLabel.desafio")} />
         <br />
         <DesafioSection project={project} />
       </section>
@@ -1101,7 +1113,7 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Estrategia" />
+        <SectionLabel label={t("ai.sectionLabel.estrategia")} />
         <br />
         <EstrategiaSection project={project} />
       </section>
@@ -1109,7 +1121,7 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-solucion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Solución" />
+        <SectionLabel label={t("ai.sectionLabel.solucion")} />
         <br />
         <SolucionSection project={project} />
       </section>
@@ -1117,7 +1129,7 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-resultados`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-        <SectionLabel label="Resultados" />
+        <SectionLabel label={t("ai.sectionLabel.resultados")} />
         <br />
         <ResultadosSection project={project} />
       </section>
@@ -1127,10 +1139,11 @@ function Type1Sections({ project }: { project: AIProjectType1 }) {
 
 /* ─── TYPE 2 SECTIONS: Rol → Objetivo → Desafío → Estrategia → Iteración → Herramientas ─── */
 function Type2Sections({ project }: { project: AIProjectType2 }) {
+  const { t } = useI18n();
   return (
     <>
       <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Rol" />
+        <SectionLabel label={t("ai.sectionLabel.rol")} />
         <br />
         <RolSection project={project} />
       </section>
@@ -1138,7 +1151,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Objetivo General" />
+        <SectionLabel label={t("ai.sectionLabel.objetivo")} />
         <br />
         <ObjetivoSection project={project} />
       </section>
@@ -1146,7 +1159,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Desafío" />
+        <SectionLabel label={t("ai.sectionLabel.desafio")} />
         <br />
         <DesafioSection project={project} />
       </section>
@@ -1154,7 +1167,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Estrategia" />
+        <SectionLabel label={t("ai.sectionLabel.estrategia")} />
         <br />
         <EstrategiaSection project={project} />
       </section>
@@ -1162,7 +1175,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-iteracion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-        <SectionLabel label="Iteración y Pruebas" />
+        <SectionLabel label={t("ai.sectionLabel.iteracion")} />
         <br />
         <IteracionSection project={project} />
       </section>
@@ -1170,7 +1183,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-herramientas`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-        <SectionLabel label="Herramientas Utilizadas" />
+        <SectionLabel label={t("ai.sectionLabel.herramientas")} />
         <br />
         <HerramientasSection project={project} />
       </section>
@@ -1180,6 +1193,7 @@ function Type2Sections({ project }: { project: AIProjectType2 }) {
 
 /* ─── TYPE 3 SECTIONS: Descripción → Herramientas ─── */
 function Type3Sections({ project }: { project: AIProjectType3 }) {
+  const { t } = useI18n();
   return (
     <>
       <section id={`${project.id}-descripcion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
@@ -1189,7 +1203,7 @@ function Type3Sections({ project }: { project: AIProjectType3 }) {
       <div className="border-t border-stone/20" />
 
       <section id={`${project.id}-herramientas`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-        <SectionLabel label="Herramientas de IA" />
+        <SectionLabel label={t("ai.sectionLabel.herramientasIA")} />
         <br />
         <Type3ToolsSection project={project} />
       </section>
@@ -1201,8 +1215,10 @@ function Type3Sections({ project }: { project: AIProjectType3 }) {
    PAGE FRAME
    ═══════════════════════════════════════════════ */
 export function AIPageClient() {
+  const { locale, t } = useI18n();
+  const projects = locale === "en" ? aiProjectsEn : aiProjects;
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const activeProject = aiProjects[activeProjectIndex];
+  const activeProject = projects[activeProjectIndex];
 
   const switchProject = (i: number) => {
     setActiveProjectIndex(i);
@@ -1225,14 +1241,14 @@ export function AIPageClient() {
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
               <path d="M12 8H4M4 8l4-4M4 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Inicio
+            {t("ai.back")}
           </Link>
 
           <span className="h-4 w-px bg-stone/40 hidden sm:block" />
 
           {/* Project tabs */}
           <div className="flex items-center overflow-x-auto scrollbar-hide flex-1" style={{ gap: 0 }}>
-            {aiProjects.map((project, i) => (
+            {projects.map((project, i) => (
               <button
                 key={project.id}
                 onClick={() => switchProject(i)}
@@ -1258,7 +1274,7 @@ export function AIPageClient() {
 
           {/* Counter */}
           <span className="text-fg-muted text-[10px] font-mono shrink-0 hidden sm:block">
-            {String(activeProjectIndex + 1).padStart(2, "0")} / {String(aiProjects.length).padStart(2, "0")}
+            {String(activeProjectIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
         </div>
       </div>

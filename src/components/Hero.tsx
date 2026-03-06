@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 import dynamic from "next/dynamic";
 
 const Scene3D = dynamic(() => import("./Scene3D").then((m) => m.Scene3D), {
@@ -25,7 +26,8 @@ const letterVariants = {
 };
 
 export function Hero() {
-  const greeting = "Hola, soy";
+  const { t } = useI18n();
+  const greeting = t("hero.greeting");
   const name = siteConfig.name;
 
   return (
@@ -98,7 +100,7 @@ export function Hero() {
               transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-fg-secondary text-base md:text-lg lg:text-xl max-w-xl leading-relaxed"
             >
-              {siteConfig.subtitle}
+              {t("hero.subtitle")}
             </motion.p>
 
             {/* Scroll indicator */}
@@ -114,7 +116,7 @@ export function Hero() {
                 className="w-[1px] h-8 bg-stone"
               />
               <span className="text-terracotta text-xs tracking-widest uppercase font-bold">
-                Scroll para explorar
+                {t("hero.scroll")}
               </span>
             </motion.div>
           </div>

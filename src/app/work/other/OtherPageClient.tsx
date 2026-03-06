@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { experiencias } from "@/lib/data";
+import { experiencias, experienciasEn } from "@/lib/data";
 import type { Experiencia, ContentBlock } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 
 /* ─── CONTENT BLOCK — shared block renderer (title + text + bullets) ─── */
 function ContentBlockItem({ block, index }: { block: ContentBlock; index: number }) {
@@ -161,12 +162,15 @@ function InflateText({
   );
 }
 
-/* ─── SECTIONS — scroll-spy anchors ─── */
-const SECTIONS = [
-  { id: "desafio", label: "Desafío" },
-  { id: "enfoque", label: "Enfoque" },
-  { id: "impacto", label: "Impacto" },
-];
+/* ─── SECTIONS — scroll-spy anchors (i18n-aware) ─── */
+function useOtherSections() {
+  const { t } = useI18n();
+  return [
+    { id: "desafio", label: t("other.sectionNav.desafio") },
+    { id: "enfoque", label: t("other.sectionNav.enfoque") },
+    { id: "impacto", label: t("other.sectionNav.impacto") },
+  ];
+}
 
 /* ─── IMAGE SLOT (with lightbox) ─── */
 function ImageSlot({ src, alt, aspect }: { src?: string; alt?: string; aspect?: string }) {
@@ -245,7 +249,7 @@ function SectionLabel({ label }: { label: string }) {
 }
 
 /* ─── SECTION NAV (scroll-spy anchors) ─── */
-function SectionNav({ activeSection, experienciaId }: { activeSection: string; experienciaId: string }) {
+function SectionNav({ activeSection, experienciaId, sections }: { activeSection: string; experienciaId: string; sections: { id: string; label: string }[] }) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(`${experienciaId}-${id}`);
     if (!el) return;
@@ -255,7 +259,7 @@ function SectionNav({ activeSection, experienciaId }: { activeSection: string; e
   };
   return (
     <div className="hidden md:flex items-center overflow-x-auto scrollbar-hide" style={{ gap: "0.5rem", height: "2.8rem" }}>
-      {SECTIONS.map((s) => (
+      {sections.map((s) => (
         <button
           key={s.id}
           onClick={() => scrollTo(s.id)}
@@ -275,6 +279,7 @@ function SectionNav({ activeSection, experienciaId }: { activeSection: string; e
 
 /* ─── DESAFÍO SECTION — dark callout card ─── */
 function DesafioSection({ experiencia }: { experiencia: Experiencia }) {
+  const { t } = useI18n();
   return (
     <div className={`grid grid-cols-1 ${experiencia.desafio.image ? 'lg:grid-cols-12' : ''} gap-8 lg:gap-12 items-stretch`}>
       <div className={`${experiencia.desafio.image ? 'lg:col-span-7' : ''} relative rounded-3xl overflow-hidden`} style={{ border: "1px solid rgba(212,197,176,0.25)" }}>
@@ -284,7 +289,7 @@ function DesafioSection({ experiencia }: { experiencia: Experiencia }) {
               <path d="M8 1v8M8 13v2M3 3.5L5.5 6M13 3.5L10.5 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
             <span className="text-fg-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
-              El reto
+              {t("other.challenge")}
             </span>
           </div>
           <div className="space-y-8">
@@ -468,6 +473,7 @@ function ImpactoSection({ experiencia }: { experiencia: Experiencia }) {
 
 /* ─── EXPERIENCIA HERO — clean editorial with cover image ─── */
 function ExperienciaHero({ experiencia }: { experiencia: Experiencia }) {
+  const { t } = useI18n();
   return (
     <div className="bg-bg-primary" style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3.5rem, 6vw, 5rem)" }}>
       <div className="container-main">
@@ -482,7 +488,7 @@ function ExperienciaHero({ experiencia }: { experiencia: Experiencia }) {
             className="text-[10px] tracking-[0.28em] uppercase font-semibold"
             style={{ color: "var(--terracotta)" }}
           >
-            Otros Proyectos
+            {t("other.heroLabel")}
           </span>
           <span style={{ width: "2rem", height: "1px", background: "var(--stone)" }} />
           <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-fg-muted">
@@ -581,6 +587,8 @@ function ExperienciaCard({ experiencia, isActive, onClick }: {
 
 /* ─── SINGLE EXPERIENCIA VIEW ─── */
 function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
+  const sections = useOtherSections();
+  const { t } = useI18n();
   const [activeSection, setActiveSection] = useState("desafio");
 
   const handleIntersect = useCallback((id: string, visible: boolean) => {
@@ -602,6 +610,9 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
     return () => observers.forEach((o) => o.disconnect());
   }, [experiencia.id, handleIntersect]);
 
+  // Use sections from hook but keep stable reference for observer (IDs don't change)
+  const SECTIONS = [{ id: "desafio" }, { id: "enfoque" }, { id: "impacto" }];
+
   return (
     <motion.div
       key={experiencia.id}
@@ -619,7 +630,7 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
         style={{ top: "calc(var(--nav-height) + 68px)" }}
       >
         <div className="container-main py-5">
-          <SectionNav activeSection={activeSection} experienciaId={experiencia.id} />
+          <SectionNav activeSection={activeSection} experienciaId={experiencia.id} sections={sections} />
         </div>
       </div>
 
@@ -627,7 +638,7 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
       <div className="container-main">
 
         <section id={`${experiencia.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Desafío" />
+          <SectionLabel label={t("other.sectionLabel.desafio")} />
           <br/>
           <DesafioSection experiencia={experiencia} />
         </section>
@@ -635,7 +646,7 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
         <div className="border-t border-stone/20" />
 
         <section id={`${experiencia.id}-enfoque`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-          <SectionLabel label="Enfoque" />
+          <SectionLabel label={t("other.sectionLabel.enfoque")} />
           <br/>
           <EnfoqueSection experiencia={experiencia} />
         </section>
@@ -643,7 +654,7 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
         <div className="border-t border-stone/20" />
 
         <section id={`${experiencia.id}-impacto`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-          <SectionLabel label="Impacto" />
+          <SectionLabel label={t("other.sectionLabel.impacto")} />
           <br/>
           <ImpactoSection experiencia={experiencia} />
         </section>
@@ -655,8 +666,10 @@ function ExperienciaView({ experiencia }: { experiencia: Experiencia }) {
 
 /* ─── PAGE FRAME ─── */
 export function OtherPageClient() {
+  const { locale, t } = useI18n();
+  const projects = locale === "en" ? experienciasEn : experiencias;
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeExperiencia = experiencias[activeIndex];
+  const activeExperiencia = projects[activeIndex];
 
   const switchExperiencia = (i: number) => {
     setActiveIndex(i);
@@ -679,14 +692,14 @@ export function OtherPageClient() {
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
               <path d="M12 8H4M4 8l4-4M4 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Inicio
+            {t("other.back")}
           </Link>
 
           <span className="h-4 w-px bg-stone/40 hidden sm:block" />
 
           {/* Experiencia tabs */}
           <div className="flex items-center overflow-x-auto scrollbar-hide flex-1" style={{ gap: 0 }}>
-            {experiencias.map((exp, i) => (
+            {projects.map((exp, i) => (
               <button
                 key={exp.id}
                 onClick={() => switchExperiencia(i)}
@@ -712,7 +725,7 @@ export function OtherPageClient() {
 
           {/* Counter */}
           <span className="text-fg-muted text-[10px] font-mono shrink-0 hidden sm:block">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(experiencias.length).padStart(2, "0")}
+            {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
         </div>
       </div>

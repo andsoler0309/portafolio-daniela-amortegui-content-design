@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Providers } from "@/components/Providers";
 
 const syne = Syne({
   variable: "--font-display",
@@ -41,10 +42,12 @@ export default function RootLayout({
       <body
         className={`${syne.variable} ${dmSans.variable} antialiased noise-overlay`}
       >
-        <Navigation />
-        <ScrollToTop />
-        <main className="relative z-10 bg-bg-primary">{children}</main>
-        <Footer />
+        <Providers>
+          <Navigation />
+          <ScrollToTop />
+          <main className="relative z-10 bg-bg-primary">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -6,15 +6,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/data";
 import { ThemeToggle } from "./ThemeToggle";
-
-const navLinks = [
-  { href: "/", label: "Inicio" },
-  { href: "/work/ux-content", label: "Content Design" },
-  { href: "/work/ai", label: "IA" },
-  { href: "/work/other", label: "Otros" },
-];
+import { LanguageToggle } from "./LanguageToggle";
+import { useI18n } from "@/lib/i18n";
 
 export function Navigation() {
+  const { t } = useI18n();
+
+  const navLinks = [
+    { href: "/", label: t("nav.home") },
+    { href: "/work/ux-content", label: t("nav.contentDesign") },
+    { href: "/work/ai", label: t("nav.ai") },
+    { href: "/work/other", label: t("nav.other") },
+  ];
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -109,13 +112,15 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <div style={{ marginLeft: "0.75rem" }}>
+            <div style={{ marginLeft: "1rem" }} className="flex items-center gap-6">
+              <LanguageToggle />
               <ThemeToggle />
             </div>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex md:hidden items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

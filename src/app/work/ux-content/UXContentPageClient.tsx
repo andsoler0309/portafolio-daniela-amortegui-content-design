@@ -4,8 +4,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { uxContentProjects } from "@/lib/data";
+import { uxContentProjects, uxContentProjectsEn } from "@/lib/data";
 import type { UXContentProject, ContentBlock } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 
 /* ─── CONTENT BLOCK — shared block renderer (title + text + bullets) ─── */
 function ContentBlockItem({ block, index }: { block: ContentBlock; index: number }) {
@@ -168,22 +169,25 @@ function InflateText({
 }
 
 /* ─── SECTION IDs ─── */
-const SECTIONS_FULL = [
-  { id: "rol", label: "Rol" },
-  { id: "objetivo", label: "Objetivo" },
-  { id: "desafio", label: "Desafío" },
-  { id: "estrategia", label: "Estrategia" },
-  { id: "solucion", label: "Solución" },
-  { id: "resultados", label: "Resultados" },
-];
+function useSections() {
+  const { t } = useI18n();
+  const SECTIONS_FULL = [
+    { id: "rol", label: t("ux.sectionNav.rol") },
+    { id: "objetivo", label: t("ux.sectionNav.objetivo") },
+    { id: "desafio", label: t("ux.sectionNav.desafio") },
+    { id: "estrategia", label: t("ux.sectionNav.estrategia") },
+    { id: "solucion", label: t("ux.sectionNav.solucion") },
+    { id: "resultados", label: t("ux.sectionNav.resultados") },
+  ];
+  const SECTIONS_COMPACT = [
+    { id: "desafio", label: t("ux.sectionNav.desafio") },
+    { id: "enfoque", label: t("ux.sectionNav.enfoque") },
+    { id: "impacto", label: t("ux.sectionNav.impacto") },
+  ];
+  return { SECTIONS_FULL, SECTIONS_COMPACT };
+}
 
-const SECTIONS_COMPACT = [
-  { id: "desafio", label: "Desafío" },
-  { id: "enfoque", label: "Enfoque" },
-  { id: "impacto", label: "Impacto" },
-];
-
-function getSections(project: UXContentProject) {
+function getSections(project: UXContentProject, SECTIONS_FULL: { id: string; label: string }[], SECTIONS_COMPACT: { id: string; label: string }[]) {
   return project.variant === "compact" ? SECTIONS_COMPACT : SECTIONS_FULL;
 }
 
@@ -374,6 +378,7 @@ function ObjetivoSection({ project }: { project: UXContentProject }) {
 
 /* ─── DESAFÍO — dark callout card ─── */
 function DesafioSection({ project }: { project: UXContentProject }) {
+  const { t } = useI18n();
   return (
     <div className={`grid grid-cols-1 ${project.desafio.image ? 'lg:grid-cols-12' : ''} gap-8 lg:gap-12 items-stretch`}>
       <div className={`${project.desafio.image ? 'lg:col-span-7' : ''} relative rounded-3xl overflow-hidden`} style={{ border: "1px solid rgba(212,197,176,0.25)" }}>
@@ -383,7 +388,7 @@ function DesafioSection({ project }: { project: UXContentProject }) {
               <path d="M8 1v8M8 13v2M3 3.5L5.5 6M13 3.5L10.5 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
             <span className="text-fg-muted text-[10px] tracking-[0.25em] uppercase font-semibold">
-              El reto
+              {t("ux.challenge")}
             </span>
           </div>
           <div className="space-y-8">
@@ -886,6 +891,7 @@ function ImpactoSection({ project }: { project: UXContentProject }) {
 
 /* ─── PROJECT HERO — clean editorial, no background image ─── */
 function ProjectHero({ project }: { project: UXContentProject }) {
+  const { t } = useI18n();
   return (
     <div className="bg-bg-primary" style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3.5rem, 6vw, 5rem)" }}>
       <div className="container-main">
@@ -900,7 +906,7 @@ function ProjectHero({ project }: { project: UXContentProject }) {
             className="text-[10px] tracking-[0.28em] uppercase font-semibold"
             style={{ color: "var(--terracotta)" }}
           >
-            Content Design
+            {t("ux.contentDesign")}
           </span>
           <span style={{ width: "2rem", height: "1px", background: "var(--stone)" }} />
           <span className="text-[10px] tracking-[0.2em] uppercase font-semibold text-fg-muted">
@@ -985,7 +991,9 @@ function ProjectCard({ project, isActive, onClick }: {
 
 /* ─── SINGLE PROJECT VIEW ─── */
 function ProjectView({ project }: { project: UXContentProject }) {
-  const sections = getSections(project);
+  const { SECTIONS_FULL, SECTIONS_COMPACT } = useSections();
+  const { t } = useI18n();
+  const sections = getSections(project, SECTIONS_FULL, SECTIONS_COMPACT);
   const [activeSection, setActiveSection] = useState(sections[0].id);
 
   const handleIntersect = useCallback((id: string, visible: boolean) => {
@@ -1036,7 +1044,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
         {isCompact ? (
           <>
             <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Desafío" />
+              <SectionLabel label={t("ux.sectionLabel.desafio")} />
               <br/>
               <DesafioSection project={project} />
             </section>
@@ -1044,7 +1052,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-enfoque`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Enfoque" />
+              <SectionLabel label={t("ux.sectionLabel.enfoque")} />
               <br/>
               <EnfoqueSection project={project} />
             </section>
@@ -1052,7 +1060,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-impacto`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-              <SectionLabel label="Impacto" />
+              <SectionLabel label={t("ux.sectionLabel.impacto")} />
               <br/>
               <ImpactoSection project={project} />
             </section>
@@ -1060,7 +1068,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
         ) : (
           <>
             <section id={`${project.id}-rol`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Rol" />
+              <SectionLabel label={t("ux.sectionLabel.rol")} />
               <br/>
               <RolSection project={project} />
             </section>
@@ -1068,7 +1076,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-objetivo`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Objetivo General" />
+              <SectionLabel label={t("ux.sectionLabel.objetivo")} />
               <br/>
               <ObjetivoSection project={project} />
             </section>
@@ -1076,7 +1084,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-desafio`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Desafío" />
+              <SectionLabel label={t("ux.sectionLabel.desafio")} />
               <br/>
               <DesafioSection project={project} />
             </section>
@@ -1084,7 +1092,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-estrategia`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Estrategia" />
+              <SectionLabel label={t("ux.sectionLabel.estrategia")} />
               <br/>
               <EstrategiaSection project={project} />
             </section>
@@ -1092,7 +1100,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-solucion`} className="scroll-mt-52" style={{ padding: "5rem 0 5rem" }}>
-              <SectionLabel label="Solución" />
+              <SectionLabel label={t("ux.sectionLabel.solucion")} />
               <br/>
               <SolucionSection project={project} />
             </section>
@@ -1100,7 +1108,7 @@ function ProjectView({ project }: { project: UXContentProject }) {
             <div className="border-t border-stone/20" />
 
             <section id={`${project.id}-resultados`} className="scroll-mt-52" style={{ padding: "5rem 0 6rem" }}>
-              <SectionLabel label="Resultados" />
+              <SectionLabel label={t("ux.sectionLabel.resultados")} />
               <br/>
               <ResultadosSection project={project} />
             </section>
@@ -1114,8 +1122,10 @@ function ProjectView({ project }: { project: UXContentProject }) {
 
 /* ─── PAGE FRAME ─── */
 export function UXContentPageClient() {
+  const { locale, t } = useI18n();
+  const projects = locale === "en" ? uxContentProjectsEn : uxContentProjects;
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const activeProject = uxContentProjects[activeProjectIndex];
+  const activeProject = projects[activeProjectIndex];
 
   const switchProject = (i: number) => {
     setActiveProjectIndex(i);
@@ -1138,14 +1148,14 @@ export function UXContentPageClient() {
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
               <path d="M12 8H4M4 8l4-4M4 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Inicio
+            {t("ux.back")}
           </Link>
 
           <span className="h-4 w-px bg-stone/40 hidden sm:block" />
 
           {/* Project tabs */}
           <div className="flex items-center overflow-x-auto scrollbar-hide flex-1" style={{ gap: 0 }}>
-            {uxContentProjects.map((project, i) => (
+            {projects.map((project, i) => (
               <button
                 key={project.id}
                 onClick={() => switchProject(i)}
@@ -1171,7 +1181,7 @@ export function UXContentPageClient() {
 
           {/* Counter */}
           <span className="text-fg-muted text-[10px] font-mono shrink-0 hidden sm:block">
-            {String(activeProjectIndex + 1).padStart(2, "0")} / {String(uxContentProjects.length).padStart(2, "0")}
+            {String(activeProjectIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
         </div>
       </div>

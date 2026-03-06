@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { pillars } from "@/lib/data";
 import type { Pillar } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false);
@@ -90,12 +91,23 @@ function PatternOverlay({ pattern, color }: { pattern: Pillar["pattern"]; color:
 /* ─── Pillar Card ─── */
 
 function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
+  const { t } = useI18n();
+
+  // Map pillar IDs to translation keys
+  const pillarI18nMap: Record<string, { title: string; description: string }> = {
+    "ux-content-design": { title: t("pillar.uxContent.title"), description: t("pillar.uxContent.description") },
+    "ai-projects": { title: t("pillar.ai.title"), description: t("pillar.ai.description") },
+    "other-projects": { title: t("pillar.other.title"), description: t("pillar.other.description") },
+  };
+
+  const translated = pillarI18nMap[pillar.id] || { title: pillar.title, description: pillar.description };
+
   return (
     <div className="w-full md:w-[55vw] lg:w-[38vw] shrink-0 h-full flex items-center">
       <Link
         href={pillar.href}
         className="group block relative w-full h-[70vh] md:h-[80vh] rounded-3xl overflow-hidden cursor-pointer"
-        aria-label={`Explorar ${pillar.title} proyectos`}
+        aria-label={`${t("pillars.explore")} ${translated.title} ${pillar.subtitle}`}
       >
         {/* Gradient background */}
         <div
@@ -121,7 +133,7 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
             className="font-[family-name:var(--font-display)] text-6xl md:text-8xl lg:text-9xl font-bold text-white text-center leading-[0.9] tracking-tight"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
           >
-            {pillar.title.split("\n").map((line, i) => (
+            {translated.title.split("\n").map((line, i) => (
               <span key={i} className="block">
                 {line}
               </span>
@@ -141,13 +153,13 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
           style={{ padding: "0 2.5rem 3rem 2.5rem" }}
         >
           <p className="text-white/80 text-sm md:text-base max-w-sm leading-relaxed mb-5">
-            {pillar.description}
+            {translated.description}
           </p>
 
           {/* CTA */}
           <div className="flex items-center justify-center gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-0 md:translate-y-2 group-hover:translate-y-0">
             <span className="text-white text-xs font-bold tracking-wider uppercase" style={{ color: pillar.accentColor }}>
-              Explorar
+              {t("pillars.explore")}
             </span>
             <motion.span
               className="inline-block font-bold"
@@ -190,6 +202,7 @@ export function ThreePillars() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const { t } = useI18n();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -227,13 +240,13 @@ export function ThreePillars() {
         className="relative bg-bg-primary min-h-screen flex flex-col justify-between"
         style={{ marginBottom: "10rem" }}
         id="three-pillars"
-        aria-label="Pilares de trabajo"
+        aria-label={t("pillars.ariaLabel")}
       >
         {/* Header */}
         <div className="px-6 pt-10 pb-4">
           <div className="flex items-center gap-4 mb-2">
             <span className="text-fg-muted text-xs tracking-[0.2em] uppercase font-medium">
-              Mi trabajo
+              {t("pillars.label")}
             </span>
             <span className="h-px flex-1 bg-stone/30" />
             <span className="text-fg-muted text-xs tracking-wider font-mono">
@@ -268,7 +281,7 @@ export function ThreePillars() {
         <div className="px-6 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-fg-muted text-[10px] tracking-[0.2em] uppercase">
-              Desliza para explorar
+              {t("pillars.scrollMobile")}
             </span>
             <motion.span
               animate={{ x: [0, 8, 0] }}
@@ -291,7 +304,7 @@ export function ThreePillars() {
       className="relative bg-bg-primary"
       style={{ height: "250vh" }}
       id="three-pillars"
-      aria-label="Pilares de trabajo"
+      aria-label={t("pillars.ariaLabel")}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
         {/* Header */}
@@ -301,7 +314,7 @@ export function ThreePillars() {
         >
           <div className="flex items-center gap-4 mb-2">
             <span className="text-fg-muted text-xs tracking-[0.2em] uppercase font-medium">
-              Mi trabajo
+              {t("pillars.label")}
             </span>
             <span className="h-px flex-1 bg-stone/30" />
             <span className="text-fg-muted text-xs tracking-wider font-mono">
@@ -326,7 +339,7 @@ export function ThreePillars() {
         <div className="shrink-0 pt-5 pb-14 md:pb-10 px-8 md:px-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-fg-muted text-[10px] tracking-[0.2em] uppercase">
-              Scroll para explorar
+              {t("pillars.scrollDesktop")}
             </span>
             <motion.span
               animate={{ x: [0, 8, 0] }}
