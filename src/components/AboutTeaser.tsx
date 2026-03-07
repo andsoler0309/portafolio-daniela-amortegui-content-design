@@ -16,7 +16,7 @@ export function AboutTeaser() {
     >
       <div className="container-main">
         <SectionHeader label={t("about.label")} />
-
+        <br />
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Image placeholder */}
           <motion.div

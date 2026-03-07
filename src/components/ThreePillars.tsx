@@ -1,24 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { pillars } from "@/lib/data";
 import type { Pillar } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
-
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    const onChange = (e: MediaQueryListEvent | MediaQueryList) =>
-      setIsMobile(e.matches);
-    onChange(mql);
-    mql.addEventListener("change", onChange);
-    return () => mql.removeEventListener("change", onChange);
-  }, [breakpoint]);
-  return isMobile;
-}
 
 /* ─── SVG Pattern Backgrounds ─── */
 
@@ -93,20 +79,25 @@ function PatternOverlay({ pattern, color }: { pattern: Pillar["pattern"]; color:
 function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
   const { t } = useI18n();
 
-  // Map pillar IDs to translation keys
   const pillarI18nMap: Record<string, { title: string; description: string }> = {
     "ux-content-design": { title: t("pillar.uxContent.title"), description: t("pillar.uxContent.description") },
-    "ai-projects": { title: t("pillar.ai.title"), description: t("pillar.ai.description") },
-    "other-projects": { title: t("pillar.other.title"), description: t("pillar.other.description") },
+    "ai-projects":       { title: t("pillar.ai.title"),        description: t("pillar.ai.description") },
+    "other-projects":    { title: t("pillar.other.title"),     description: t("pillar.other.description") },
   };
 
   const translated = pillarI18nMap[pillar.id] || { title: pillar.title, description: pillar.description };
 
   return (
-    <div className="w-full md:w-[55vw] lg:w-[38vw] shrink-0 h-full flex items-center">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 }}
+    >
       <Link
         href={pillar.href}
-        className="group block relative w-full h-[70vh] md:h-[80vh] rounded-3xl overflow-hidden cursor-pointer"
+        className="group block relative w-full rounded-3xl overflow-hidden cursor-pointer"
+        style={{ height: "clamp(380px, 48vw, 560px)" }}
         aria-label={`${t("pillars.explore")} ${translated.title} ${pillar.subtitle}`}
       >
         {/* Gradient background */}
@@ -120,29 +111,26 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
           <PatternOverlay pattern={pillar.pattern} color={pillar.accentColor} />
         </div>
 
-        {/* Subtle noise texture */}
+        {/* Noise texture */}
         <div className="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')]" />
 
         {/* Vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
 
-        {/* Center content — large title */}
+        {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8">
-          <motion.h3
-            className="font-[family-name:var(--font-display)] text-6xl md:text-8xl lg:text-9xl font-bold text-white text-center leading-[0.9] tracking-tight"
+          <h3
+            className="font-[family-name:var(--font-display)] text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center leading-[0.9] tracking-tight"
             style={{ textShadow: "0 4px 30px rgba(0,0,0,0.3)" }}
           >
             {translated.title.split("\n").map((line, i) => (
-              <span key={i} className="block">
-                {line}
-              </span>
+              <span key={i} className="block">{line}</span>
             ))}
-          </motion.h3>
+          </h3>
 
-          {/* Accent line */}
           <div
-            className="w-12 h-[2px] mt-6 mb-5 rounded-full transition-all duration-500 group-hover:w-20"
+            className="w-10 h-[2px] mt-5 mb-4 rounded-full transition-all duration-500 group-hover:w-16"
             style={{ backgroundColor: pillar.accentColor }}
           />
         </div>
@@ -150,15 +138,14 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
         {/* Bottom content */}
         <div
           className="absolute bottom-0 left-0 right-0 flex flex-col items-center text-center"
-          style={{ padding: "0 2.5rem 3rem 2.5rem" }}
+          style={{ padding: "0 2rem 2.5rem 2rem" }}
         >
-          <p className="text-white/80 text-sm md:text-base max-w-sm leading-relaxed mb-5">
+          <p className="text-white/80 text-sm leading-relaxed mb-4 max-w-xs">
             {translated.description}
           </p>
 
-          {/* CTA */}
           <div className="flex items-center justify-center gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-0 md:translate-y-2 group-hover:translate-y-0">
-            <span className="text-white text-xs font-bold tracking-wider uppercase" style={{ color: pillar.accentColor }}>
+            <span className="text-xs font-bold tracking-wider uppercase" style={{ color: pillar.accentColor }}>
               {t("pillars.explore")}
             </span>
             <motion.span
@@ -172,229 +159,43 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
           </div>
         </div>
       </Link>
-    </div>
-  );
-}
-
-/* ─── Mobile Dots ─── */
-
-function MobileCarouselDots({ activeIndex }: { activeIndex: number }) {
-  return (
-    <div className="flex gap-2 justify-center">
-      {pillars.map((pillar, i) => (
-        <div
-          key={pillar.id}
-          className="h-2 rounded-full bg-terracotta transition-all duration-300"
-          style={{
-            width: i === activeIndex ? 24 : 8,
-            opacity: i === activeIndex ? 1 : 0.3,
-          }}
-        />
-      ))}
-    </div>
+    </motion.div>
   );
 }
 
 /* ─── Main Component ─── */
 
 export function ThreePillars() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const { t } = useI18n();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Horizontal scroll: map vertical → horizontal
-  const x = useTransform(scrollYProgress, [0, 1], ["2%", "-45%"]);
-
-  // Header fade
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const headerY = useTransform(scrollYProgress, [0, 0.15], [0, -40]);
-
-  // Mobile scroll tracking
-  useEffect(() => {
-    if (!isMobile) return;
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const onScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = container.scrollWidth / pillars.length;
-      const index = Math.round(scrollLeft / cardWidth);
-      setActiveCardIndex(Math.min(index, pillars.length - 1));
-    };
-
-    container.addEventListener("scroll", onScroll, { passive: true });
-    return () => container.removeEventListener("scroll", onScroll);
-  }, [isMobile]);
-
-  /* ─── Mobile: native horizontal swipe ─── */
-  if (isMobile) {
-    return (
-      <section
-        className="relative bg-bg-primary min-h-screen flex flex-col justify-between"
-        style={{ marginBottom: "10rem" }}
-        id="three-pillars"
-        aria-label={t("pillars.ariaLabel")}
-      >
-        {/* Header */}
-        <div className="px-6 pt-10 pb-4">
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-fg-muted text-xs tracking-[0.2em] uppercase font-medium">
-              {t("pillars.label")}
-            </span>
-            <span className="h-px flex-1 bg-stone/30" />
-            <span className="text-fg-muted text-xs tracking-wider font-mono">
-              {String(pillars.length).padStart(2, "0")}
-            </span>
-          </div>
-        </div>
-
-        {/* Swipeable cards */}
-        <div
-          ref={scrollContainerRef}
-          className="flex-1 flex items-center gap-4 px-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
-          style={{
-            WebkitOverflowScrolling: "touch",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          {pillars.map((pillar, i) => (
-            <div
-              key={pillar.id}
-              className="snap-center shrink-0 h-full flex items-center"
-              style={{ width: "85vw" }}
-            >
-              <PillarCard pillar={pillar} index={i} />
-            </div>
-          ))}
-          <div className="shrink-0 w-[15vw]" aria-hidden />
-        </div>
-
-        {/* Dots */}
-        <div className="px-6 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-fg-muted text-[10px] tracking-[0.2em] uppercase">
-              {t("pillars.scrollMobile")}
-            </span>
-            <motion.span
-              animate={{ x: [0, 8, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="text-fg-muted text-sm"
-            >
-              →
-            </motion.span>
-          </div>
-          <MobileCarouselDots activeIndex={activeCardIndex} />
-        </div>
-      </section>
-    );
-  }
-
-  /* ─── Desktop: vertical-scroll-driven horizontal animation ─── */
   return (
     <section
-      ref={sectionRef}
       className="relative bg-bg-primary"
-      style={{ height: "250vh" }}
+      style={{ padding: "clamp(5rem, 10vw, 8rem) 0" }}
       id="three-pillars"
       aria-label={t("pillars.ariaLabel")}
     >
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+      <div className="container-main">
         {/* Header */}
-        <motion.div
-          style={{ opacity: headerOpacity, y: headerY }}
-          className="pt-10 md:pt-14 px-8 md:px-16 pb-4"
-        >
-          <div className="flex items-center gap-4 mb-2">
-            <span className="text-fg-muted text-xs tracking-[0.2em] uppercase font-medium">
-              {t("pillars.label")}
-            </span>
-            <span className="h-px flex-1 bg-stone/30" />
-            <span className="text-fg-muted text-xs tracking-wider font-mono">
-              {String(pillars.length).padStart(2, "0")}
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Horizontal track */}
-        <div className="flex-1 flex items-center">
-          <motion.div
-            style={{ x }}
-            className="flex gap-6 md:gap-10 pl-8 md:pl-16 pr-8 md:pr-16"
-          >
-            {pillars.map((pillar, i) => (
-              <PillarCard key={pillar.id} pillar={pillar} index={i} />
-            ))}
-          </motion.div>
+        <div className="flex items-center gap-4 mb-10 md:mb-14">
+          <span className="text-fg-muted text-xs tracking-[0.2em] uppercase font-medium">
+            {t("pillars.label")}
+          </span>
+          
+          <span className="h-px flex-1 bg-stone/30" />
+          <span className="text-fg-muted text-xs tracking-wider font-mono">
+            {String(pillars.length).padStart(2, "0")}
+          </span>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="shrink-0 pt-5 pb-14 md:pb-10 px-8 md:px-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-fg-muted text-[10px] tracking-[0.2em] uppercase">
-              {t("pillars.scrollDesktop")}
-            </span>
-            <motion.span
-              animate={{ x: [0, 8, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="text-fg-muted text-sm"
-            >
-              →
-            </motion.span>
-          </div>
-
-          {/* Progress dots */}
-          <div className="flex gap-2">
-            {pillars.map((_, i) => {
-              const dotStart = i / pillars.length;
-              const dotEnd = (i + 1) / pillars.length;
-              return (
-                <ProgressDot
-                  key={i}
-                  scrollYProgress={scrollYProgress}
-                  rangeStart={dotStart}
-                  rangeEnd={dotEnd}
-                />
-              );
-            })}
-          </div>
+        <br />
+        {/* Cards — 3-col desktop, 1-col mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          {pillars.map((pillar, i) => (
+            <PillarCard key={pillar.id} pillar={pillar} index={i} />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function ProgressDot({
-  scrollYProgress,
-  rangeStart,
-  rangeEnd,
-}: {
-  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
-  rangeStart: number;
-  rangeEnd: number;
-}) {
-  const width = useTransform(
-    scrollYProgress,
-    [rangeStart, rangeStart + 0.05, rangeEnd - 0.05, rangeEnd],
-    [8, 24, 24, 8]
-  );
-  const opacity = useTransform(
-    scrollYProgress,
-    [rangeStart, rangeStart + 0.05, rangeEnd - 0.05, rangeEnd],
-    [0.3, 1, 1, 0.3]
-  );
-
-  return (
-    <motion.div
-      style={{ width, opacity }}
-      className="h-2 rounded-full bg-terracotta"
-    />
-  );
-}
