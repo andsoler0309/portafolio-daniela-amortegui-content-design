@@ -3,14 +3,6 @@
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
-import dynamic from "next/dynamic";
-
-const Scene3D = dynamic(() => import("./Scene3D").then((m) => m.Scene3D), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-gradient-to-br from-sage/10 to-terracotta/5 rounded-3xl animate-pulse" />
-  ),
-});
 
 const letterVariants = {
   hidden: { y: 80, opacity: 0 },
@@ -36,17 +28,6 @@ export function Hero() {
       style={{ paddingTop: "var(--nav-height)" }}
       aria-label="Introduction"
     >
-      {/* Letters canvas — covers the full hero with no clipping box */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 1.8 }}
-        className="absolute inset-0 z-0"
-        aria-hidden="true"
-      >
-        <Scene3D />
-      </motion.div>
-
       <div className="container-main w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text content */}

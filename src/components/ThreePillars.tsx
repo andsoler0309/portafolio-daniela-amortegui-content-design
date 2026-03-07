@@ -170,7 +170,7 @@ export function ThreePillars() {
 
   return (
     <section
-      className="relative bg-bg-primary"
+      className="relative"
       style={{ padding: "clamp(5rem, 10vw, 8rem) 0" }}
       id="three-pillars"
       aria-label={t("pillars.ariaLabel")}
