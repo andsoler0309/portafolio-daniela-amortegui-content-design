@@ -50,11 +50,17 @@ export const personalProjects: PersonalProject[] = [
   },
   {
     id: "substack",
-    title: "Blog Dani Cruza Metas",
-    tagline: "Narrativa larga sobre deporte y desarrollo personal",
+    title: "Blog Dani Cruza Metas (Substack)",
+    tagline: "Contenido educativo de largo formato",
     description:
-      "Escribo artículos de largo formato donde combino storytelling, deporte y desarrollo personal.\n\nCada publicación parte de experiencias reales para generar reflexiones sobre disciplina, resiliencia y construcción de hábitos.",
-    responsibilities: [],
+      "Escribo artículos en profundidad sobre deportes de resistencia, entrenamiento, mentalidad y experiencias personales.\n\nEl blog me permite simplificar temas complejos, estructurar la información con claridad y crear recursos educativos permanentes para la comunidad.",
+    responsibilities: [
+      "Planeación editorial.",
+      "Investigación.",
+      "Escritura de largo formato.",
+      "Contenido orientado a SEO.",
+      "Relacionamiento con la comunidad.",
+    ],
     gradient: "linear-gradient(135deg, #1A2E1A 0%, #8B9D77 50%, #A8B89A 100%)",
     image: "/images/personal-project-1.jpg",
     url: "https://dani-cruza-metas.substack.com",
@@ -63,10 +69,16 @@ export const personalProjects: PersonalProject[] = [
   {
     id: "fut-fem-colombia",
     title: "FutFem Colombia",
-    tagline: "Contenido digital para el fútbol femenino colombiano",
+    tagline: "Proyecto de comunicación de fútbol femenino",
     description:
-      "Colaboro en la creación de contenido para una comunidad dedicada al fútbol femenino colombiano.\n\nParticipo en la cobertura de torneos, creación de contenido editorial y comunicación digital para acercar este deporte a nuevas audiencias.",
-    responsibilities: [],
+      "Colaboro creando contenido digital para una comunidad de fútbol femenino, cubriendo torneos, jugadoras y noticias relevantes.\n\nEl proyecto exige estar al día con lo que pasa cada día, construir narrativas que enganchen y adaptar la comunicación a la dinámica de las redes sociales.",
+    responsibilities: [
+      "Planeación de contenido.",
+      "Cobertura de partidos.",
+      "Storytelling en redes sociales.",
+      "Coordinación editorial.",
+      "Relacionamiento con la comunidad.",
+    ],
     gradient: "linear-gradient(135deg, #D4C5B0 0%, #8B9D77 50%, #1A2E1A 100%)",
     image: "/images/personal-project-3.jpg",
     url: "https://instagram.com/futfemcolombia",
@@ -97,11 +109,17 @@ export const personalProjectsEn: PersonalProject[] = [
   },
   {
     id: "substack",
-    title: "Dani Cruza Metas Blog",
-    tagline: "Long-form writing on sport and personal development",
+    title: "Dani Cruza Metas Blog (Substack)",
+    tagline: "Long-form educational content",
     description:
-      "I write long-form articles combining storytelling, sport and personal development.\n\nEvery piece starts from real experiences to spark reflection on discipline, resilience and habit building.",
-    responsibilities: [],
+      "I write in-depth articles about endurance sports, training, mindset and personal experiences.\n\nThe blog allows me to simplify complex topics, structure information clearly and create evergreen educational resources for the community.",
+    responsibilities: [
+      "Editorial planning.",
+      "Research.",
+      "Long-form writing.",
+      "SEO-oriented content.",
+      "Community engagement.",
+    ],
     gradient: "linear-gradient(135deg, #1A2E1A 0%, #8B9D77 50%, #A8B89A 100%)",
     image: "/images/personal-project-1.jpg",
     url: "https://dani-cruza-metas.substack.com",
@@ -110,16 +128,204 @@ export const personalProjectsEn: PersonalProject[] = [
   {
     id: "fut-fem-colombia",
     title: "FutFem Colombia",
-    tagline: "Digital content for Colombian women's football",
+    tagline: "Women's football communication project",
     description:
-      "I collaborate creating content for a community dedicated to Colombian women's football.\n\nI take part in tournament coverage, editorial content creation and digital communication to bring the sport to new audiences.",
-    responsibilities: [],
+      "I collaborate creating digital content for a women's football community, covering tournaments, players and relevant news.\n\nThe project requires staying current with daily events, creating engaging narratives and adapting communication to social media dynamics.",
+    responsibilities: [
+      "Content planning.",
+      "Match coverage.",
+      "Social media storytelling.",
+      "Editorial coordination.",
+      "Community engagement.",
+    ],
     gradient: "linear-gradient(135deg, #D4C5B0 0%, #8B9D77 50%, #1A2E1A 100%)",
     image: "/images/personal-project-3.jpg",
     url: "https://instagram.com/futfemcolombia",
     linkLabel: "Instagram",
   },
 ];
+
+/* ──────────────────────────────────────────────
+   WHAT I DO — home section
+   ────────────────────────────────────────────── */
+
+export interface SkillGroup {
+  /** Título del grupo; opcional cuando el tab tiene un solo bloque */
+  label?: string;
+  items: string[];
+}
+
+export interface WhatIDoTab {
+  id: "expertise" | "experience" | "tools";
+  label: string;
+  /** Frase que encabeza el contenido del tab */
+  intro?: string;
+  groups: SkillGroup[];
+}
+
+export interface WhatIDoContent {
+  eyebrow: string;
+  title: string;
+  statValue: string;
+  statLabel: string;
+  tabs: WhatIDoTab[];
+}
+
+export const whatIDo: WhatIDoContent = {
+  eyebrow: "Lo que hago",
+  title: "Estrategia, ejecución y comunicación en un mismo lugar",
+  statValue: "7+",
+  statLabel: "años liderando iniciativas digitales",
+  tabs: [
+    {
+      id: "expertise",
+      label: "Áreas de experiencia",
+      groups: [
+        {
+          items: [
+            "Gestión de proyectos",
+            "Estrategia digital",
+            "Operaciones de producto",
+            "UX y estrategia de contenido",
+            "Liderazgo transversal",
+            "Mejora de procesos",
+            "Gestión de stakeholders",
+            "Estrategia de comunicación",
+          ],
+        },
+      ],
+    },
+    {
+      id: "experience",
+      label: "Experiencia",
+      intro: "Más de 7 años liderando iniciativas digitales en:",
+      groups: [
+        {
+          label: "Disciplinas",
+          items: [
+            "Producto",
+            "UX",
+            "Comunicación",
+            "Operaciones",
+            "Marketing",
+            "Experiencia de cliente",
+          ],
+        },
+        {
+          label: "Industrias",
+          items: [
+            "Fintech",
+            "E-commerce",
+            "Aerolíneas",
+            "Consultoría",
+            "Publicidad",
+            "Tecnología",
+          ],
+        },
+      ],
+    },
+    {
+      id: "tools",
+      label: "Herramientas",
+      groups: [
+        {
+          label: "Gestión de proyectos",
+          items: ["Jira", "Asana", "Trello", "ClickUp", "Monday", "Notion"],
+        },
+        {
+          label: "Colaboración",
+          items: ["Confluence", "Miro", "Figma", "Slack"],
+        },
+        {
+          label: "Analítica",
+          items: ["GA4", "Looker", "Hotjar", "Plataformas CMS"],
+        },
+        {
+          label: "Inteligencia Artificial",
+          items: ["Diseño de prompts", "Agentes de IA", "ChatGPT", "Gemini"],
+        },
+      ],
+    },
+  ],
+};
+
+export const whatIDoEn: WhatIDoContent = {
+  eyebrow: "What I do",
+  title: "Strategy, execution and communication in one place",
+  statValue: "7+",
+  statLabel: "years leading digital initiatives",
+  tabs: [
+    {
+      id: "expertise",
+      label: "Areas of expertise",
+      groups: [
+        {
+          items: [
+            "Project Management",
+            "Digital Strategy",
+            "Product Operations",
+            "UX & Content Strategy",
+            "Cross-functional Leadership",
+            "Process Improvement",
+            "Stakeholder Management",
+            "Communications Strategy",
+          ],
+        },
+      ],
+    },
+    {
+      id: "experience",
+      label: "Experience highlights",
+      intro: "7+ years leading digital initiatives across:",
+      groups: [
+        {
+          label: "Disciplines",
+          items: [
+            "Product",
+            "UX",
+            "Communications",
+            "Operations",
+            "Marketing",
+            "Customer Experience",
+          ],
+        },
+        {
+          label: "Industries",
+          items: [
+            "Fintech",
+            "E-commerce",
+            "Airlines",
+            "Consulting",
+            "Advertising",
+            "Technology",
+          ],
+        },
+      ],
+    },
+    {
+      id: "tools",
+      label: "Tools",
+      groups: [
+        {
+          label: "Project Management",
+          items: ["Jira", "Asana", "Trello", "ClickUp", "Monday", "Notion"],
+        },
+        {
+          label: "Collaboration",
+          items: ["Confluence", "Miro", "Figma", "Slack"],
+        },
+        {
+          label: "Analytics",
+          items: ["GA4", "Looker", "Hotjar", "CMS platforms"],
+        },
+        {
+          label: "AI",
+          items: ["Prompt Design", "AI Agents", "ChatGPT", "Gemini"],
+        },
+      ],
+    },
+  ],
+};
 
 export interface Pillar {
   id: string;
@@ -129,7 +335,6 @@ export interface Pillar {
   href: string;
   gradient: string;
   accentColor: string;
-  pattern: "circles" | "grid" | "waves";
 }
 
 export const pillars: Pillar[] = [
@@ -142,7 +347,6 @@ export const pillars: Pillar[] = [
     href: "/work",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
     accentColor: "#A8B89A",
-    pattern: "circles",
   },
   {
     id: "personal-projects",
@@ -153,7 +357,6 @@ export const pillars: Pillar[] = [
     href: "/personal-projects",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
     accentColor: "#D4C5B0",
-    pattern: "waves",
   },
   {
     id: "ai",
@@ -164,7 +367,6 @@ export const pillars: Pillar[] = [
     href: "/ai",
     gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
     accentColor: "#D4896A",
-    pattern: "grid",
   },
 ];
 
@@ -216,11 +418,11 @@ export interface WorkProject {
 export const workProjects: WorkProject[] = [
   {
     id: "reputation-dashboard",
-    title: "Transformación del dashboard de reputación",
+    title: "Escalando los insights de reputación del vendedor",
     subtitle:
       "Ayudar a millones de vendedores a entender y mejorar el desempeño de su negocio.",
     client: "Mercado Libre",
-    tabLabel: "Reputación",
+    tabLabel: "Proyecto 1",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
@@ -274,11 +476,11 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "buying-experience",
-    title: "Optimización de la experiencia de compra",
+    title: "Mejorando la experiencia de compra",
     subtitle:
       "Ayudar a los vendedores a entender cómo sus acciones impactan la experiencia de compra.",
     client: "Mercado Libre",
-    tabLabel: "Exp. de compra",
+    tabLabel: "Proyecto 2",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-2-imagen-1.png",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
@@ -334,11 +536,11 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "launch-program",
-    title: "Programa de Despegue para nuevos vendedores",
+    title: "Impulsando la activación de vendedores",
     subtitle:
       "Diseñar una experiencia de onboarding que ayudara a los nuevos vendedores a tener éxito desde el primer día.",
     client: "Mercado Libre",
-    tabLabel: "Despegue",
+    tabLabel: "Proyecto 3",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-3-imagen-1.png",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
@@ -389,10 +591,10 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "price-automation",
-    title: "Impulsar la adopción de la automatización de precios",
+    title: "Aumentando la adopción del producto",
     subtitle: "Ayudar a los vendedores a adoptar precios automatizados con confianza.",
     client: "Mercado Libre",
-    tabLabel: "Precios",
+    tabLabel: "Proyecto 4",
     year: "2021–2026",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
@@ -444,11 +646,11 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "mesfix",
-    title: "Productos financieros que la gente sí entiende",
+    title: "Construyendo la comunicación de producto de una fintech",
     subtitle:
       "Traducir productos financieros complejos en experiencias digitales simples.",
     client: "Mesfix — Fintech",
-    tabLabel: "Mesfix",
+    tabLabel: "Proyecto 5",
     year: "2018–2021",
     coverImage: "/images/other-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
@@ -492,11 +694,11 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "avianca-cms",
-    title: "Liderando una migración web global",
+    title: "Liderando una migración global de CMS",
     subtitle:
       "Coordinar una de las mayores iniciativas de transformación digital multilingüe de Avianca.",
     client: "Avianca",
-    tabLabel: "Avianca",
+    tabLabel: "Proyecto 6",
     year: "",
     coverImage: "/images/avianca-gestiona-tu-reserva.jpg",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
@@ -540,11 +742,11 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "triario",
-    title: "Gestión de operaciones digitales",
+    title: "Gestionando operaciones digitales corporativas",
     subtitle:
       "Coordinar equipos multidisciplinarios para entregar proyectos digitales a escala.",
     client: "Triario",
-    tabLabel: "Triario",
+    tabLabel: "Proyecto 7",
     year: "2021",
     coverImage: "/images/other-projecto-1-imagen-3.jpg",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
@@ -580,10 +782,10 @@ export const workProjects: WorkProject[] = [
   },
   {
     id: "dattis",
-    title: "Estrategia digital a escala para múltiples marcas",
+    title: "Escalando la estrategia digital multimarca",
     subtitle: "Gestionar varias marcas simultáneamente en un entorno de agencia.",
     client: "Dattis Comunicaciones",
-    tabLabel: "Dattis",
+    tabLabel: "Proyecto 8",
     year: "2018",
     coverImage: "/images/other-projecto-1-imagen-2.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
@@ -621,11 +823,11 @@ export const workProjects: WorkProject[] = [
 export const workProjectsEn: WorkProject[] = [
   {
     id: "reputation-dashboard",
-    title: "Reputation Dashboard Transformation",
+    title: "Scaling Seller Reputation Insights",
     subtitle:
       "Helping millions of sellers better understand and improve their business performance.",
     client: "Mercado Libre",
-    tabLabel: "Reputation",
+    tabLabel: "Project 1",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
@@ -679,11 +881,11 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "buying-experience",
-    title: "Buying Experience Optimization",
+    title: "Improving Buyer Experience",
     subtitle:
       "Helping sellers understand how their actions impact the buying experience.",
     client: "Mercado Libre",
-    tabLabel: "Buying Exp.",
+    tabLabel: "Project 2",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-2-imagen-1.png",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
@@ -739,11 +941,11 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "launch-program",
-    title: "Seller Launch Program",
+    title: "Driving Seller Activation",
     subtitle:
       "Designing an onboarding experience that helped new sellers succeed from day one.",
     client: "Mercado Libre",
-    tabLabel: "Launch",
+    tabLabel: "Project 3",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-3-imagen-1.png",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
@@ -794,10 +996,10 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "price-automation",
-    title: "Driving Product Adoption Through Price Automation",
+    title: "Increasing Product Adoption",
     subtitle: "Helping sellers adopt automated pricing with confidence.",
     client: "Mercado Libre",
-    tabLabel: "Pricing",
+    tabLabel: "Project 4",
     year: "2021–2026",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
@@ -849,10 +1051,10 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "mesfix",
-    title: "Building Financial Products People Can Understand",
+    title: "Building Product Communication for a Fintech",
     subtitle: "Translating complex financial products into simple digital experiences.",
     client: "Mesfix — Fintech",
-    tabLabel: "Mesfix",
+    tabLabel: "Project 5",
     year: "2018–2021",
     coverImage: "/images/other-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
@@ -896,11 +1098,11 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "avianca-cms",
-    title: "Leading a Global Website Migration",
+    title: "Leading a Global CMS Migration",
     subtitle:
       "Coordinating one of Avianca's largest multilingual digital transformation initiatives.",
     client: "Avianca",
-    tabLabel: "Avianca",
+    tabLabel: "Project 6",
     year: "",
     coverImage: "/images/avianca-gestiona-tu-reserva.jpg",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
@@ -947,7 +1149,7 @@ export const workProjectsEn: WorkProject[] = [
     title: "Managing Enterprise Digital Operations",
     subtitle: "Coordinating multidisciplinary teams to deliver digital projects at scale.",
     client: "Triario",
-    tabLabel: "Triario",
+    tabLabel: "Project 7",
     year: "2021",
     coverImage: "/images/other-projecto-1-imagen-3.jpg",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
@@ -983,10 +1185,10 @@ export const workProjectsEn: WorkProject[] = [
   },
   {
     id: "dattis",
-    title: "Scaling Digital Strategy Across Multiple Brands",
+    title: "Scaling Multi-brand Digital Strategy",
     subtitle: "Managing multiple brands in a fast-paced agency environment.",
     client: "Dattis Comunicaciones",
-    tabLabel: "Dattis",
+    tabLabel: "Project 8",
     year: "2018",
     coverImage: "/images/other-projecto-1-imagen-2.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",

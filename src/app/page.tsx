@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { WhatIDo } from "@/components/WhatIDo";
 import { ThreePillars } from "@/components/ThreePillars";
 import { AboutTeaser } from "@/components/AboutTeaser";
 import { PageBackground } from "@/components/PageBackground";
@@ -12,6 +13,7 @@ export default function Home() {
       {/* Content scrolls on top */}
       <div className="relative z-10">
         <Hero />
+        <WhatIDo />
         <ThreePillars />
         <AboutTeaser />
       </div>

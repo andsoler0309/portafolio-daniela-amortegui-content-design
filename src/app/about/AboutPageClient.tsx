@@ -5,45 +5,6 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 
-const values = {
-  es: [
-    {
-      title: "Claridad sobre ruido",
-      body: "Prefiero simplificar lo complejo antes que adornarlo. La estrategia empieza cuando el mensaje se entiende sin esfuerzo.",
-    },
-    {
-      title: "Sistemas sobre improvisación",
-      body: "Una pieza puede funcionar. Un sistema bien diseñado construye producto, reputación y crecimiento sostenible.",
-    },
-    {
-      title: "Personas sobre métricas aisladas",
-      body: "Las métricas importan, pero detrás de cada número hay alguien tomando decisiones reales. El producto debe servir a esa persona primero.",
-    },
-    {
-      title: "Movimiento sobre perfección",
-      body: "Iterar, aprender y optimizar. Prefiero avanzar con intención y ajustar en el camino que esperar una versión perfecta que nunca sale.",
-    },
-  ],
-  en: [
-    {
-      title: "Clarity over noise",
-      body: "I'd rather simplify complexity than decorate it. Strategy begins when the message is understood effortlessly.",
-    },
-    {
-      title: "Systems over improvisation",
-      body: "A single piece can work. A well-designed system builds product, reputation and sustainable growth.",
-    },
-    {
-      title: "People over isolated metrics",
-      body: "Metrics matter, but behind every number there's someone making real decisions. The product must serve that person first.",
-    },
-    {
-      title: "Momentum over perfection",
-      body: "Iterate, learn and optimize. I'd rather move with intention and adjust along the way than wait for a perfect version that never ships.",
-    },
-  ],
-};
-
 const skills = {
   es: [
     "Estrategia de Producto",
@@ -71,7 +32,6 @@ const skills = {
 
 export function AboutPageClient() {
   const { locale, t } = useI18n();
-  const valueList = values[locale];
   const skillList = skills[locale];
 
   return (
@@ -96,14 +56,6 @@ export function AboutPageClient() {
                   className="object-cover"
                   priority
                 />
-                <div
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent"
-                  style={{ padding: "0 3rem 3.5rem 3rem" }}
-                >
-                  <p className="text-white font-[family-name:var(--font-display)] text-xl italic">
-                    {t("about.quote")}
-                  </p>
-                </div>
               </div>
             </motion.div>
 
@@ -131,59 +83,6 @@ export function AboutPageClient() {
                 </div>
               </motion.div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── VALUES ── */}
-      <section
-        className="bg-bg-secondary flex flex-col"
-        style={{ minHeight: "100vh", paddingTop: "5rem", paddingBottom: "5rem" }}
-      >
-        <div className="container-main flex flex-col flex-1">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-between pb-7 border-b border-stone/40 shrink-0"
-          >
-            <span className="text-[11px] tracking-[0.22em] uppercase text-terracotta font-medium">
-              {t("about.valuesLabel")}
-            </span>
-            <span className="text-[11px] tracking-[0.22em] uppercase text-fg-muted/40 font-medium">
-              {valueList.length.toString().padStart(2, "0")}
-            </span>
-          </motion.div>
-
-          <div className="flex-1 flex flex-col">
-            {valueList.map((value, i) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: i * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex-1 grid grid-cols-12 gap-x-4 md:gap-x-10 items-center border-b border-stone/20 hover:border-stone/50 transition-colors duration-500"
-              >
-                <div className="col-span-2 md:col-span-1">
-                  <span className="font-[family-name:var(--font-display)] text-[3.5rem] md:text-[5rem] font-bold leading-none select-none text-fg-primary/[0.06] group-hover:text-fg-primary/[0.13] transition-colors duration-500 block">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="col-span-10 md:col-span-5 lg:col-span-4">
-                  <h3 className="font-[family-name:var(--font-display)] text-[1.75rem] md:text-[2.2rem] lg:text-[2.75rem] font-medium leading-[1.1] group-hover:text-terracotta transition-colors duration-400">
-                    {value.title}
-                  </h3>
-                </div>
-                <div className="col-span-12 md:col-span-6 lg:col-span-7 md:pl-16 mt-4 md:mt-0">
-                  <p className="text-fg-secondary text-base md:text-lg lg:text-xl leading-[1.8] max-w-prose">
-                    {value.body}
-                  </p>
-                </div>
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-terracotta/50 group-hover:w-full transition-all duration-700 ease-out" />
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

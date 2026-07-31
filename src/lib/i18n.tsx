@@ -57,14 +57,12 @@ const translations: Record<Locale, Record<string, string>> = {
       "Lo que más disfruto es conectar personas, procesos y objetivos para que proyectos complejos puedan ejecutarse de manera organizada y generar resultados reales.",
     "about.p4":
       "Creo en la comunicación como una herramienta estratégica para resolver problemas, alinear equipos y facilitar la adopción de productos.",
-    "about.valuesLabel": "Valores",
     "about.skillsLabel": "Habilidades",
     "about.skillsStatement":
       "Estrategia, sistema y ejecución para construir productos",
     "about.skillsStatementAccent": "que crecen.",
     "about.skillsCaption":
       "De la definición del producto a la ejecución, con coherencia y propósito.",
-    "about.quote": "Las historias son la manera en que le damos sentido al mundo.",
 
     // Footer
     "footer.menu": "Menu",
@@ -178,13 +176,11 @@ const translations: Record<Locale, Record<string, string>> = {
       "I enjoy bringing together people, processes and business goals to turn complex initiatives into organized execution and measurable results.",
     "about.p4":
       "I believe communication is much more than words — it's a strategic tool that helps products succeed.",
-    "about.valuesLabel": "Values",
     "about.skillsLabel": "Skills",
     "about.skillsStatement": "Strategy, systems and execution to build products",
     "about.skillsStatementAccent": "that grow.",
     "about.skillsCaption":
       "From product definition to delivery, with coherence and purpose.",
-    "about.quote": "Stories are how we make sense of the world.",
 
     // Footer
     "footer.menu": "Menu",
