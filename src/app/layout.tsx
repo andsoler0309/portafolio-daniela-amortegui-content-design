@@ -5,6 +5,8 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { Providers } from "@/components/Providers";
+import { Analytics } from "@vercel/analytics/next"
+
 
 const syne = Syne({
   variable: "--font-display",
@@ -42,6 +44,7 @@ export default function RootLayout({
       <body
         className={`${syne.variable} ${dmSans.variable} antialiased noise-overlay`}
       >
+        <Analytics/>
         <Providers>
           <Navigation />
           <ScrollToTop />
