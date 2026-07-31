@@ -1,302 +1,123 @@
-export interface Project {
-  id: string;
-  title: string;
-  client: string;
-  category: string;
-  tags: string[];
-  description: string;
-  longDescription: string;
-  /** Texto para la sección "El desafío" en la página del caso */
-  challenge?: string;
-  /** Texto o bullets para la sección "El enfoque" en la página del caso */
-  approach?: string | string[];
-  /** Bullets para la sección "El impacto" en la página del caso */
-  impact?: string[];
-  image: string;
-  imageLayout?: "cover" | "float";
-  shadowColor?: string;
-  year: string;
-  results?: string[];
-}
-
-export interface Experience {
-  company: string;
-  role: string;
-  period: string;
-  location: string;
-  url: string;
-}
-
 export const siteConfig = {
   name: "Daniela Amórtegui",
   initials: "D.A.",
-  title: "Content Specialist",
-  tagline: "I craft stories that move people.",
-  subtitle:
-    "Content Designer con +7 años diseñando estrategias de contenido para productos digitales. Trabajo transformando sistemas complejos en experiencias claras que ayudan a las personas a entender, decidir y actuar.",
+  title: "Product, Communication & Project Strategist",
   email: "daniela.amortegui@gmail.com",
   linkedin: "https://www.linkedin.com/in/danielaamorteguim/",
   instagram: "https://www.instagram.com/daniamortegui",
-  twitter: "https://twitter.com/danielacreates",
+  substack: "https://dani-cruza-metas.substack.com",
+  /** PDFs en public/cv/ — una versión por idioma */
+  cv: {
+    es: "/cv/daniela-amortegui-cv-es.pdf",
+    en: "/cv/daniela-amortegui-cv-en.pdf",
+  },
 };
-
-export const projects: Project[] = [
-  {
-    id: "mercado-libre",
-    title: "Estrategia de contenidos para Mercado Libre",
-    client: "MERCADO LIBRE",
-    category: "UX Writer y Content Strategist",
-    tags: ["Brand Voice", "Editorial Strategy", "Wellness"],
-    description:
-      "Lideré y estructuré el ecosistema integral de contenidos para flujos clave del producto, alineando storytelling, data y equipos multidisciplinarios para garantizar coherencia de marca, claridad en la experiencia y resultados medibles a gran escala.",
-    longDescription:
-      "Luma Wellness was stuck in generic health-speak. I led a complete narrative overhaul: new brand voice guidelines, editorial calendar, content pillars, and a storytelling framework that connected their mushroom-based supplements to deeper themes of daily ritual and intentional living.",
-    challenge:
-      "Los vendedores dentro del ecosistema necesitaban comprender cómo construir una buena reputación y ofrecer experiencias de compra que impactaran directamente su visibilidad, crecimiento y métricas como NPS. El reto era educar, motivar y acompañar a miles de usuarios en procesos complejos, como la sección de Reputación, sin generar fricción ni saturación informativa. Debíamos transformar reglas, métricas y conceptos técnicos en herramientas claras para que los vendedores entendieran cómo “tener una vitrina atractiva” y crecer dentro del marketplace",
-    approach:[
-        "Lideré la estrategia de contenidos para flujos relacionados con Reputación y programas de crecimiento como el Programa de Despegue, diseñando una narrativa educativa orientada a la acción.",
-        "Traduje métricas como NPS y criterios de desempeño en mensajes claros y accionables.",
-        "Estructuré contenidos que enseñaban buenas prácticas para mejorar experiencia de compra y posicionamiento.",
-        "Diseñé comunicaciones omnicanal (in-app, emails, notificaciones, FAQs y SEO).",
-        "Trabajé transversalmente con Producto, Data y equipos comerciales para alinear contenido con objetivos de crecimiento.",
-        "Definí y protegí lineamientos de tono y voz para garantizar coherencia con el ecosistema general de Mercado Libre.",
-        "Coordiné y alineé entregables desarrollados por agencias externas para asegurar consistencia narrativa en todos los puntos de contacto.",
-        "Documenté lineamientos editoriales para garantizar escalabilidad y estandarización.",
-      ],
-    impact: [
-      "Mayor claridad en los criterios de reputación y desempeño para vendedores.",
-      "Educación estratégica que impulsó mejores prácticas y fortaleció experiencia de compra.",
-      "Alineación entre comunicación, métricas de negocio (NPS) y objetivos de crecimiento.",
-      "Consistencia de tono y narrativa en múltiples flujos y colaboraciones externas.",
-      "Escalamiento de una narrativa educativa adoptada transversalmente en el producto."
-    ],
-    image: "/images/project-1.jpg",
-    imageLayout: "cover",
-    shadowColor: "#FFE600",
-    year: "2021-2026",
-    results: [
-      "340% increase in organic engagement",
-      "2.1M earned impressions in Q1",
-      "Brand voice adopted across 12 touchpoints",
-    ],
-  },
-  {
-    id: "triario",
-    title: "Gestión de proyectos de comunicación digital para Triario",
-    client: "TRIARIO",
-    category: "Project Manager",
-    tags: ["Community", "UGC Strategy", "Sports"],
-    description:
-      "Lideré la ejecución integral de proyectos de contenido y comunicación para múltiples marcas, coordinando equipos multidisciplinarios y gestionando flujos en HubSpot para asegurar cumplimiento, coherencia estratégica y resultados en todo el funnel.",
-    longDescription:
-      "Stride Athletics had products but no soul. I built a content system that turned their community of 50K runners into co-creators. This included a UGC framework, athlete story templates, a weekly editorial series ('Miles & Mindset'), and performance content tied to real running data.",
-    challenge:
-      "Las marcas (Bancolombia y Renting) necesitaban ejecutar estrategias digitales integrales en entornos dinámicos, con múltiples equipos, entregables simultáneos y plazos ajustados. El reto era estructurar un sistema operativo claro que integrara estrategia, contenido, diseño y performance, garantizando coherencia narrativa, cumplimiento y calidad en todo el funnel.",
-    approach:[
-        "Lideré la gestión integral de proyectos digitales para marcas como Bancolombia (Renting Colombia) y Prosalon, estructurando flujos de trabajo en HubSpot para asegurar visibilidad, control y eficiencia.",
-        "Organicé y prioricé tareas, cronogramas y asignaciones entre equipos creativos, performance y cliente.",
-        "Implementé seguimiento estructurado en HubSpot para gestionar el funnel completo de contenidos.",
-        "Supervisé y validé cada pieza antes de producción, asegurando calidad editorial, coherencia de tono y alineación estratégica.",
-        "Coordiné la comunicación entre equipos internos y stakeholders externos para mantener claridad y enfoque en objetivos de negocio.",
-        "Optimicé procesos para reducir fricciones y mejorar tiempos de entrega.",
-    ],
-    impact: [
-      "Mayor eficiencia y orden en la operación de contenidos digitales.",
-      "Consistencia narrativa y control de calidad en cada entrega.",
-      "Integración efectiva entre estrategia, ejecución y performance.",
-      "Cumplimiento sostenido de cronogramas en entornos de alta exigencia."
-    ],
-    image: "/images/project-2.jpg",
-    imageLayout: "cover",
-    year: "2021",
-    results: [
-      "UGC submissions increased 580%",
-      "Newsletter open rate: 48%",
-      "Community grew from 50K to 120K in 8 months",
-    ],
-  },
-  {
-    id: "mesfix",
-    title: "Estrategia Integral de Contenidos y Posicionamiento de Marca",
-    client: "MESFIX",
-    category: "Communications Specialist",
-    tags: ["Launch Strategy", "Editorial", "Lifestyle"],
-    description:
-      "Diseñé y ejecuté la estrategia 360 de contenidos digitales (redes, blog, SEO, PR e influenciadores), liderando la narrativa de marca en momentos clave de crecimiento y optimizando el desempeño con base en métricas y resultados.",
-    longDescription:
-      "Terra Studio was a new concept: part yoga studio, part creative workspace, part café. I developed their editorial identity from scratch — name architecture, tone of voice, launch campaign copy, social content strategy, and an experiential content series called 'Grounded Sessions' that became their signature.",
-    challenge:
-      "Como startup fintech en crecimiento, Mesfix necesitaba construir posicionamiento, confianza y claridad en un mercado altamente competitivo y regulado. El reto era desarrollar una narrativa sólida que explicara un producto financiero complejo, generara credibilidad y acompañara momentos clave de crecimiento y comunicación sensible.",
-    approach:[
-      "Diseñé y ejecuté la estrategia integral de contenidos digitales, integrando narrativa de marca, educación financiera y posicionamiento estratégico.",
-      "Definí la voz y los pilares editoriales para redes sociales, blog, SEO y PR.",
-      "Traducí conceptos financieros y técnicos en mensajes claros, educativos y accionables.",
-      "Lideré campañas con influenciadores y medios para fortalecer visibilidad y credibilidad.",
-      "Analicé métricas de desempeño y ajusté la estrategia con base en resultados.",
-      "Aporté desde comunicación y experiencia de usuario en el desarrollo y lanzamiento de nuevos productos.",
-      "Gestioné eventos estratégicos para posicionar la marca en el ecosistema fintech.",
-    ],
-    impact: [
-      "Consolidación de una narrativa clara y coherente en todos los canales digitales.",
-      "Mayor posicionamiento y visibilidad en el sector fintech.",
-      "Optimización continua de la estrategia basada en métricas de rendimiento.",
-      "Integración efectiva entre comunicación, producto y crecimiento."
-    ],
-    image: "/images/project-3.jpg",
-    imageLayout: "cover",
-    year: "2018-2021",
-    results: [
-      "Sold out launch event (300 spots)",
-      "12K followers in first 6 weeks",
-      "Featured in 3 national wellness publications",
-    ],
-  },
-  {
-    id: "dattis",
-    title: "Gestión y Análisis de Contenidos Digitales",
-    client: "DATTIS",
-    category: "Analista de comunicación digital",
-    tags: ["Campaign", "Video Content", "Sports"],
-    description:
-      "Construí parrillas editoriales y realicé seguimiento de métricas para distintas marcas, optimizando contenido y campañas digitales a partir de resultados y comportamiento de audiencia.",
-    longDescription:
-      "Forma Running needed more than ads — they needed a narrative engine. I architected a 360° campaign built around the concept 'Every Stride Tells a Story,' producing a hero mini-documentary, athlete interview series, data-driven training content, and a content hub that unified blog, video, and community contributions into a single storytelling platform.",
-    challenge:
-      "Gestionar múltiples marcas (BBC, EY, Iqos, Águila, Colsanitas y Yamaha) con necesidades y audiencias distintas, asegurando coherencia en comunicación digital y cumplimiento de objetivos de alcance y engagement. El reto era estructurar parrillas de contenido estratégicas y optimizar desempeño en un entorno multitarea y de alta exigencia.",
-    approach:[
-      "Construí y ejecuté parrillas editoriales para diversas marcas, alineando tono, objetivos y formatos a cada audiencia.",
-      "Monitoreé métricas clave como alcance, engagement y cumplimiento de metas digitales.",
-      "Analicé resultados y ajusté estrategias con base en data.",
-      "Elaboré reportes de desempeño para clientes y equipos internos.",
-      "Apoyé campañas digitales y acciones de PR en medios digitales.",
-      "Gestioné múltiples cuentas en simultáneo, organizando prioridades y entregables con enfoque estratégico.",
-    ],
-    impact: [
-        "Optimización continua del contenido a partir de métricas reales de desempeño.",
-        "Mejora en coherencia editorial entre marcas y campañas.",
-        "Cumplimiento consistente de objetivos digitales en entornos multitarea.",
-        "Desarrollo de una base sólida en análisis, estrategia y ejecución digital.",
-    ],
-    image: "/images/project-4.jpg",
-    imageLayout: "cover",
-    year: "2018",
-    results: [
-      "4.8M campaign impressions",
-      "Content hub became #1 organic acquisition channel",
-      "62% increase in brand search volume",
-    ],
-  },
-];
-
-export const experiences: Experience[] = [
-  {
-    company: "LUMA WELLNESS",
-    role: "Lead Content Strategist",
-    period: "03/25 — Current",
-    location: "Los Angeles",
-    url: "#",
-  },
-  {
-    company: "STRIDE ATHLETICS",
-    role: "Content Director",
-    period: "06/24 — 02/25",
-    location: "New York",
-    url: "#",
-  },
-  {
-    company: "TERRA STUDIO",
-    role: "Brand & Content Lead",
-    period: "01/24 — 05/24",
-    location: "Austin",
-    url: "#",
-  },
-  {
-    company: "NOURISH COLLECTIVE",
-    role: "Senior Content Specialist",
-    period: "08/22 — 12/23",
-    location: "San Francisco",
-    url: "#",
-  },
-  {
-    company: "KINETIC MEDIA",
-    role: "Content Strategist",
-    period: "03/21 — 07/22",
-    location: "Remote",
-    url: "#",
-  },
-];
-
-export const services = [
-  {
-    number: "01",
-    title: "Diseño de ecosistemas de contenido",
-    description:
-      "Construyo estrategias integrales de contenido: pilares editoriales, calendarios, frameworks de distribución y flujos operativos escalables.",
-  },
-  {
-    number: "02",
-    title: "Arquitectura de marca y voz",
-    description:
-      "Defino y estructuro la identidad narrativa de las marcas: tono, principios editoriales y lineamientos de comunicación que aseguran coherencia en todos los puntos de contacto.",
-  },
-  {
-    number: "03",
-    title: "Performance y optimización editorial",
-    description:
-      "Analizo métricas de comportamiento y negocio para optimizar narrativa, formatos y distribución.",
-  },
-  {
-    number: "04",
-    title: "Construcción de comunidad y cultura",
-    description:
-      "Desarrollo contenidos que trascienden la pieza individual y fortalecen pertenencia.",
-  },
-];
 
 export interface PersonalProject {
   id: string;
   title: string;
   tagline: string;
   description: string;
-  tags: string[];
+  responsibilities: string[];
   gradient: string;
   image?: string;
+  /** "contain" para capturas de pantalla que no deben recortarse */
+  imageFit?: "cover" | "contain";
   url?: string;
+  linkLabel?: string;
 }
 
 export const personalProjects: PersonalProject[] = [
   {
     id: "dani-cruza-metas",
-    title: "Substack Blog: DaniCruzaMetas",
-    tagline: "DaniCruzaMetas | Narrativa Larga y Storytelling Deportivo",
+    title: "Dani Cruza Metas",
+    tagline: "Running, deporte y crecimiento personal",
     description:
-      "Espacio editorial donde transformo mi experiencia como maratonista amateur en reflexiones sobre disciplina, identidad y bienestar, aplicando estructura narrativa y coherencia de marca en formato long-form.",
-    tags: ["Newsletter", "Editorial", "Culture"],
+      "Dani Cruza Metas es mi proyecto personal alrededor del running, el deporte y el crecimiento personal.\n\nA través de Instagram, artículos y contenido educativo comparto aprendizajes sobre entrenamiento, disciplina y bienestar, construyendo una comunidad interesada en el deporte desde una perspectiva cercana y auténtica.",
+    responsibilities: [
+      "Desarrollo la estrategia de contenido.",
+      "Planifico el calendario editorial.",
+      "Produzco contenido en diferentes formatos.",
+      "Analizo métricas y comportamiento de la audiencia.",
+      "Gestiono el crecimiento de la comunidad.",
+      "Construyo la estrategia de marca personal.",
+    ],
+    gradient: "linear-gradient(135deg, #C4704A 0%, #D4896A 50%, #FAF7F2 100%)",
+    image: "/images/dani-cruza-metas-instagram.jpg",
+    imageFit: "contain",
+    url: "https://www.instagram.com/daniamortegui",
+    linkLabel: "Instagram",
+  },
+  {
+    id: "substack",
+    title: "Blog Dani Cruza Metas",
+    tagline: "Narrativa larga sobre deporte y desarrollo personal",
+    description:
+      "Escribo artículos de largo formato donde combino storytelling, deporte y desarrollo personal.\n\nCada publicación parte de experiencias reales para generar reflexiones sobre disciplina, resiliencia y construcción de hábitos.",
+    responsibilities: [],
     gradient: "linear-gradient(135deg, #1A2E1A 0%, #8B9D77 50%, #A8B89A 100%)",
     image: "/images/personal-project-1.jpg",
     url: "https://dani-cruza-metas.substack.com",
-  },
-  {
-    id: "instagram-crecimiento",
-    title: "Instagram en Crecimiento",
-    tagline: "Estrategia de Contenido y Crecimiento Orgánico en Running",
-    description:
-      "Desarrollo contenido en formatos cortos (reels, carruseles y guiones narrativos) optimizando storytelling, consistencia y análisis de engagement para construir comunidad en el ecosistema de deporte y bienestar.",
-    tags: ["Podcast", "Interviews", "Founders"],
-    gradient: "linear-gradient(135deg, #C4704A 0%, #D4896A 50%, #FAF7F2 100%)",
-    image: "/images/personal-project-2.jpg",
-    url: "https://www.instagram.com/daniamortegui",
+    linkLabel: "Substack",
   },
   {
     id: "fut-fem-colombia",
     title: "FutFem Colombia",
-    tagline: "Estrategia y Creación de Contenido para Instagram Deportivo",
+    tagline: "Contenido digital para el fútbol femenino colombiano",
     description:
-      "Desarrollo contenido sobre fútbol femenino para las redes sociales de FutFemColombia, aplicando estructura editorial, claridad informativa y enfoque en engagement para fortalecer comunidad y visibilidad del deporte.",
-    tags: ["Zine", "Photography", "Movement"],
+      "Colaboro en la creación de contenido para una comunidad dedicada al fútbol femenino colombiano.\n\nParticipo en la cobertura de torneos, creación de contenido editorial y comunicación digital para acercar este deporte a nuevas audiencias.",
+    responsibilities: [],
     gradient: "linear-gradient(135deg, #D4C5B0 0%, #8B9D77 50%, #1A2E1A 100%)",
     image: "/images/personal-project-3.jpg",
     url: "https://instagram.com/futfemcolombia",
+    linkLabel: "Instagram",
+  },
+];
+
+export const personalProjectsEn: PersonalProject[] = [
+  {
+    id: "dani-cruza-metas",
+    title: "Dani Cruza Metas",
+    tagline: "Running, sport and personal growth",
+    description:
+      "Dani Cruza Metas is my personal project around running, sport and personal growth.\n\nThrough Instagram, articles and educational content I share what I learn about training, discipline and wellbeing, building a community that approaches sport from a close, authentic perspective.",
+    responsibilities: [
+      "Develop the content strategy.",
+      "Plan the editorial calendar.",
+      "Produce content across formats.",
+      "Analyze metrics and audience behavior.",
+      "Manage community growth.",
+      "Build the personal brand strategy.",
+    ],
+    gradient: "linear-gradient(135deg, #C4704A 0%, #D4896A 50%, #FAF7F2 100%)",
+    image: "/images/dani-cruza-metas-instagram.jpg",
+    imageFit: "contain",
+    url: "https://www.instagram.com/daniamortegui",
+    linkLabel: "Instagram",
+  },
+  {
+    id: "substack",
+    title: "Dani Cruza Metas Blog",
+    tagline: "Long-form writing on sport and personal development",
+    description:
+      "I write long-form articles combining storytelling, sport and personal development.\n\nEvery piece starts from real experiences to spark reflection on discipline, resilience and habit building.",
+    responsibilities: [],
+    gradient: "linear-gradient(135deg, #1A2E1A 0%, #8B9D77 50%, #A8B89A 100%)",
+    image: "/images/personal-project-1.jpg",
+    url: "https://dani-cruza-metas.substack.com",
+    linkLabel: "Substack",
+  },
+  {
+    id: "fut-fem-colombia",
+    title: "FutFem Colombia",
+    tagline: "Digital content for Colombian women's football",
+    description:
+      "I collaborate creating content for a community dedicated to Colombian women's football.\n\nI take part in tournament coverage, editorial content creation and digital communication to bring the sport to new audiences.",
+    responsibilities: [],
+    gradient: "linear-gradient(135deg, #D4C5B0 0%, #8B9D77 50%, #1A2E1A 100%)",
+    image: "/images/personal-project-3.jpg",
+    url: "https://instagram.com/futfemcolombia",
+    linkLabel: "Instagram",
   },
 ];
 
@@ -313,57 +134,42 @@ export interface Pillar {
 
 export const pillars: Pillar[] = [
   {
-    id: "ux-content-design",
-    title: "Content\nDesign",
+    id: "work",
+    title: "Work",
     subtitle: "Proyectos",
     description:
-      "Estrategia de contenido, UX Writing y sistemas de mensajes para productos digitales a gran escala.",
-    href: "/work/ux-content",
+      "Producto, comunicación y gestión de proyectos digitales para Mercado Libre, Avianca, Mesfix y más.",
+    href: "/work",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
     accentColor: "#A8B89A",
     pattern: "circles",
   },
   {
-    id: "ai-projects",
-    title: "Proyectos con IA",
+    id: "personal-projects",
+    title: "Personal\nProjects",
     subtitle: "Proyectos",
     description:
-      "Exploración y diseño de experiencias con inteligencia artificial aplicadas a contenido, automatización y toma de decisiones.",
-    href: "/work/ai",
-    gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
-    accentColor: "#D4896A",
-    pattern: "grid",
-  },
-  {
-    id: "other-projects",
-    title: "Otros Proyectos",
-    subtitle: "Proyectos",
-    description:
-      "Otras experiencias laborales en donde trabajé con contenido y formatos digitales.",
-    href: "/work/other",
+      "Comunidad, contenido y storytelling alrededor del running y los deportes de resistencia.",
+    href: "/personal-projects",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
     accentColor: "#D4C5B0",
     pattern: "waves",
   },
-];
-
-export const philosophyPoints = [
   {
-    title: "Words are movement",
-    body: "The right story doesn't just inform — it changes behavior. I write content that moves people from awareness to action, from consumer to advocate.",
-  },
-  {
-    title: "Data shapes intuition",
-    body: "I don't guess. Every narrative decision is grounded in audience data, performance insights, and cultural research. Strategy is where creativity meets evidence.",
-  },
-  {
-    title: "Brands are living systems",
-    body: "A brand isn't a logo file — it's an evolving conversation. I build content systems that grow, adapt, and stay authentic as the brand scales.",
+    id: "ai",
+    title: "AI",
+    subtitle: "Proyectos",
+    description:
+      "Inteligencia Artificial aplicada a producto, flujos de trabajo y toma de decisiones.",
+    href: "/ai",
+    gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
+    accentColor: "#D4896A",
+    pattern: "grid",
   },
 ];
 
 /* ──────────────────────────────────────────────
-   UX CONTENT DESIGN — Pillar detail projects
+   WORK — case studies
    ────────────────────────────────────────────── */
 
 export interface ContentBlock {
@@ -372,986 +178,844 @@ export interface ContentBlock {
   bullets?: string[];
 }
 
-/** "full" = 6-section layout (Rol → Resultados)  |  "compact" = 3-section layout (Desafío → Enfoque → Impacto) */
-export interface UXContentProject {
+export interface WorkSection {
+  intro?: string;
+  text?: string;
+  bullets?: string[];
+  blocks?: ContentBlock[];
+  image?: string;
+  /** Renderiza la imagen en columna lateral en vez de debajo del contenido */
+  imageSide?: boolean;
+  images?: string[];
+}
+
+/**
+ * Cada caso se arma con las secciones que tenga definidas, en este orden:
+ * Desafío → Mi rol → Enfoque → Solución → Impacto.
+ * `enfoque` y `solucion` son opcionales (Triario y Dattis no las usan).
+ */
+export interface WorkProject {
   id: string;
   title: string;
+  /** Frase de una línea que acompaña al título en el hero */
+  subtitle: string;
+  /** Empresa / contexto del proyecto */
   client: string;
+  /** Etiqueta corta usada en la barra de pestañas */
+  tabLabel: string;
   year: string;
   coverImage: string;
   gradient: string;
-  /** Defaults to "full" when omitted */
-  variant?: "full" | "compact";
-  /* ── full-layout sections ── */
-  rol?: {
-    text: string;
-    image?: string;
-    bullets?: string[];
-    blocks?: ContentBlock[];
-  };
-  objetivoGeneral?: {
-    text: string;
-    image?: string;
-    blocks?: ContentBlock[];
-  };
-  desafio: {
-    text: string;
-    bullets?: string[];
-    blocks?: ContentBlock[];
-    image?: string;
-  };
-  estrategia?: {
-    intro?: string;
-    blocks?: ContentBlock[];
-    bullets?: string[];
-    image?: string;     // single phone mockup in side column
-    imageSide?: boolean; // when true renders image as plain ImageSlot in side column instead of phone mockup
-    images?: string[];  // multiple images shown as grid below content
-  };
-  solucion?: {
-    intro?: string;
-    text?: string;
-    blocks?: ContentBlock[];
-    bullets?: string[];
-    image?: string;
-    imageSide?: boolean; // when true renders image in a side column instead of below
-    images?: string[];  // multiple images shown as grid below content
-  };
-  resultados?: {
-    bullets?: string[];
-    blocks?: ContentBlock[];
-    image?: string;
-  };
-  /* ── compact-layout sections ── */
-  enfoque?: {
-    intro?: string;
-    text?: string;
-    blocks?: ContentBlock[];
-    bullets?: string[];
-    image?: string;
-    imageSide?: boolean;
-    images?: string[];
-  };
-  impacto?: {
-    bullets?: string[];
-    blocks?: ContentBlock[];
-    image?: string;
-  };
+  desafio: WorkSection;
+  rol: WorkSection;
+  enfoque?: WorkSection;
+  solucion?: WorkSection;
+  impacto: WorkSection;
 }
 
-export const uxContentProjects: UXContentProject[] = [
+export const workProjects: WorkProject[] = [
   {
-    id: "Proyecto-1",
-    title: "Rediseño del dashboard de reputación",
-    client: "Proyecto 1",
+    id: "reputation-dashboard",
+    title: "Transformación del dashboard de reputación",
+    subtitle:
+      "Ayudar a millones de vendedores a entender y mejorar el desempeño de su negocio.",
+    client: "Mercado Libre",
+    tabLabel: "Reputación",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
-    rol: {
-      text: "Trabajé en el rediseño del dashboard de Reputación para vendedores en Mercado Libre. Mi rol consistió en diseñar la estrategia de contenido del producto para ayudar a los vendedores a comprender cómo se medía su desempeño dentro de la plataforma.\n\nEntre mis responsabilidades principales estuvieron:",
-      bullets: [
-        "Diseñar y escribir los contenidos del nuevo dashboard de reputación.",
-        "Cocrear la arquitectura de información del dashboard junto al equipo de producto y diseño.",
-        "Diseñar matrices de contenido para cada caso de uso y estado de reputación.",
-        "Definir la estrategia de comunicación de las nuevas funcionalidades.",
-        "Actualizar FAQs y documentación de ayuda.",
-        "Crear contenidos educativos para el blog orientados a explicar las métricas de reputación."
-      ],
-    },
-    objetivoGeneral: {
-      text: "Ayudar a los vendedores a entender sus métricas de desempeño, identificar rápidamente sus principales áreas de mejora y tomar acciones concretas para mejorar su reputación dentro de la plataforma.",
-    },
     desafio: {
-      text: "Antes del rediseño, muchos vendedores no entendían cómo se calculaba su reputación ni qué acciones debían tomar para mejorarla.\n\nAlgunos de los principales problemas eran:",
-      bullets: [
-        "Las métricas y porcentajes no eran intuitivos ni fáciles de interpretar.",
-        "Los vendedores no sabían cuál era su principal problema dentro de su desempeño.",
-        "No estaba claro qué impacto tenía cada variable en su reputación.",
-        "Las comunicaciones eran fragmentadas y poco accionables.",
-        "El reto era transformar un sistema complejo de métricas en una experiencia clara, educativa y orientada a la acción."
-      ]
+      text: "El sistema de reputación de Mercado Libre es una de las herramientas más importantes para los vendedores, ya que impacta directamente su visibilidad, confianza y oportunidades de venta.\n\nSin embargo, la experiencia existente presentaba información compleja y dispersa, dificultando que los usuarios comprendieran cómo mejorar su desempeño y qué acciones debían priorizar.\n\nEl reto consistía en transformar un tablero basado en métricas en una herramienta que ayudara a los vendedores a tomar mejores decisiones para hacer crecer su negocio.",
     },
-    estrategia: {
-      image: "/images/content-design-projecto-1-imagen-3.jpg",
-      intro: "Para abordar este desafío diseñé una estrategia de contenido centrada en claridad, jerarquía y acción.\n\nLa estrategia se basó en tres principios:",
+    rol: {
+      text: "Participé en el rediseño integral del Dashboard de Reputación trabajando de manera transversal con equipos de Producto, Diseño, Desarrollo, Analytics y Negocio.\n\nMi trabajo combinó estrategia de producto, experiencia de usuario y coordinación entre equipos para garantizar que las necesidades del negocio y de los usuarios estuvieran alineadas durante todo el proyecto.",
       blocks: [
         {
-          title: "1. Traducir métricas complejas en información comprensible",
-          text: "Trabajé en simplificar el lenguaje y explicar las métricas en términos que fueran fáciles de entender para vendedores con distintos niveles de experiencia digital.",
-        },
-        {
-          title: "2. Priorizar lo importante",
-          text: "Diseñamos el dashboard para que los vendedores pudieran identificar rápidamente:",
+          title: "Responsabilidades",
           bullets: [
-            "Su estado actual de reputación.",
-            "Qué métricas estaban afectando su desempeño.",
-            "Qué acciones debían tomar para mejorar.",
-          ],
-        },
-        {
-          title: "3. Convertir la información en recomendaciones accionables",
-          text: "En lugar de solo mostrar métricas, cada estado del sistema incluía explicaciones claras y sugerencias concretas para mejorar.\n\nPara lograrlo desarrollé:",
-          bullets: [
-            "Matrices de contenido por caso de uso.",
-            "Mensajes adaptados según el estado de cada métrica.",
-            "Contenidos educativos complementarios fuera del producto.",
+            "Liderar la estrategia de comunicación del proyecto.",
+            "Participar en sesiones de discovery e investigación.",
+            "Traducir reglas de negocio complejas en experiencias simples.",
+            "Coordinar el trabajo entre Producto, Diseño y Desarrollo.",
+            "Priorizar necesidades de usuarios y objetivos del negocio.",
+            "Definir la arquitectura de información del dashboard.",
+            "Participar en pruebas, iteraciones y mejoras continuas.",
+            "Analizar resultados para optimizar la experiencia.",
           ],
         },
       ],
+    },
+    enfoque: {
+      text: "El proyecto se desarrolló mediante un proceso iterativo basado en investigación, colaboración y validación continua.\n\nTrabajamos junto a diferentes equipos para comprender las necesidades reales de los vendedores, identificar los principales puntos de fricción y priorizar las oportunidades con mayor impacto para el negocio.",
+      image: "/images/content-design-projecto-1-imagen-3.jpg",
+      imageSide: true,
     },
     solucion: {
-      intro: "El resultado fue un nuevo dashboard de reputación, más claro y orientado a la acción.\n\nLa solución incluyó:",
-      image: "/images/content-design-projecto-1-imagen-2.jpg",
-      blocks: [
-        {
-          bullets: [
-            "Una estructura de información reorganizada, que permitía entender rápidamente el estado de la reputación.",
-            "Contenidos que explicaban cómo se calculaba cada métrica.",
-            "Mensajes contextualizados según el estado del vendedor.",
-            "Indicadores visuales claros (como estados en verde, amarillo o rojo) acompañados de explicaciones en lenguaje simple.",
-            "Recomendaciones específicas para mejorar el desempeño en cada métrica.",
-            "Recursos educativos complementarios como FAQs actualizadas y artículos en el blog.",
-          ],
-        },
-        {
-          text: "El contenido del dashboard se diseñó como una guía continua para mejorar el desempeño dentro de la plataforma.\n\nPosteriormente al rediseño, el sistema de reputación cambió los umbrales con los que se evaluaba a los vendedores. Este cambio implicaba que muchos sellers podían perder su reputación verde o su nivel de líder, lo que hacía especialmente importante comunicar el cambio de forma clara y reducir fricciones.\n\nPara esto diseñé un plan completo de comunicaciones orientado a explicar por qué se producían estos cambios y qué acciones debían tomar los vendedores para mejorar su desempeño.\n\nEl plan incluía:",
-          bullets: [
-            "Comunicaciones segmentadas según cada caso de uso y el impacto que el cambio tendría en cada vendedor.",
-            "Recordatorios periódicos cada 15 días para acompañar el proceso de transición.",
-            "Mensajes explicativos enfocados en ayudar a los sellers a entender por qué su reputación cambiaba y cómo podían mejorarla.",
-          ],
-        },
-        {
-          text: "Además, participé en el diseño de un simulador de reputación que permitía a los vendedores visualizar cómo quedaría su reputación con los nuevos umbrales. Este simulador incluía mensajes específicos según cada caso de uso para ayudar a interpretar los resultados y entender qué acciones debían priorizar.",
-        },
-      ],
-    },
-    resultados: {
+      intro:
+        "Diseñamos un nuevo Dashboard de Reputación centrado en la toma de decisiones.\n\nLa nueva experiencia permitió:",
       bullets: [
-        "Mejorar el entendimiento de las métricas de reputación por parte de los vendedores.",
-        "Facilitar la identificación de problemas en su desempeño.",
-        "Promover comportamientos que mejoraran la calidad del servicio dentro de la plataforma.",
-        "El dashboard pasó de ser una herramienta informativa a convertirse en una herramienta de gestión para los vendedores.",
+        "Organizar la información según prioridades.",
+        "Explicar claramente el impacto de cada métrica.",
+        "Mostrar acciones concretas para mejorar la reputación.",
+        "Simplificar conceptos complejos mediante una mejor arquitectura de información.",
+        "Crear una experiencia escalable para futuras evoluciones del producto.",
+      ],
+      image: "/images/content-design-projecto-1-imagen-2.jpg",
+    },
+    impacto: {
+      bullets: [
+        "Mejor comprensión de los indicadores de reputación.",
+        "Reducción de la carga cognitiva para los vendedores.",
+        "Mayor alineación entre Producto, Diseño y Desarrollo.",
+        "Base escalable para nuevas funcionalidades del dashboard.",
+        "Experiencia más clara y orientada a la acción.",
       ],
     },
   },
   {
-    id: "Proyecto-2",
-    title: "Diseño del producto Experiencia de compra",
-    client: "Proyecto 2",
+    id: "buying-experience",
+    title: "Optimización de la experiencia de compra",
+    subtitle:
+      "Ayudar a los vendedores a entender cómo sus acciones impactan la experiencia de compra.",
+    client: "Mercado Libre",
+    tabLabel: "Exp. de compra",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-2-imagen-1.png",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
-    rol: {
-      text: "Participé en el diseño del producto Experiencia de compra, una herramienta creada para ayudar a los vendedores a identificar y mejorar los problemas que afectan la experiencia de los compradores en sus publicaciones.\n\nTrabajé en dos fases del producto: su creación desde cero y su posterior rediseño.",
-      blocks: [
-        {
-          title: "En la fase de creación",
-          bullets: [
-            "Creé el nombre del producto: \"Experiencia de compra\".",
-            "Participé en la definición de la estructura del dashboard.",
-            "Realicé benchmark de productos similares en otras plataformas.",
-            "Diseñé los casos de uso y los mensajes en todos los puntos del journey.",
-            "Definí la estrategia de comunicación para el lanzamiento.",
-            "Unifiqué contenidos y flujos con otros productos del ecosistema de vendedores.",
-          ],
-        },
-        {
-          title: "En el rediseño",
-          bullets: [
-            "Realicé research para identificar los principales dolores de los vendedores.",
-            "Participé en la redefinición de la estructura del dashboard.",
-            "Trabajé en la lógica del producto y sus casos de uso.",
-            "Diseñé la estrategia de contenido para todo el journey.",
-            "Escribí y optimicé el prompt para un agente de IA que ofrecía recomendaciones para mejorar la experiencia de compra.",
-            "Iteré el prompt en múltiples ciclos de pruebas para mejorar la calidad de las respuestas.",
-          ],
-        },
-      ],
-    },
-    objetivoGeneral: {
-      text: "Ayudar a los vendedores a identificar los principales problemas en sus publicaciones y entender cómo estos impactan la experiencia de compra de los usuarios.\n\nEl producto buscaba complementar el sistema de reputación, permitiendo entender qué aspectos específicos de sus publicaciones estaban generando fricción en la experiencia del comprador.",
-    },
     desafio: {
-      text: "Uno de los principales desafíos era diferenciar este producto de Reputación.\n\nMientras que la reputación evaluaba el desempeño del vendedor en general, la experiencia de compra analizaba la calidad de cada publicación individual.\n\nEsto generaba varios retos:",
-      bullets: [
-        "Los vendedores debían entender que cada publicación tenía su propia experiencia de compra.",
-        "La suma de estas experiencias impactaba posteriormente la reputación del vendedor.",
-        "Era necesario ayudarles a identificar rápidamente cuál era su principal problema entre múltiples variables.",
-        "Además, debíamos evitar generar confusión entre ambos productos, manteniendo una narrativa clara entre ellos.",
-      ],
+      text: "Mercado Libre necesitaba ayudar a los vendedores a comprender cómo la experiencia de compra impactaba directamente el desempeño de sus publicaciones y la satisfacción de los compradores.\n\nLa información estaba distribuida en diferentes puntos del producto y muchos usuarios no lograban identificar qué acciones debían realizar para mejorar la experiencia que ofrecían.\n\nEl desafío consistía en transformar información compleja en una experiencia clara que guiara a los vendedores hacia acciones concretas de mejora.",
     },
-    estrategia: {
-      intro: "La estrategia de contenido se centró en tres pilares:",
+    rol: {
+      text: "Participé en el diseño de una nueva experiencia para vendedores, colaborando con equipos de Producto, Diseño, Desarrollo, Analytics y Negocio.\n\nAdemás de definir la estrategia de comunicación, participé en la priorización de funcionalidades, estructuración de la información y coordinación entre diferentes áreas para asegurar una implementación consistente.",
       blocks: [
         {
-          title: "1. Diagnóstico claro del problema",
-          text: "Diseñamos el producto para que el vendedor pudiera identificar cuál era el principal problema en sus publicaciones.",
-        },
-        {
-          title: "2. Priorizar acciones",
-          text: "El contenido ayudaba a entender qué problema resolver primero para mejorar su desempeño.",
-        },
-        {
-          title: "3. Ofrecer soluciones concretas",
-          text: "A través de mensajes contextuales y del agente de IA, los vendedores recibían recomendaciones claras para mejorar sus publicaciones.\n\nEl agente de IA fue diseñado como un asistente que interpretaba los problemas detectados y sugería acciones específicas.",
+          title: "Responsabilidades",
+          bullets: [
+            "Participar en procesos de discovery e investigación.",
+            "Identificar oportunidades de mejora a partir de insights de usuarios.",
+            "Definir la estrategia de comunicación del producto.",
+            "Estructurar la arquitectura de información.",
+            "Coordinar decisiones entre Producto, Diseño y Desarrollo.",
+            "Facilitar la comprensión de funcionalidades complejas.",
+            "Acompañar la implementación y evolución del producto.",
+          ],
         },
       ],
+    },
+    enfoque: {
+      text: "Trabajamos de forma colaborativa para comprender los principales problemas que enfrentaban los vendedores durante la gestión de sus publicaciones.\n\nA partir de investigación y análisis de datos, priorizamos las oportunidades con mayor impacto y diseñamos una experiencia que permitiera comprender fácilmente el estado de cada publicación y las acciones recomendadas.",
       images: [
         "/images/content-design-projecto-2-imagen-2.png",
         "/images/content-design-projecto-2-imagen-4.png",
       ],
     },
     solucion: {
-      intro: "El producto final fue un dashboard que permitía a los vendedores:",
+      intro:
+        "Creamos una experiencia más intuitiva que conectaba el estado de las publicaciones con recomendaciones claras para mejorar la experiencia del comprador.\n\nLa solución permitió:",
+      bullets: [
+        "Priorizar problemas según su impacto.",
+        "Mostrar recomendaciones accionables.",
+        "Simplificar información técnica.",
+        "Mejorar la navegación entre funcionalidades.",
+        "Facilitar la toma de decisiones.",
+      ],
       image: "/images/content-design-projecto-2-imagen-3.png",
       imageSide: true,
-      blocks: [
-        {
-          bullets: [
-            "Entender el estado de la experiencia de compra de cada publicación.",
-            "Identificar qué métricas estaban afectando la experiencia del comprador.",
-            "Recibir recomendaciones para mejorar sus publicaciones.",
-          ],
-        },
-        {
-          text: "Entre los principales componentes de la solución estuvieron:",
-          bullets: [
-            "Mensajes contextualizados según el estado de cada publicación.",
-            "Recomendaciones accionables para mejorar la experiencia de compra.",
-            "Integración con otros productos del ecosistema de vendedores.",
-            "Un agente de IA diseñado con prompts iterados y optimizados, capaz de ofrecer sugerencias personalizadas.",
-          ],
-        },
-      ],
     },
-    resultados: {
+    impacto: {
       bullets: [
-        "Mejorar la comprensión de los vendedores sobre los factores que afectan la experiencia de compra.",
-        "Ayudarles a identificar problemas específicos en sus publicaciones.",
-        "Ofrecer recomendaciones claras para mejorar su desempeño.",
-        "Esto convirtió al producto en una herramienta que no solo mostraba métricas, sino que guiaba a los vendedores hacia acciones concretas de mejora.",
+        "Mayor claridad sobre la experiencia de compra.",
+        "Mejor comprensión de las acciones prioritarias.",
+        "Experiencia más intuitiva para vendedores.",
+        "Mayor alineación entre equipos durante el desarrollo.",
+        "Base escalable para futuras funcionalidades.",
       ],
     },
   },
   {
-    id: "Proyecto-3",
-    title: "Diseño del Programa de Despegue",
-    client: "Proyecto 3",
+    id: "launch-program",
+    title: "Programa de Despegue para nuevos vendedores",
+    subtitle:
+      "Diseñar una experiencia de onboarding que ayudara a los nuevos vendedores a tener éxito desde el primer día.",
+    client: "Mercado Libre",
+    tabLabel: "Despegue",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-3-imagen-1.png",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
-    rol: {
-      text: "Participé en el diseño del Programa de Despegue, una iniciativa creada para ayudar a nuevos vendedores a impulsar sus primeras ventas dentro de Mercado Libre.\n\nTrabajé en el producto de principio a fin, desde la conceptualización hasta la implementación del contenido en todos los puntos del journey.",
-      blocks: [
-        {
-          title: "Entre mis responsabilidades principales estuvieron:",
-          bullets: [
-            "Crear el nombre del programa: \"Programa de Despegue\".",
-            "Diseñar la estrategia de contenido para todo el journey del vendedor.",
-            "Diseñar y escribir los mensajes de invitación al programa en distintos canales: mensajes dentro del dashboard del vendedor, banners, push notifications, WhatsApp y email.",
-            "Diseñar y escribir el contenido de la landing page del programa.",
-            "Crear FAQs y contenido educativo para el blog.",
-            "Diseñar los mensajes dentro del dashboard del programa, adaptados a distintos estados del usuario.",
-            "Crear mensajes para momentos clave: cuando el vendedor estaba en riesgo de perder el beneficio, cuando se mantenía estable y cuando lograba completarlo exitosamente.",
-            "Realizar research para evaluar el entendimiento del producto.",
-            "Iterar el contenido en múltiples ciclos de mejora.",
-          ],
-        },
-        {
-          text: "Este fue uno de los productos en los que más iteraciones de contenido realicé durante mi tiempo en Mercado Libre.",
-        },
-      ],
-    },
-    objetivoGeneral: {
-      text: "Activar a nuevos vendedores dentro de la plataforma y ayudarles a generar sus primeras ventas, reduciendo la barrera inicial que existe al empezar a vender en un marketplace.",
-      blocks: [
-        {
-          title: "El programa buscaba:",
-          bullets: [
-            "Mejorar la visibilidad de nuevos vendedores.",
-            "Aumentar su confianza frente a los compradores.",
-            "Acelerar el proceso de activación y generación de ventas.",
-          ],
-        },
-      ],
-    },
     desafio: {
-      text: "Los nuevos vendedores enfrentan un problema común en marketplaces: no tienen historial ni reputación visible, lo que reduce la confianza de los compradores.\n\nEsto genera un círculo difícil de romper:",
-      bullets: [
-        "Sin reputación → menos confianza.",
-        "Menos confianza → menos ventas.",
-        "Menos ventas → más difícil construir reputación.",
-      ],
+      text: "Miles de nuevos vendedores llegaban cada mes a Mercado Libre, pero muchos no lograban completar las acciones necesarias para comenzar a vender exitosamente.\n\nEl desafío consistía en diseñar un programa que guiara a los usuarios durante sus primeros pasos, facilitando la adopción de funcionalidades y aumentando las probabilidades de éxito dentro de la plataforma.",
       image: "/images/content-design-projecto-3-imagen-2.png",
+    },
+    rol: {
+      text: "Lideré la estrategia de comunicación y participé en la coordinación transversal del programa de onboarding para nuevos vendedores.\n\nTrabajé junto a equipos de Producto, Marketing, Diseño, Desarrollo y Negocio para construir una experiencia consistente a través de múltiples canales de comunicación.",
       blocks: [
         {
-          text: "Además, el programa tenía una lógica compleja de beneficios y condiciones, lo que hacía necesario explicar claramente:",
+          title: "Responsabilidades",
           bullets: [
-            "Cómo funcionaba el programa.",
-            "Qué beneficios ofrecía.",
-            "Qué debía hacer el vendedor para mantenerlos.",
-            "Qué pasaba si no cumplía las condiciones.",
+            "Diseñar la estrategia integral de onboarding.",
+            "Coordinar iniciativas entre diferentes equipos.",
+            "Definir hitos críticos del recorrido del usuario.",
+            "Priorizar comunicaciones según comportamiento.",
+            "Diseñar recorridos omnicanal.",
+            "Participar en pruebas e iteraciones.",
+            "Analizar resultados para optimizar el programa.",
           ],
-        },
-        {
-          text: "El desafío era diseñar una experiencia que fuera fácil de entender, motivadora y transparente.",
         },
       ],
     },
-    estrategia: {
-      intro: "La estrategia de contenido se centró en tres principios:",
-      blocks: [
-        {
-          title: "1. Explicar claramente el valor del programa",
-          text: "Diseñé mensajes que explicaban rápidamente por qué el programa podía ayudar a impulsar las primeras ventas del vendedor.",
-        },
-        {
-          title: "2. Acompañar al vendedor durante todo el proceso",
-          text: "El contenido no se limitaba a la invitación inicial. Diseñamos un sistema de mensajes que acompañaba al vendedor durante los 180 días de duración del programa.",
-        },
-        {
-          title: "3. Mostrar progreso y motivación",
-          text: "El dashboard del programa permitía a los vendedores ver diariamente su progreso, reforzando la sensación de avance y claridad sobre lo que debían lograr.",
-        },
-        {
-          title: "Estrategia diferenciada por versión",
-          text: "También diseñé una estrategia diferenciada para la versión paga del programa y la versión gratuita, utilizada en mercados donde no era posible cobrar por el beneficio. Cada versión tenía mensajes adaptados a su lógica de beneficios.",
-        },
-      ],
+    enfoque: {
+      text: "El programa fue construido alrededor de las principales necesidades detectadas durante los primeros días del vendedor dentro de la plataforma.\n\nCada comunicación fue diseñada para acompañar una acción específica y reducir la incertidumbre durante el proceso de activación.",
       image: "/images/content-design-projecto-3-imagen-3.png",
       imageSide: true,
     },
     solucion: {
-      intro: "El resultado fue una experiencia completa que incluía:",
+      intro:
+        "Creamos un programa estructurado de onboarding que acompañaba al vendedor desde su registro hasta sus primeras ventas mediante mensajes personalizados y experiencias coordinadas.",
       images: [
         "/images/content-design-projecto-3-imagen-4.png",
         "/images/content-design-projecto-3-imagen-5.png",
         "/images/content-design-projecto-3-imagen-6.png",
       ],
-      blocks: [
-        {
-          title: "1. Un sistema de invitación multicanal",
-          bullets: [
-            "Banners en el dashboard.",
-            "Mensajes in-product.",
-            "Push notifications.",
-            "WhatsApp.",
-            "Email.",
-          ],
-        },
-        {
-          title: "2. Una landing page explicativa",
-          bullets: [
-            "Beneficios del programa.",
-            "Condiciones.",
-            "Funcionamiento.",
-            "Preguntas frecuentes.",
-          ],
-        },
-        {
-          title: "3. Un dashboard del programa",
-          text: "Que permitía al vendedor ver el progreso de su participación, entender su estado actual y saber qué debía hacer para mantener los beneficios.\n\nLos mensajes dentro del dashboard se adaptaban según el estado del vendedor:",
-          bullets: [
-            "Riesgo de perder el programa.",
-            "Estado estable.",
-            "Finalización exitosa.",
-          ],
-        },
-      ],
     },
-    resultados: {
+    impacto: {
       bullets: [
-        "Acelerar la activación de nuevos vendedores, ayudándolos a construir reputación y generar sus primeras ventas.",
-        "Mejorar el entendimiento del programa entre los participantes.",
-        "Acompañar al vendedor durante todo su proceso dentro del programa.",
-        "Reducir la fricción en un producto con una lógica compleja de beneficios y condiciones.",
+        "Mayor claridad durante el proceso de incorporación.",
+        "Mejor adopción de funcionalidades.",
+        "Experiencia consistente entre canales.",
+        "Mayor coordinación entre áreas involucradas.",
+        "Base para futuras evoluciones del programa.",
       ],
     },
   },
   {
-    id: "Proyecto-4",
-    title: "Relanzamiento de Automatización de precios",
-    client: "Proyecto 4",
+    id: "price-automation",
+    title: "Impulsar la adopción de la automatización de precios",
+    subtitle: "Ayudar a los vendedores a adoptar precios automatizados con confianza.",
+    client: "Mercado Libre",
+    tabLabel: "Precios",
     year: "2021–2026",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
-    rol: {
-      text: "Participé en el relanzamiento de Automatización de precios, una herramienta para vendedores de Mercado Libre que ajusta automáticamente los precios de sus publicaciones según el mercado y la competencia.\n\nLa herramienta utilizaba un sistema automatizado que permitía al vendedor definir un precio mínimo y máximo, mientras el sistema optimizaba el precio dentro de ese rango para mejorar la competitividad de la publicación.\n\nMi trabajo consistió en rediseñar la comunicación del producto a través de una campaña de email, con el objetivo de aumentar el entendimiento de la herramienta y motivar su uso.",
-      bullets: [
-        "Rediseñar la comunicación del producto para explicar mejor su valor.",
-        "Escribir el contenido completo del email de relanzamiento.",
-        "Simplificar la explicación de cómo funciona la herramienta.",
-        "Destacar los beneficios clave para incentivar la adopción.",
-        "Diseñar una narrativa clara que llevara al usuario desde el problema hasta la acción.",
-      ],
-    },
-    objetivoGeneral: {
-      text: "Incrementar el uso de la herramienta Automatización de precios entre los vendedores, mejorando la claridad de la propuesta de valor y reduciendo la fricción para probarla.",
-    },
     desafio: {
-      text: "Aunque la herramienta ya existía, su adopción era baja porque muchos vendedores no entendían claramente cómo funcionaba o qué beneficios les ofrecía.",
-      bullets: [
-        "La funcionalidad era percibida como compleja o poco transparente.",
-        "Muchos vendedores temían perder control sobre sus precios.",
-        "El valor de la herramienta no estaba comunicado de forma clara.",
-        "La comunicación previa no explicaba de forma sencilla cómo empezar a usarla.",
-      ],
-      blocks: [
-        {
-          text: "El reto era transformar una herramienta percibida como compleja en una propuesta simple, segura y beneficiosa para el vendedor.",
-        },
-      ],
+      text: "Mercado Libre contaba con una herramienta de automatización de precios que permitía a los vendedores mantener sus publicaciones competitivas de manera automática. Sin embargo, muchos usuarios no comprendían claramente su funcionamiento, desconfiaban de la automatización o abandonaban el proceso antes de activarla.\n\nEl reto consistía en aumentar la adopción del producto, generar confianza y simplificar la comprensión de una funcionalidad técnicamente compleja.",
     },
-    estrategia: {
-      intro: "Para abordar este desafío diseñé una estrategia de contenido centrada en tres principios:",
+    rol: {
+      text: "Participé en la estrategia de relanzamiento del producto trabajando con equipos de Producto, Diseño, Desarrollo, Analytics y Negocio.\n\nMi rol fue ayudar a transformar una funcionalidad compleja en una propuesta de valor fácil de entender, coordinando la experiencia completa desde el descubrimiento del producto hasta su adopción.",
       blocks: [
         {
-          title: "1. Explicar el valor antes que la funcionalidad",
-          text: "En lugar de empezar explicando cómo funciona la herramienta, la comunicación comienza con el beneficio principal para el vendedor: vender más y ser más competitivo. Esto se refleja desde el subject y el headline:\n\n\"Gánale a la competencia y vende hasta un 37% más automatizando tus precios.\"",
-        },
-        {
-          title: "2. Reducir el miedo a perder control",
-          text: "Uno de los principales frenos para adoptar la herramienta era la percepción de que el sistema tomaría el control del precio. Para reducir esta fricción, el contenido enfatiza que el vendedor define los límites y el sistema solo optimiza dentro de ese rango. Esto se comunica claramente con frases como:\n\n\"Haz la prueba, tú defines los límites.\"",
-        },
-        {
-          title: "3. Explicar el funcionamiento de forma simple",
-          text: "La comunicación incluye una sección clara que explica cómo empezar a usar la herramienta en tres pasos, permitiendo que el vendedor entienda rápidamente que el proceso es simple y reversible.",
-        },
-      ],
-    },
-    solucion: {
-      intro: "La solución fue una pieza de comunicación por email rediseñada, enfocada en explicar claramente el valor de la herramienta y facilitar su adopción.\n\nEl contenido se estructuró en cuatro bloques principales:",
-      image: "/images/content-design-projecto-4-imagen-1.png",
-      imageSide: true,
-      blocks: [
-        {
-          title: "Propuesta de valor clara",
-          text: "El email abre con un mensaje que comunica inmediatamente el beneficio de la herramienta: aumentar ventas automatizando los precios.",
-        },
-        {
-          title: "Beneficios concretos",
+          title: "Responsabilidades",
           bullets: [
-            "Mayor exposición en las publicaciones.",
-            "Mayor competitividad frente a otros vendedores.",
-            "Mayor probabilidad de aparecer como opción destacada.",
+            "Definir la estrategia de comunicación del relanzamiento.",
+            "Identificar barreras de adopción mediante investigación y análisis.",
+            "Coordinar iniciativas con Producto, Diseño y Desarrollo.",
+            "Diseñar recorridos orientados a aumentar la activación.",
+            "Participar en pruebas e iteraciones.",
+            "Analizar métricas de adopción para identificar oportunidades de mejora.",
+            "Alinear objetivos de negocio con necesidades de los usuarios.",
           ],
         },
-        {
-          title: "Explicación visual del funcionamiento",
-          text: "La comunicación incluye una representación simple del funcionamiento de la herramienta, mostrando cómo el vendedor define un precio mínimo y máximo, mientras el sistema ajusta el precio dentro de ese rango.",
-        },
-        {
-          title: "Instrucciones claras para comenzar",
-          text: "Finalmente, se incluye una guía simple en tres pasos para activar la herramienta, acompañada de un llamado a la acción directo hacia la sección de Gestión de precios.",
-        },
       ],
     },
-    resultados: {
+    enfoque: {
+      text: "El proyecto se enfocó en comprender por qué los vendedores no utilizaban la funcionalidad y qué información necesitaban para confiar en ella.\n\nA partir de investigación, datos y trabajo colaborativo entre equipos, rediseñamos la experiencia priorizando claridad, transparencia y orientación a la acción.",
+    },
+    solucion: {
+      intro:
+        "Creamos una estrategia integral de adopción que combinó una experiencia de producto más intuitiva con comunicaciones contextualizadas y orientadas al beneficio para el usuario.\n\nLa solución permitió:",
       bullets: [
-        "Comunicar de forma más clara el valor de la herramienta y reducir la percepción de complejidad asociada a su uso.",
-        "Explicar mejor cómo funciona la automatización de precios.",
-        "Reducir la fricción para probar la herramienta.",
-        "Reforzar la percepción de control por parte del vendedor.",
+        "Explicar claramente el funcionamiento de la automatización.",
+        "Reducir la incertidumbre durante la activación.",
+        "Mejorar la comprensión del valor del producto.",
+        "Facilitar la toma de decisiones.",
+        "Generar una experiencia más confiable.",
+      ],
+      image: "/images/content-design-projecto-4-imagen-1.png",
+      imageSide: true,
+    },
+    impacto: {
+      bullets: [
+        "Fortalecimiento de la estrategia de adopción del producto.",
+        "Mayor claridad sobre los beneficios de la automatización.",
+        "Mejor alineación entre Producto, Diseño y Desarrollo.",
+        "Base escalable para futuras iniciativas de activación.",
+        "Experiencia más simple y centrada en el usuario.",
       ],
     },
   },
   {
-    id: "Proyecto-5",
-    title: "Estrategia de contenido y comunicación para una fintech",
-    client: "Proyecto 5",
+    id: "mesfix",
+    title: "Productos financieros que la gente sí entiende",
+    subtitle:
+      "Traducir productos financieros complejos en experiencias digitales simples.",
+    client: "Mesfix — Fintech",
+    tabLabel: "Mesfix",
     year: "2018–2021",
     coverImage: "/images/other-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
-    variant: "compact",
     desafio: {
-      text: "Mesfix era una fintech en crecimiento que necesitaba comunicar productos financieros complejos de forma clara para distintos públicos: usuarios, inversionistas y aliados estratégicos.\n\nUno de los principales retos era traducir información técnica, regulatoria y financiera en mensajes comprensibles que generaran confianza en los usuarios y facilitaran la toma de decisiones de inversión dentro de la plataforma.\n\nAdemás, el producto estaba en constante evolución, lo que implicaba coordinar lanzamientos, comunicar cambios operativos y alinear la comunicación entre distintos equipos como producto, tecnología y legal.",
+      text: "Mesfix buscaba acercar productos financieros complejos a pequeñas y medianas empresas mediante una plataforma digital sencilla, clara y confiable.\n\nEl desafío consistía en traducir conceptos financieros especializados en experiencias fáciles de comprender, al mismo tiempo que se acompañaban nuevos lanzamientos y la evolución del producto.",
+    },
+    rol: {
+      text: "Trabajé como estratega de comunicación y experiencia digital, colaborando estrechamente con equipos de Producto, Tecnología, Negocio y Marketing.\n\nAdemás de diseñar la estrategia de comunicación del producto, participé en la definición de funcionalidades, documentación de requerimientos, creación de contenido educativo y lanzamiento de nuevas iniciativas digitales.",
+      blocks: [
+        {
+          title: "Responsabilidades",
+          bullets: [
+            "Diseñar la estrategia de comunicación para productos financieros digitales.",
+            "Participar en la definición y evolución de funcionalidades.",
+            "Traducir conceptos financieros complejos en experiencias simples.",
+            "Crear contenidos educativos para usuarios.",
+            "Liderar la estrategia editorial del blog corporativo.",
+            "Entrevistar clientes y expertos para generar contenido especializado.",
+            "Coordinar lanzamientos junto a equipos de Producto y Tecnología.",
+            "Documentar procesos y requerimientos funcionales.",
+          ],
+        },
+      ],
     },
     enfoque: {
-      intro: "Mi trabajo consistió en diseñar y ejecutar una estrategia de comunicación alineada con los objetivos del producto y del negocio.\n\nEntre las principales iniciativas estuvieron:",
+      text: "Cada iniciativa comenzaba comprendiendo las necesidades reales de los usuarios y los objetivos del negocio.\n\nTrabajando junto a Producto y Tecnología, transformábamos procesos financieros complejos en experiencias claras que facilitaran la adopción del producto.",
+    },
+    solucion: {
+      intro:
+        "Construimos una estrategia integral de comunicación y educación que acompañaba al usuario durante todo el recorrido dentro de la plataforma.\n\nLa combinación entre contenido, experiencia de usuario y colaboración transversal permitió fortalecer la comprensión de los productos financieros y apoyar el crecimiento del negocio.",
+    },
+    impacto: {
       bullets: [
-        "Diseñar contenido y UX writing para todo el producto, asegurando claridad en la experiencia de usuario.",
-        "Definir historias de usuario y requerimientos funcionales para nuevas funcionalidades.",
-        "Co-crear una herramienta que permitía conocer mejor el perfil del inversionista y ofrecerle recomendaciones acordes a su perfil de riesgo.",
-        "Diseñar la arquitectura de información y contenidos del sitio web.",
-        "Lanzar el blog de Mesfix y desarrollar contenidos orientados a educación financiera.",
-        "Coordinar lanzamientos de producto, campañas y comunicaciones regulatorias críticas.",
-        "Trabajar de forma transversal con equipos de producto, tecnología y legal.",
-        "Monitorear métricas de desempeño para optimizar las decisiones de comunicación.",
-        "Gestionar flujos de trabajo y proyectos utilizando herramientas como Trello, Jira y HubSpot.",
+        "Mayor claridad sobre productos financieros complejos.",
+        "Lanzamientos coordinados entre áreas de negocio y tecnología.",
+        "Mejor experiencia para nuevos usuarios.",
+        "Fortalecimiento de la estrategia editorial y educativa.",
+        "Mayor alineación entre comunicación y producto.",
+      ],
+    },
+  },
+  {
+    id: "avianca-cms",
+    title: "Liderando una migración web global",
+    subtitle:
+      "Coordinar una de las mayores iniciativas de transformación digital multilingüe de Avianca.",
+    client: "Avianca",
+    tabLabel: "Avianca",
+    year: "",
+    coverImage: "/images/avianca-gestiona-tu-reserva.jpg",
+    gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
+    desafio: {
+      text: "Avianca inició la migración completa de su sitio web hacia un nuevo CMS, un proyecto que involucraba miles de contenidos, cuatro idiomas y múltiples equipos distribuidos en diferentes áreas del negocio.\n\nEl principal reto consistía en coordinar la transición garantizando continuidad operativa, calidad del contenido y cumplimiento de los cronogramas.",
+    },
+    rol: {
+      text: "Lideré la coordinación del proyecto de migración desde la perspectiva de contenidos y experiencia digital, actuando como punto de conexión entre Producto Digital, Diseño, Desarrollo, Negocio y equipos de localización.",
+      blocks: [
+        {
+          title: "Responsabilidades",
+          bullets: [
+            "Liderar el plan general de migración.",
+            "Definir cronogramas y entregables.",
+            "Coordinar equipos multidisciplinarios.",
+            "Gestionar prioridades y dependencias.",
+            "Alinear contenidos en cuatro idiomas.",
+            "Administrar evolutivos posteriores a la migración.",
+            "Realizar control de calidad antes de cada publicación.",
+            "Asegurar consistencia en toda la experiencia digital.",
+          ],
+        },
+      ],
+    },
+    enfoque: {
+      text: "La migración fue organizada por fases para minimizar riesgos y asegurar la continuidad del negocio.\n\nCada entrega implicó coordinación entre múltiples stakeholders, validaciones técnicas y controles de calidad antes de su publicación.",
+    },
+    solucion: {
+      intro:
+        "Se implementó un proceso estructurado de migración que permitió gestionar miles de contenidos de manera organizada, manteniendo consistencia editorial y experiencia de usuario durante toda la transición.",
+    },
+    impacto: {
+      bullets: [
+        "Migración exitosa del sitio web corporativo.",
+        "Coordinación eficiente entre áreas técnicas y de negocio.",
+        "Consistencia de contenidos en cuatro idiomas.",
+        "Reducción de riesgos mediante procesos estructurados.",
+        "Gestión continua de nuevas evoluciones del sitio.",
+      ],
+    },
+  },
+  {
+    id: "triario",
+    title: "Gestión de operaciones digitales",
+    subtitle:
+      "Coordinar equipos multidisciplinarios para entregar proyectos digitales a escala.",
+    client: "Triario",
+    tabLabel: "Triario",
+    year: "2021",
+    coverImage: "/images/other-projecto-1-imagen-3.jpg",
+    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
+    desafio: {
+      text: "Marcas como Bancolombia (Renting Colombia) y Prosalon necesitaban ejecutar estrategias digitales complejas involucrando múltiples equipos, clientes y entregables simultáneos.\n\nEl reto consistía en estructurar un modelo operativo que permitiera mantener visibilidad, calidad y cumplimiento de tiempos en un entorno de alta demanda.",
+    },
+    rol: {
+      text: "Lideré la gestión integral de proyectos digitales, coordinando equipos creativos, clientes y especialistas para asegurar la ejecución exitosa de cada iniciativa.",
+      blocks: [
+        {
+          title: "Responsabilidades",
+          bullets: [
+            "Gestionar proyectos de principio a fin.",
+            "Diseñar flujos de trabajo en HubSpot.",
+            "Coordinar equipos internos y clientes.",
+            "Administrar cronogramas y prioridades.",
+            "Supervisar calidad antes de publicación.",
+            "Optimizar procesos operativos.",
+            "Facilitar comunicación entre stakeholders.",
+          ],
+        },
       ],
     },
     impacto: {
+      bullets: [
+        "Mayor eficiencia operativa.",
+        "Mejor coordinación entre equipos.",
+        "Procesos más organizados.",
+        "Cumplimiento constante de cronogramas.",
+        "Mayor calidad en las entregas.",
+      ],
+    },
+  },
+  {
+    id: "dattis",
+    title: "Estrategia digital a escala para múltiples marcas",
+    subtitle: "Gestionar varias marcas simultáneamente en un entorno de agencia.",
+    client: "Dattis Comunicaciones",
+    tabLabel: "Dattis",
+    year: "2018",
+    coverImage: "/images/other-projecto-1-imagen-2.jpg",
+    gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
+    desafio: {
+      text: "Gestionar simultáneamente las estrategias digitales de marcas como Bavaria, EY, IQOS, BBC, Yamaha y Colsanitas requería coordinar múltiples campañas, clientes y objetivos de negocio en un entorno altamente dinámico.",
+    },
+    rol: {
+      text: "Gestioné proyectos digitales para diferentes marcas, coordinando estrategia, comunicación, campañas, análisis de resultados y relación con clientes.",
       blocks: [
         {
-          text: "Este trabajo permitió mejorar la claridad de la comunicación del producto y fortalecer la confianza de los usuarios en la plataforma.\n\nLas iniciativas de contenido ayudaron a:",
+          title: "Responsabilidades",
+          bullets: [
+            "Planificar estrategias digitales.",
+            "Coordinar campañas.",
+            "Gestionar múltiples cuentas simultáneamente.",
+            "Monitorear métricas de desempeño.",
+            "Elaborar reportes para clientes.",
+            "Ajustar estrategias con base en datos.",
+            "Apoyar campañas de comunicación y relaciones públicas.",
+          ],
         },
       ],
+    },
+    impacto: {
       bullets: [
-        "Explicar productos financieros complejos de forma accesible.",
-        "Mejorar la experiencia de usuario dentro del producto.",
-        "Educar a los usuarios a través de contenidos editoriales.",
-        "Alinear la comunicación entre producto, negocio y equipos técnicos.",
-        "Además, el desarrollo del sitio web y del blog permitió construir una base de contenido que apoyaba tanto la adquisición como la educación de los usuarios dentro del ecosistema de Mesfix.",
+        "Ejecución exitosa de múltiples proyectos simultáneos.",
+        "Optimización continua basada en métricas.",
+        "Mayor consistencia entre campañas.",
+        "Desarrollo de procesos escalables para la operación digital.",
       ],
     },
   },
 ];
 
-export const uxContentProjectsEn: UXContentProject[] = [
+export const workProjectsEn: WorkProject[] = [
   {
-    id: "Proyecto-1",
-    title: "Reputation dashboard redesign",
-    client: "Project 1",
+    id: "reputation-dashboard",
+    title: "Reputation Dashboard Transformation",
+    subtitle:
+      "Helping millions of sellers better understand and improve their business performance.",
+    client: "Mercado Libre",
+    tabLabel: "Reputation",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
-    rol: {
-      text: "I worked on redesigning the Reputation dashboard for sellers on Mercado Libre. My role involved designing the product's content strategy to help sellers understand how their performance was measured within the platform.\n\nMy main responsibilities included:",
-      bullets: [
-        "Designing and writing the content for the new reputation dashboard.",
-        "Co-creating the dashboard's information architecture alongside the product and design teams.",
-        "Designing content matrices for each use case and reputation status.",
-        "Defining the communication strategy for new features.",
-        "Updating FAQs and help documentation.",
-        "Creating educational blog content to explain reputation metrics."
-      ],
-    },
-    objetivoGeneral: {
-      text: "Help sellers understand their performance metrics, quickly identify their main areas for improvement, and take concrete actions to enhance their reputation within the platform.",
-    },
     desafio: {
-      text: "Before the redesign, many sellers didn't understand how their reputation was calculated or what actions they needed to take to improve it.\n\nSome of the main problems were:",
-      bullets: [
-        "Metrics and percentages were not intuitive or easy to interpret.",
-        "Sellers didn't know what their main performance issue was.",
-        "It wasn't clear what impact each variable had on their reputation.",
-        "Communications were fragmented and lacked actionability.",
-        "The challenge was to transform a complex metrics system into a clear, educational, and action-oriented experience."
-      ]
+      text: "Mercado Libre's Reputation System is one of the platform's most critical seller tools, directly influencing visibility, trust and business growth.\n\nThe existing experience presented complex information in a fragmented way, making it difficult for sellers to understand how to improve their performance or which actions would have the greatest impact.\n\nThe challenge was to transform a metrics-driven dashboard into a decision-making tool that empowered sellers to grow their businesses.",
     },
-    estrategia: {
-      image: "/images/content-design-projecto-1-imagen-3.jpg",
-      intro: "To address this challenge, I designed a content strategy focused on clarity, hierarchy, and action.\n\nThe strategy was based on three principles:",
+    rol: {
+      text: "I contributed to the end-to-end redesign of Mercado Libre's Reputation Dashboard, collaborating closely with Product Managers, Designers, Engineers, Analytics and Business stakeholders.\n\nMy role combined product strategy, user experience and cross-functional collaboration to ensure both business goals and user needs were addressed throughout the project.",
       blocks: [
         {
-          title: "1. Translate complex metrics into understandable information",
-          text: "I worked on simplifying the language and explaining metrics in terms that were easy to understand for sellers with varying levels of digital experience.",
-        },
-        {
-          title: "2. Prioritize what matters",
-          text: "We designed the dashboard so sellers could quickly identify:",
+          title: "Responsibilities",
           bullets: [
-            "Their current reputation status.",
-            "Which metrics were affecting their performance.",
-            "What actions they needed to take to improve.",
-          ],
-        },
-        {
-          title: "3. Turn information into actionable recommendations",
-          text: "Instead of just showing metrics, each system status included clear explanations and concrete suggestions for improvement.\n\nTo achieve this, I developed:",
-          bullets: [
-            "Content matrices by use case.",
-            "Messages adapted to each metric's status.",
-            "Complementary educational content outside the product.",
+            "Led the communication strategy for the initiative.",
+            "Participated in product discovery and research.",
+            "Translated complex business rules into intuitive experiences.",
+            "Coordinated cross-functional collaboration.",
+            "Prioritized user needs and business objectives.",
+            "Defined the dashboard information architecture.",
+            "Supported testing and iterative improvements.",
+            "Analyzed insights to continuously optimize the experience.",
           ],
         },
       ],
+    },
+    enfoque: {
+      text: "The project followed an iterative process driven by research, collaboration and continuous validation.\n\nWorking alongside multiple teams, we identified sellers' main pain points, prioritized high-impact opportunities and aligned business and user objectives throughout the redesign.",
+      image: "/images/content-design-projecto-1-imagen-3.jpg",
+      imageSide: true,
     },
     solucion: {
-      intro: "The result was a new reputation dashboard, clearer and more action-oriented.\n\nThe solution included:",
-      image: "/images/content-design-projecto-1-imagen-2.jpg",
-      blocks: [
-        {
-          bullets: [
-            "A reorganized information structure that made it easy to quickly understand reputation status.",
-            "Content explaining how each metric was calculated.",
-            "Contextualized messages based on seller status.",
-            "Clear visual indicators (such as green, yellow, or red statuses) accompanied by plain-language explanations.",
-            "Specific recommendations to improve performance on each metric.",
-            "Complementary educational resources such as updated FAQs and blog articles.",
-          ],
-        },
-        {
-          text: "The dashboard content was designed as a continuous guide to improve performance within the platform.\n\nAfter the redesign, the reputation system changed the thresholds used to evaluate sellers. This change meant that many sellers could lose their green reputation or leader status, making it especially important to communicate the change clearly and reduce friction.\n\nFor this, I designed a complete communication plan aimed at explaining why these changes were happening and what actions sellers should take to improve their performance.\n\nThe plan included:",
-          bullets: [
-            "Segmented communications based on each use case and the impact the change would have on each seller.",
-            "Periodic reminders every 15 days to support the transition process.",
-            "Explanatory messages focused on helping sellers understand why their reputation was changing and how they could improve it.",
-          ],
-        },
-        {
-          text: "Additionally, I participated in designing a reputation simulator that allowed sellers to visualize how their reputation would look with the new thresholds. This simulator included specific messages for each use case to help interpret results and understand which actions to prioritize.",
-        },
-      ],
-    },
-    resultados: {
+      intro:
+        "We redesigned the Reputation Dashboard around decision-making rather than data visualization.\n\nThe new experience:",
       bullets: [
-        "Improved sellers' understanding of reputation metrics.",
-        "Made it easier to identify performance issues.",
-        "Promoted behaviors that improved service quality within the platform.",
-        "The dashboard evolved from an informational tool to a management tool for sellers.",
+        "Organized information by priority.",
+        "Explained the impact of each metric.",
+        "Recommended actionable next steps.",
+        "Simplified complex concepts through better information architecture.",
+        "Created a scalable foundation for future product evolution.",
+      ],
+      image: "/images/content-design-projecto-1-imagen-2.jpg",
+    },
+    impacto: {
+      bullets: [
+        "Improved understanding of reputation metrics.",
+        "Reduced cognitive load for sellers.",
+        "Strengthened collaboration across Product, Design and Engineering.",
+        "Established a scalable framework for future improvements.",
+        "Delivered a clearer and more actionable product experience.",
       ],
     },
   },
   {
-    id: "Proyecto-2",
-    title: "Buying experience product design",
-    client: "Project 2",
+    id: "buying-experience",
+    title: "Buying Experience Optimization",
+    subtitle:
+      "Helping sellers understand how their actions impact the buying experience.",
+    client: "Mercado Libre",
+    tabLabel: "Buying Exp.",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-2-imagen-1.png",
     gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
-    rol: {
-      text: "I participated in designing the Buying Experience product, a tool created to help sellers identify and improve issues affecting the buyer experience in their listings.\n\nI worked on two phases of the product: its creation from scratch and its subsequent redesign.",
-      blocks: [
-        {
-          title: "During the creation phase",
-          bullets: [
-            "Created the product name: \"Buying Experience\" (\"Experiencia de compra\").",
-            "Participated in defining the dashboard structure.",
-            "Conducted benchmarks of similar products on other platforms.",
-            "Designed use cases and messages across all journey touchpoints.",
-            "Defined the communication strategy for launch.",
-            "Unified content and flows with other products in the seller ecosystem.",
-          ],
-        },
-        {
-          title: "During the redesign",
-          bullets: [
-            "Conducted research to identify sellers' main pain points.",
-            "Participated in redefining the dashboard structure.",
-            "Worked on product logic and its use cases.",
-            "Designed the content strategy for the entire journey.",
-            "Wrote and optimized the prompt for an AI agent that offered recommendations to improve the buying experience.",
-            "Iterated the prompt through multiple testing cycles to improve response quality.",
-          ],
-        },
-      ],
-    },
-    objetivoGeneral: {
-      text: "Help sellers identify the main issues in their listings and understand how these impact the buyer experience.\n\nThe product aimed to complement the reputation system, allowing sellers to understand what specific aspects of their listings were creating friction in the buyer experience.",
-    },
     desafio: {
-      text: "One of the main challenges was differentiating this product from Reputation.\n\nWhile reputation evaluated the seller's overall performance, the buying experience analyzed the quality of each individual listing.\n\nThis created several challenges:",
-      bullets: [
-        "Sellers needed to understand that each listing had its own buying experience.",
-        "The sum of these experiences subsequently impacted the seller's reputation.",
-        "It was necessary to help them quickly identify their main issue among multiple variables.",
-        "Additionally, we needed to avoid creating confusion between both products, maintaining a clear narrative between them.",
-      ],
+      text: "Mercado Libre needed to help sellers better understand how the buying experience directly affected the performance of their listings and customer satisfaction.\n\nInformation was scattered across multiple product areas, making it difficult for users to identify which actions would have the greatest impact.\n\nThe challenge was to transform complex operational information into an intuitive experience that guided sellers toward meaningful improvements.",
     },
-    estrategia: {
-      intro: "The content strategy focused on three pillars:",
+    rol: {
+      text: "I contributed to designing a new seller experience in collaboration with Product Managers, Designers, Engineers, Analytics and Business stakeholders.\n\nBeyond defining the communication strategy, I helped prioritize opportunities, structure information and coordinate implementation across multiple teams.",
       blocks: [
         {
-          title: "1. Clear problem diagnosis",
-          text: "We designed the product so the seller could identify the main issue in their listings.",
-        },
-        {
-          title: "2. Prioritize actions",
-          text: "The content helped understand which problem to solve first to improve performance.",
-        },
-        {
-          title: "3. Offer concrete solutions",
-          text: "Through contextual messages and the AI agent, sellers received clear recommendations to improve their listings.\n\nThe AI agent was designed as an assistant that interpreted detected problems and suggested specific actions.",
+          title: "Responsibilities",
+          bullets: [
+            "Participated in product discovery and research.",
+            "Identified opportunities based on user insights.",
+            "Defined product communication strategy.",
+            "Structured information architecture.",
+            "Coordinated cross-functional decision-making.",
+            "Simplified complex product concepts.",
+            "Supported implementation and continuous improvements.",
+          ],
         },
       ],
+    },
+    enfoque: {
+      text: "Working closely with multidisciplinary teams, we analyzed seller pain points, reviewed behavioral insights and prioritized the opportunities with the greatest business impact.\n\nThe project focused on simplifying decision-making while making the buying experience easier to understand and improve.",
       images: [
         "/images/content-design-projecto-2-imagen-2.png",
         "/images/content-design-projecto-2-imagen-4.png",
       ],
     },
     solucion: {
-      intro: "The final product was a dashboard that allowed sellers to:",
+      intro:
+        "We designed a more intuitive experience that connected listing performance with actionable recommendations.\n\nThe new solution:",
+      bullets: [
+        "Prioritized issues based on impact.",
+        "Provided clear recommendations.",
+        "Simplified technical information.",
+        "Improved navigation.",
+        "Supported better decision-making.",
+      ],
       image: "/images/content-design-projecto-2-imagen-3.png",
       imageSide: true,
-      blocks: [
-        {
-          bullets: [
-            "Understand the buying experience status of each listing.",
-            "Identify which metrics were affecting the buyer experience.",
-            "Receive recommendations to improve their listings.",
-          ],
-        },
-        {
-          text: "Among the main solution components were:",
-          bullets: [
-            "Contextualized messages based on each listing's status.",
-            "Actionable recommendations to improve the buying experience.",
-            "Integration with other products in the seller ecosystem.",
-            "An AI agent designed with iterated and optimized prompts, capable of offering personalized suggestions.",
-          ],
-        },
-      ],
     },
-    resultados: {
+    impacto: {
       bullets: [
-        "Improved sellers' understanding of factors affecting the buying experience.",
-        "Helped them identify specific issues in their listings.",
-        "Provided clear recommendations to improve their performance.",
-        "This turned the product into a tool that not only showed metrics, but guided sellers toward concrete improvement actions.",
+        "Improved understanding of buyer experience metrics.",
+        "Increased clarity around recommended actions.",
+        "More intuitive seller experience.",
+        "Stronger cross-functional alignment.",
+        "Scalable foundation for future product improvements.",
       ],
     },
   },
   {
-    id: "Proyecto-3",
-    title: "Launch Program design",
-    client: "Project 3",
+    id: "launch-program",
+    title: "Seller Launch Program",
+    subtitle:
+      "Designing an onboarding experience that helped new sellers succeed from day one.",
+    client: "Mercado Libre",
+    tabLabel: "Launch",
     year: "2021–2026",
     coverImage: "/images/content-design-projecto-3-imagen-1.png",
     gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
-    rol: {
-      text: "I participated in designing the Launch Program (\"Programa de Despegue\"), an initiative created to help new sellers boost their first sales within Mercado Libre.\n\nI worked on the product from start to finish, from conceptualization to content implementation across all journey touchpoints.",
-      blocks: [
-        {
-          title: "My main responsibilities included:",
-          bullets: [
-            "Creating the program name: \"Launch Program\" (\"Programa de Despegue\").",
-            "Designing the content strategy for the entire seller journey.",
-            "Designing and writing invitation messages across multiple channels: seller dashboard messages, banners, push notifications, WhatsApp, and email.",
-            "Designing and writing the program landing page content.",
-            "Creating FAQs and educational blog content.",
-            "Designing dashboard messages adapted to different user states.",
-            "Creating messages for key moments: when the seller was at risk of losing the benefit, when they remained stable, and when they successfully completed it.",
-            "Conducting research to evaluate product understanding.",
-            "Iterating content through multiple improvement cycles.",
-          ],
-        },
-        {
-          text: "This was one of the products where I performed the most content iterations during my time at Mercado Libre.",
-        },
-      ],
-    },
-    objetivoGeneral: {
-      text: "Activate new sellers within the platform and help them generate their first sales, reducing the initial barrier that exists when starting to sell on a marketplace.",
-      blocks: [
-        {
-          title: "The program aimed to:",
-          bullets: [
-            "Improve new sellers' visibility.",
-            "Increase their credibility with buyers.",
-            "Accelerate the activation and sales generation process.",
-          ],
-        },
-      ],
-    },
     desafio: {
-      text: "New sellers face a common marketplace problem: they have no history or visible reputation, which reduces buyer trust.\n\nThis creates a difficult cycle to break:",
-      bullets: [
-        "No reputation → less trust.",
-        "Less trust → fewer sales.",
-        "Fewer sales → harder to build reputation.",
-      ],
+      text: "Thousands of new sellers joined Mercado Libre every month, yet many struggled to complete the key steps required to successfully start selling.\n\nThe challenge was to design an onboarding program that simplified activation, increased product adoption and helped users achieve early success.",
       image: "/images/content-design-projecto-3-imagen-2.png",
+    },
+    rol: {
+      text: "I led the communication strategy and supported cross-functional coordination for Mercado Libre's Seller Launch Program.\n\nI collaborated with Product, Marketing, Design, Engineering and Business teams to deliver a consistent onboarding experience across multiple touchpoints.",
       blocks: [
         {
-          text: "Additionally, the program had complex benefit and condition logic, making it necessary to clearly explain:",
+          title: "Responsibilities",
           bullets: [
-            "How the program worked.",
-            "What benefits it offered.",
-            "What the seller needed to do to maintain them.",
-            "What happened if conditions weren't met.",
+            "Designed the onboarding communication strategy.",
+            "Coordinated cross-functional initiatives.",
+            "Defined key user milestones.",
+            "Prioritized communications based on behavior.",
+            "Structured omnichannel journeys.",
+            "Supported testing and iterations.",
+            "Analyzed performance and optimization opportunities.",
           ],
-        },
-        {
-          text: "The challenge was to design an experience that was easy to understand, motivating, and transparent.",
         },
       ],
     },
-    estrategia: {
-      intro: "The content strategy focused on three principles:",
-      blocks: [
-        {
-          title: "1. Clearly explain the program's value",
-          text: "I designed messages that quickly explained why the program could help boost the seller's first sales.",
-        },
-        {
-          title: "2. Accompany the seller throughout the entire process",
-          text: "The content wasn't limited to the initial invitation. We designed a messaging system that accompanied the seller throughout the 180-day program duration.",
-        },
-        {
-          title: "3. Show progress and motivation",
-          text: "The program dashboard allowed sellers to see their daily progress, reinforcing the sense of advancement and clarity about what they needed to achieve.",
-        },
-        {
-          title: "Differentiated strategy by version",
-          text: "I also designed a differentiated strategy for the paid version of the program and the free version, used in markets where charging for the benefit wasn't possible. Each version had messages adapted to its benefit logic.",
-        },
-      ],
+    enfoque: {
+      text: "The program was designed around the key challenges new sellers face during their first days on the platform.\n\nEach communication was mapped to a specific milestone, helping users progress confidently while reducing uncertainty.",
       image: "/images/content-design-projecto-3-imagen-3.png",
       imageSide: true,
     },
     solucion: {
-      intro: "The result was a complete experience that included:",
+      intro:
+        "We created a structured onboarding experience that guided sellers from registration through their first successful sales using coordinated communications across multiple channels.",
       images: [
         "/images/content-design-projecto-3-imagen-4.png",
         "/images/content-design-projecto-3-imagen-5.png",
         "/images/content-design-projecto-3-imagen-6.png",
       ],
-      blocks: [
-        {
-          title: "1. A multichannel invitation system",
-          bullets: [
-            "Dashboard banners.",
-            "In-product messages.",
-            "Push notifications.",
-            "WhatsApp.",
-            "Email.",
-          ],
-        },
-        {
-          title: "2. An explanatory landing page",
-          bullets: [
-            "Program benefits.",
-            "Conditions.",
-            "How it works.",
-            "Frequently asked questions.",
-          ],
-        },
-        {
-          title: "3. A program dashboard",
-          text: "That allowed the seller to see their participation progress, understand their current status, and know what they needed to do to maintain benefits.\n\nDashboard messages adapted based on the seller's status:",
-          bullets: [
-            "At risk of losing the program.",
-            "Stable status.",
-            "Successful completion.",
-          ],
-        },
-      ],
     },
-    resultados: {
+    impacto: {
       bullets: [
-        "Accelerated new seller activation, helping them build reputation and generate first sales.",
-        "Improved program understanding among participants.",
-        "Accompanied the seller throughout their entire program journey.",
-        "Reduced friction in a product with complex benefit and condition logic.",
+        "Improved onboarding clarity.",
+        "Increased product adoption.",
+        "More consistent user journeys.",
+        "Stronger alignment across teams.",
+        "Scalable foundation for future onboarding initiatives.",
       ],
     },
   },
   {
-    id: "Proyecto-4",
-    title: "Price Automation relaunch",
-    client: "Project 4",
+    id: "price-automation",
+    title: "Driving Product Adoption Through Price Automation",
+    subtitle: "Helping sellers adopt automated pricing with confidence.",
+    client: "Mercado Libre",
+    tabLabel: "Pricing",
     year: "2021–2026",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
-    rol: {
-      text: "I participated in relaunching Price Automation, a tool for Mercado Libre sellers that automatically adjusts their listing prices based on market and competition.\n\nThe tool used an automated system that allowed sellers to set a minimum and maximum price, while the system optimized the price within that range to improve listing competitiveness.\n\nMy work consisted of redesigning the product's communication through an email campaign, with the goal of increasing tool understanding and motivating usage.",
-      bullets: [
-        "Redesign the product communication to better explain its value.",
-        "Write the complete relaunch email content.",
-        "Simplify the explanation of how the tool works.",
-        "Highlight key benefits to incentivize adoption.",
-        "Design a clear narrative that took the user from problem to action.",
-      ],
-    },
-    objetivoGeneral: {
-      text: "Increase the use of the Price Automation tool among sellers by improving the clarity of the value proposition and reducing friction to try it.",
-    },
     desafio: {
-      text: "Although the tool already existed, its adoption was low because many sellers didn't clearly understand how it worked or what benefits it offered.",
-      bullets: [
-        "The feature was perceived as complex or not transparent.",
-        "Many sellers feared losing control over their prices.",
-        "The tool's value wasn't communicated clearly.",
-        "Previous communications didn't explain in a simple way how to start using it.",
-      ],
-      blocks: [
-        {
-          text: "The challenge was to transform a tool perceived as complex into a simple, safe, and beneficial proposition for the seller.",
-        },
-      ],
+      text: "Mercado Libre offered an automated pricing solution that helped sellers keep their listings competitive. However, many users struggled to understand how it worked, hesitated to trust automation or abandoned the activation process.\n\nThe challenge was to increase product adoption by building trust, simplifying complexity and clearly communicating the value of automation.",
     },
-    estrategia: {
-      intro: "To address this challenge, I designed a content strategy focused on three principles:",
+    rol: {
+      text: "I contributed to the product relaunch strategy, collaborating with Product Managers, Designers, Engineers, Analytics and Business stakeholders.\n\nMy role focused on turning a technically complex feature into an intuitive value proposition while coordinating the end-to-end user experience from discovery through adoption.",
       blocks: [
         {
-          title: "1. Explain value before functionality",
-          text: "Instead of starting by explaining how the tool works, the communication begins with the main benefit for the seller: selling more and being more competitive. This is reflected from the subject line and headline:\n\n\"Beat the competition and sell up to 37% more by automating your prices.\"",
-        },
-        {
-          title: "2. Reduce the fear of losing control",
-          text: "One of the main barriers to adopting the tool was the perception that the system would take control of pricing. To reduce this friction, the content emphasizes that the seller sets the limits and the system only optimizes within that range. This is clearly communicated with phrases like:\n\n\"Give it a try, you set the limits.\"",
-        },
-        {
-          title: "3. Explain how it works simply",
-          text: "The communication includes a clear section that explains how to start using the tool in three steps, allowing sellers to quickly understand that the process is simple and reversible.",
-        },
-      ],
-    },
-    solucion: {
-      intro: "The solution was a redesigned email communication piece, focused on clearly explaining the tool's value and facilitating its adoption.\n\nThe content was structured in four main blocks:",
-      image: "/images/content-design-projecto-4-imagen-1.png",
-      imageSide: true,
-      blocks: [
-        {
-          title: "Clear value proposition",
-          text: "The email opens with a message that immediately communicates the tool's benefit: increasing sales by automating prices.",
-        },
-        {
-          title: "Concrete benefits",
+          title: "Responsibilities",
           bullets: [
-            "Greater listing exposure.",
-            "Greater competitiveness against other sellers.",
-            "Higher probability of appearing as a featured option.",
+            "Defined the communication strategy for the relaunch.",
+            "Identified adoption barriers through research and analytics.",
+            "Coordinated initiatives across Product, Design and Engineering.",
+            "Designed activation journeys.",
+            "Supported testing and iterative improvements.",
+            "Analyzed adoption metrics.",
+            "Aligned business objectives with user needs.",
           ],
         },
-        {
-          title: "Visual explanation of how it works",
-          text: "The communication includes a simple representation of the tool's functionality, showing how the seller sets a minimum and maximum price, while the system adjusts the price within that range.",
-        },
-        {
-          title: "Clear instructions to get started",
-          text: "Finally, it includes a simple three-step guide to activate the tool, accompanied by a direct call-to-action to the Price Management section.",
-        },
       ],
     },
-    resultados: {
+    enfoque: {
+      text: "The project began by understanding why sellers were not adopting the feature and identifying the information they needed to trust automated pricing.\n\nResearch, analytics and cross-functional collaboration guided the redesign toward greater clarity, transparency and usability.",
+    },
+    solucion: {
+      intro:
+        "We developed a comprehensive adoption strategy that combined a more intuitive product experience with contextual communication focused on customer value.\n\nThe redesigned experience:",
       bullets: [
-        "More clearly communicated the tool's value and reduced the perceived complexity associated with its use.",
-        "Better explained how price automation works.",
-        "Reduced friction to try the tool.",
-        "Reinforced the seller's perception of control.",
+        "Clearly explained how automation worked.",
+        "Reduced uncertainty during activation.",
+        "Increased understanding of the product.",
+        "Simplified decision-making.",
+        "Built greater user confidence.",
+      ],
+      image: "/images/content-design-projecto-4-imagen-1.png",
+      imageSide: true,
+    },
+    impacto: {
+      bullets: [
+        "Strengthened the product adoption strategy.",
+        "Increased clarity around automation benefits.",
+        "Improved alignment across Product, Design and Engineering.",
+        "Created a scalable framework for future activation initiatives.",
+        "Delivered a more intuitive user experience.",
       ],
     },
   },
   {
-    id: "Proyecto-5",
-    title: "Content strategy and communications for a fintech",
-    client: "Project 5",
+    id: "mesfix",
+    title: "Building Financial Products People Can Understand",
+    subtitle: "Translating complex financial products into simple digital experiences.",
+    client: "Mesfix — Fintech",
+    tabLabel: "Mesfix",
     year: "2018–2021",
     coverImage: "/images/other-projecto-1-imagen-1.jpg",
     gradient: "linear-gradient(160deg, #2A2520 0%, #4A4538 30%, #D4C5B0 70%, #E8DFD2 100%)",
-    variant: "compact",
     desafio: {
-      text: "Mesfix was a growing fintech that needed to communicate complex financial products clearly to different audiences: users, investors, and strategic partners.\n\nOne of the main challenges was translating technical, regulatory, and financial information into understandable messages that would build user trust and facilitate investment decision-making within the platform.\n\nAdditionally, the product was constantly evolving, which meant coordinating launches, communicating operational changes, and aligning communication across different teams such as product, technology, and legal.",
+      text: "Mesfix aimed to make financial products more accessible to small and medium-sized businesses through a simple, trustworthy digital platform.\n\nThe challenge was to translate complex financial concepts into intuitive experiences while supporting product evolution and new feature launches.",
+    },
+    rol: {
+      text: "I worked as a communication and digital experience strategist, partnering with Product, Engineering, Business and Marketing teams.\n\nBeyond defining communication strategies, I contributed to feature definition, functional documentation, educational content and product launches.",
+      blocks: [
+        {
+          title: "Responsibilities",
+          bullets: [
+            "Designed communication strategies for financial products.",
+            "Contributed to feature definition.",
+            "Simplified complex financial concepts.",
+            "Created educational content.",
+            "Led the corporate blog strategy.",
+            "Interviewed customers and industry experts.",
+            "Coordinated product launches.",
+            "Documented requirements and processes.",
+          ],
+        },
+      ],
     },
     enfoque: {
-      intro: "My work consisted of designing and executing a communication strategy aligned with product and business objectives.\n\nThe main initiatives included:",
+      text: "Every initiative started with understanding customer needs and business priorities.\n\nWorking closely with Product and Engineering teams, we transformed financial complexity into intuitive digital experiences.",
+    },
+    solucion: {
+      intro:
+        "We created an integrated communication and education strategy that supported users throughout their product journey.\n\nBy combining UX, communication and cross-functional collaboration, we strengthened product understanding and supported business growth.",
+    },
+    impacto: {
       bullets: [
-        "Designing content and UX writing for the entire product, ensuring clarity in the user experience.",
-        "Defining user stories and functional requirements for new features.",
-        "Co-creating a tool that allowed understanding the investor's profile and offering recommendations according to their risk profile.",
-        "Designing the website's information architecture and content.",
-        "Launching Mesfix's blog and developing content focused on financial education.",
-        "Coordinating product launches, campaigns, and critical regulatory communications.",
-        "Working cross-functionally with product, technology, and legal teams.",
-        "Monitoring performance metrics to optimize communication decisions.",
-        "Managing workflows and projects using tools like Trello, Jira, and HubSpot.",
+        "Simplified complex financial products.",
+        "Improved collaboration across Product and Business.",
+        "Enhanced customer education.",
+        "Supported product growth initiatives.",
+        "Strengthened editorial strategy.",
+      ],
+    },
+  },
+  {
+    id: "avianca-cms",
+    title: "Leading a Global Website Migration",
+    subtitle:
+      "Coordinating one of Avianca's largest multilingual digital transformation initiatives.",
+    client: "Avianca",
+    tabLabel: "Avianca",
+    year: "",
+    coverImage: "/images/avianca-gestiona-tu-reserva.jpg",
+    gradient: "linear-gradient(160deg, #1A2A2E 0%, #2D4A4A 30%, #5B8B8B 70%, #7AABAB 100%)",
+    desafio: {
+      text: "Avianca launched a full migration of its corporate website to a new CMS, involving thousands of content assets, four languages and multiple business and technical teams.\n\nThe challenge was to coordinate the transition while maintaining operational continuity, content quality and delivery timelines.",
+    },
+    rol: {
+      text: "I led the coordination of the migration from the digital experience perspective, acting as the bridge between Digital Product, Design, Engineering, Business and localization teams.",
+      blocks: [
+        {
+          title: "Responsibilities",
+          bullets: [
+            "Led the migration roadmap.",
+            "Defined project timelines.",
+            "Coordinated multidisciplinary teams.",
+            "Managed priorities and dependencies.",
+            "Aligned multilingual content.",
+            "Oversaw post-launch improvements.",
+            "Conducted quality assurance.",
+            "Ensured consistency across the digital experience.",
+          ],
+        },
+      ],
+    },
+    enfoque: {
+      text: "The migration was organized into multiple phases to reduce risk and maintain business continuity.\n\nEach delivery required stakeholder alignment, technical validation and rigorous quality assurance.",
+    },
+    solucion: {
+      intro:
+        "We implemented a structured migration process that enabled the successful transition of thousands of digital assets while maintaining consistency across languages and markets.",
+    },
+    impacto: {
+      bullets: [
+        "Successful enterprise CMS migration.",
+        "Strong cross-functional collaboration.",
+        "Consistent multilingual experience.",
+        "Reduced delivery risks.",
+        "Continuous improvement after launch.",
+      ],
+    },
+  },
+  {
+    id: "triario",
+    title: "Managing Enterprise Digital Operations",
+    subtitle: "Coordinating multidisciplinary teams to deliver digital projects at scale.",
+    client: "Triario",
+    tabLabel: "Triario",
+    year: "2021",
+    coverImage: "/images/other-projecto-1-imagen-3.jpg",
+    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
+    desafio: {
+      text: "Brands such as Bancolombia (Renting Colombia) and Prosalon needed to execute complex digital strategies involving multiple teams, clients and simultaneous deliverables.\n\nThe challenge was to structure an operating model that maintained visibility, quality and on-time delivery in a high-demand environment.",
+    },
+    rol: {
+      text: "I led end-to-end digital project management, coordinating creative teams, clients and specialists to ensure the successful execution of every initiative.",
+      blocks: [
+        {
+          title: "Responsibilities",
+          bullets: [
+            "Managed projects end to end.",
+            "Designed workflows in HubSpot.",
+            "Coordinated internal teams and clients.",
+            "Managed timelines and priorities.",
+            "Oversaw quality before publication.",
+            "Optimized operational processes.",
+            "Facilitated stakeholder communication.",
+          ],
+        },
       ],
     },
     impacto: {
+      bullets: [
+        "Greater operational efficiency.",
+        "Better coordination across teams.",
+        "More organized processes.",
+        "Consistent timeline compliance.",
+        "Higher quality deliverables.",
+      ],
+    },
+  },
+  {
+    id: "dattis",
+    title: "Scaling Digital Strategy Across Multiple Brands",
+    subtitle: "Managing multiple brands in a fast-paced agency environment.",
+    client: "Dattis Comunicaciones",
+    tabLabel: "Dattis",
+    year: "2018",
+    coverImage: "/images/other-projecto-1-imagen-2.jpg",
+    gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
+    desafio: {
+      text: "Simultaneously managing the digital strategies of brands such as Bavaria, EY, IQOS, BBC, Yamaha and Colsanitas required coordinating multiple campaigns, clients and business objectives in a highly dynamic environment.",
+    },
+    rol: {
+      text: "I managed digital projects for different brands, coordinating strategy, communication, campaigns, performance analysis and client relationships.",
       blocks: [
         {
-          text: "This work helped improve the clarity of product communication and strengthen user trust in the platform.\n\nThe content initiatives helped to:",
+          title: "Responsibilities",
+          bullets: [
+            "Planned digital strategies.",
+            "Coordinated campaigns.",
+            "Managed multiple accounts simultaneously.",
+            "Monitored performance metrics.",
+            "Prepared client reports.",
+            "Adjusted strategies based on data.",
+            "Supported communication and PR campaigns.",
+          ],
         },
       ],
+    },
+    impacto: {
       bullets: [
-        "Explain complex financial products in an accessible way.",
-        "Improve the user experience within the product.",
-        "Educate users through editorial content.",
-        "Align communication between product, business, and technical teams.",
-        "Additionally, developing the website and blog built a content foundation that supported both user acquisition and education within the Mesfix ecosystem.",
+        "Successful execution of multiple simultaneous projects.",
+        "Continuous optimization based on metrics.",
+        "Greater consistency across campaigns.",
+        "Scalable processes for digital operations.",
       ],
     },
   },
@@ -1367,6 +1031,7 @@ export interface AIProjectType1 {
   id: string;
   title: string;
   client: string;
+  tabLabel: string;
   year: string;
   coverImage: string;
   gradient: string;
@@ -1417,6 +1082,7 @@ export interface AIProjectType2 {
   id: string;
   title: string;
   client: string;
+  tabLabel: string;
   year: string;
   coverImage: string;
   gradient: string;
@@ -1467,6 +1133,7 @@ export interface AIProjectType3 {
   id: string;
   title: string;
   client: string;
+  tabLabel: string;
   year: string;
   coverImage: string;
   gradient: string;
@@ -1482,12 +1149,13 @@ export const aiProjects: AIProject[] = [
     type: "type1",
     id: "ai-proyecto-1",
     title: "Agente interno – Biblioteca de conocimiento",
-    client: "Proyecto 1",
+    client: "Mercado Libre",
+    tabLabel: "Biblioteca de conocimiento",
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
     rol: {
-      text: "Diseñé una biblioteca de conocimiento para un agente interno de reputación, con el objetivo de centralizar toda la información necesaria para que equipos internos pudieran entender cómo funciona el sistema de reputación dentro de Mercado Libre.\n\nEl proyecto consistió en estructurar y documentar la información clave del producto para que pudiera ser utilizada tanto por personas como por herramientas de inteligencia artificial.",
+      text: "Diseñé una biblioteca de conocimiento para un agente interno de reputación, con el objetivo de centralizar toda la información necesaria para que equipos internos pudieran entender cómo funciona el sistema de reputación dentro de Mercado Libre.\n\nEl proyecto consistió en estructurar y documentar la información clave del producto para que pudiera ser utilizada tanto por personas como por herramientas de Inteligencia Artificial.",
     },
     objetivoGeneral: {
       text: "Crear una fuente única de conocimiento sobre el sistema de reputación que permitiera:",
@@ -1563,7 +1231,7 @@ export const aiProjects: AIProject[] = [
         "La consulta rápida de información sobre reputación.",
         "La reutilización de contenidos.",
         "Mayor consistencia en la comunicación del producto.",
-        "Preparar la información para su uso en herramientas de inteligencia artificial internas.",
+        "Preparar la información para su uso en herramientas de Inteligencia Artificial internas.",
       ],
     },
   },
@@ -1571,12 +1239,13 @@ export const aiProjects: AIProject[] = [
     type: "type2",
     id: "ai-proyecto-2",
     title: "Diseño de prompt para recomendaciones",
-    client: "Proyecto 2",
+    client: "Mercado Libre",
+    tabLabel: "Diseño de prompt",
     year: "2024–2025",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
     rol: {
-      text: "Diseñé el prompt utilizado por un agente de inteligencia artificial dentro del producto Experiencia de compra, cuyo objetivo era ofrecer a los vendedores recomendaciones para mejorar el desempeño de sus publicaciones.\n\nEl trabajo incluyó definir cómo debía interpretar la información del producto y cómo debía comunicar las recomendaciones a los vendedores.",
+      text: "Diseñé el prompt utilizado por un agente de Inteligencia Artificial dentro del producto Experiencia de compra, cuyo objetivo era ofrecer a los vendedores recomendaciones para mejorar el desempeño de sus publicaciones.\n\nEl trabajo incluyó definir cómo debía interpretar la información del producto y cómo debía comunicar las recomendaciones a los vendedores.",
     },
     objetivoGeneral: {
       text: "Utilizar IA para ayudar a los vendedores a entender sus principales problemas y recibir sugerencias concretas para mejorar la experiencia de compra de sus publicaciones.",
@@ -1665,21 +1334,24 @@ export const aiProjects: AIProject[] = [
   {
     type: "type3",
     id: "ai-en-mi-flujo",
-    title: "IA en mi workflow",
-    client: "IA en mi Workflow",
+    title: "La IA en mi trabajo",
+    client: "IA en mi workflow",
+    tabLabel: "IA en mi workflow",
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #2A1A2E 0%, #4A2D4A 30%, #8B5B8B 70%, #AB8BAB 100%)",
-    description: "Además de diseñar prompts y sistemas de contenido para productos que utilizan inteligencia artificial, también incorporo herramientas de IA en mi proceso de trabajo para optimizar investigación, ideación y producción de contenido.\n\nUso IA para:",
+    description: "Uso Inteligencia Artificial para mejorar flujos de trabajo, acelerar la investigación, elevar la calidad de la comunicación y optimizar la ejecución de proyectos.\n\nAlgunos ejemplos:",
     blocks: [
       {
         bullets: [
-          "Acelerar procesos de research y exploración de información.",
-          "Generar primeros borradores de contenido.",
-          "Probar variaciones de microcopy.",
-          "Estructurar documentación y sistemas de contenido.",
-          "Analizar casos de uso y escenarios de usuario.",
-          "Evaluar respuestas generadas por modelos de lenguaje.",
+          "Diseño e iteración de prompts.",
+          "Evaluación de respuestas generadas por modelos.",
+          "Generación de contenido y primeros borradores.",
+          "Automatización de flujos de trabajo.",
+          "Gestión y estructuración de conocimiento.",
+          "Síntesis de research de usuarios.",
+          "Documentación de producto y procesos.",
+          "Colaboración entre equipos multidisciplinarios.",
         ],
       },
     ],
@@ -1698,12 +1370,13 @@ export const aiProjectsEn: AIProject[] = [
     type: "type1",
     id: "ai-proyecto-1",
     title: "Internal Agent – Knowledge Library",
-    client: "Project 1",
+    client: "Mercado Libre",
+    tabLabel: "Knowledge Library",
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #3A1A1A 0%, #8B4A2A 30%, #C4704A 70%, #D4896A 100%)",
     rol: {
-      text: "I designed a knowledge library for an internal reputation agent, aiming to centralize all the information needed for internal teams to understand how the reputation system works within Mercado Libre.\n\nThe project involved structuring and documenting key product information so it could be used by both people and artificial intelligence tools.",
+      text: "I designed a knowledge library for an internal reputation agent, aiming to centralize all the information needed for internal teams to understand how the reputation system works within Mercado Libre.\n\nThe project involved structuring and documenting key product information so it could be used by both people and Artificial Intelligence tools.",
     },
     objetivoGeneral: {
       text: "Create a single source of knowledge about the reputation system that would allow:",
@@ -1787,7 +1460,8 @@ export const aiProjectsEn: AIProject[] = [
     type: "type2",
     id: "ai-proyecto-2",
     title: "Prompt Design for Recommendations",
-    client: "Project 2",
+    client: "Mercado Libre",
+    tabLabel: "Prompt Design",
     year: "2024–2025",
     coverImage: "",
     gradient: "linear-gradient(160deg, #1A1A2E 0%, #2D2D4A 30%, #5B5B8B 70%, #8B8BAB 100%)",
@@ -1882,20 +1556,23 @@ export const aiProjectsEn: AIProject[] = [
     type: "type3",
     id: "ai-en-mi-flujo",
     title: "AI in my workflow",
-    client: "AI in my Workflow",
+    client: "AI in my workflow",
+    tabLabel: "AI in my workflow",
     year: "",
     coverImage: "",
     gradient: "linear-gradient(160deg, #2A1A2E 0%, #4A2D4A 30%, #8B5B8B 70%, #AB8BAB 100%)",
-    description: "Beyond designing prompts and content systems for AI-powered products, I also incorporate AI tools into my own workflow to optimize research, ideation, and content production.\n\nI use AI to:",
+    description: "I use AI to improve workflows, accelerate research, enhance communication quality and optimize project execution.\n\nExamples include:",
     blocks: [
       {
         bullets: [
-          "Accelerate research and information exploration.",
-          "Generate first content drafts.",
-          "Test microcopy variations.",
-          "Structure documentation and content systems.",
-          "Analyze use cases and user scenarios.",
-          "Evaluate language model–generated responses.",
+          "Prompt engineering.",
+          "AI evaluation.",
+          "Content generation.",
+          "Workflow automation.",
+          "Knowledge management.",
+          "User research synthesis.",
+          "Documentation.",
+          "Cross-functional collaboration.",
         ],
       },
     ],
@@ -1906,160 +1583,5 @@ export const aiProjectsEn: AIProject[] = [
       { name: "Cursor", description: "Prompt iteration.", category: "AI Tools" },
       { name: "NotebookLM", description: "Documentation.", category: "AI Tools" },
     ],
-  },
-];
-
-/* ──────────────────────────────────────────────
-   OTHER PROJECTS (Experiencias) — Pillar detail
-   ────────────────────────────────────────────── */
-
-export interface Experiencia {
-  id: string;
-  title: string;
-  client: string;
-  year: string;
-  coverImage: string;
-  gradient: string;
-  desafio: {
-    text: string;
-    bullets?: string[];
-    blocks?: ContentBlock[];
-    image?: string;
-  };
-  enfoque: {
-    intro?: string;
-    text?: string;
-    blocks?: ContentBlock[];
-    bullets?: string[];
-    image?: string;
-    imageSide?: boolean;
-    images?: string[];
-  };
-  impacto: {
-    bullets?: string[];
-    blocks?: ContentBlock[];
-    image?: string;
-  };
-}
-
-export const experiencias: Experiencia[] = [
-  {
-    id: "experiencia-2",
-    title: "Gestión y Análisis de Contenidos Digitales",
-    client: "DATTIS",
-    year: "2018",
-    coverImage: "/images/other-projecto-1-imagen-2.jpg",
-    gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
-    desafio: {
-      text: "Gestionar múltiples marcas (BBC, EY, Iqos, Águila, Colsanitas y Yamaha) con necesidades y audiencias distintas, asegurando coherencia en comunicación digital y cumplimiento de objetivos de alcance y engagement. El reto era estructurar parrillas de contenido estratégicas y optimizar desempeño en un entorno multitarea y de alta exigencia.",
-    },
-    enfoque: {
-      intro: "Construí y ejecuté parrillas editoriales para diversas marcas, alineando tono, objetivos y formatos a cada audiencia.",
-      bullets: [
-        "Monitoreé métricas clave como alcance, engagement y cumplimiento de metas digitales.",
-        "Analicé resultados y ajusté estrategias con base en data.",
-        "Elaboré reportes de desempeño para clientes y equipos internos.",
-        "Apoyé campañas digitales y acciones de PR en medios digitales.",
-        "Gestioné múltiples cuentas en simultáneo, organizando prioridades y entregables con enfoque estratégico.",
-      ],
-    },
-    impacto: {
-      bullets: [
-        "Optimización continua del contenido a partir de métricas reales de desempeño.",
-        "Mejora en coherencia editorial entre marcas y campañas.",
-        "Cumplimiento consistente de objetivos digitales en entornos multitarea.",
-        "Desarrollo de una base sólida en análisis, estrategia y ejecución digital.",
-      ],
-    },
-  },
-  {
-    id: "experiencia-3",
-    title: "Gestión de proyectos de comunicación digital",
-    client: "TRIARIO",
-    year: "2021",
-    coverImage: "/images/other-projecto-1-imagen-3.jpg",
-    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
-    desafio: {
-      text: "Las marcas (Bancolombia y Renting) necesitaban ejecutar estrategias digitales integrales en entornos dinámicos, con múltiples equipos, entregables simultáneos y plazos ajustados. El reto era estructurar un sistema operativo claro que integrara estrategia, contenido, diseño y performance, garantizando coherencia narrativa, cumplimiento y calidad en todo el funnel.",
-    },
-    enfoque: {
-      intro: "Lideré la gestión integral de proyectos digitales para marcas como Bancolombia (Renting Colombia) y Prosalon, estructurando flujos de trabajo en HubSpot para asegurar visibilidad, control y eficiencia.",
-      bullets: [
-        "Organicé y prioricé tareas, cronogramas y asignaciones entre equipos creativos, performance y cliente.",
-        "Implementé seguimiento estructurado en HubSpot para gestionar el funnel completo de contenidos.",
-        "Supervisé y validé cada pieza antes de producción, asegurando calidad editorial, coherencia de tono y alineación estratégica.",
-        "Coordiné la comunicación entre equipos internos y stakeholders externos para mantener claridad y enfoque en objetivos de negocio.",
-        "Optimicé procesos para reducir fricciones y mejorar tiempos de entrega.",
-      ],
-    },
-    impacto: {
-      bullets: [
-        "Mayor eficiencia y orden en la operación de contenidos digitales.",
-        "Consistencia narrativa y control de calidad en cada entrega.",
-        "Integración efectiva entre estrategia, ejecución y performance.",
-        "Cumplimiento sostenido de cronogramas en entornos de alta exigencia.",
-      ],
-    },
-  },
-];
-
-export const experienciasEn: Experiencia[] = [
-  {
-    id: "experiencia-2",
-    title: "Digital Content Management & Analysis",
-    client: "DATTIS",
-    year: "2018",
-    coverImage: "/images/other-projecto-1-imagen-2.jpg",
-    gradient: "linear-gradient(160deg, #1A2E1A 0%, #2D4A2D 30%, #8B9D77 70%, #A8B89A 100%)",
-    desafio: {
-      text: "Managing multiple brands (BBC, EY, Iqos, Águila, Colsanitas, and Yamaha) with different needs and audiences, ensuring coherence in digital communication and meeting reach and engagement goals. The challenge was to structure strategic content calendars and optimize performance in a fast-paced, high-demand multitasking environment.",
-    },
-    enfoque: {
-      intro: "I built and executed editorial calendars for various brands, aligning tone, objectives, and formats to each audience.",
-      bullets: [
-        "Monitored key metrics such as reach, engagement, and digital goal fulfillment.",
-        "Analyzed results and adjusted strategies based on data.",
-        "Prepared performance reports for clients and internal teams.",
-        "Supported digital campaigns and PR actions in digital media.",
-        "Managed multiple accounts simultaneously, organizing priorities and deliverables with a strategic focus.",
-      ],
-    },
-    impacto: {
-      bullets: [
-        "Continuous content optimization based on real performance metrics.",
-        "Improved editorial coherence across brands and campaigns.",
-        "Consistent achievement of digital objectives in multitasking environments.",
-        "Development of a solid foundation in analysis, strategy, and digital execution.",
-      ],
-    },
-  },
-  {
-    id: "experiencia-3",
-    title: "Digital Communication Project Management",
-    client: "TRIARIO",
-    year: "2021",
-    coverImage: "/images/other-projecto-1-imagen-3.jpg",
-    gradient: "linear-gradient(160deg, #2E1A0E 0%, #6B3A1A 30%, #C47A3A 70%, #E8A96A 100%)",
-    desafio: {
-      text: "The brands (Bancolombia and Renting) needed to execute comprehensive digital strategies in dynamic environments, with multiple teams, simultaneous deliverables, and tight deadlines. The challenge was to structure a clear operating system that integrated strategy, content, design, and performance, ensuring narrative coherence, compliance, and quality across the entire funnel.",
-    },
-    enfoque: {
-      intro: "I led end-to-end digital project management for brands like Bancolombia (Renting Colombia) and Prosalon, structuring workflows in HubSpot to ensure visibility, control, and efficiency.",
-      bullets: [
-        "Organized and prioritized tasks, timelines, and assignments across creative, performance, and client teams.",
-        "Implemented structured tracking in HubSpot to manage the full content funnel.",
-        "Reviewed and validated every piece before production, ensuring editorial quality, tone coherence, and strategic alignment.",
-        "Coordinated communication between internal teams and external stakeholders to maintain clarity and focus on business objectives.",
-        "Optimized processes to reduce friction and improve delivery times.",
-      ],
-    },
-    impacto: {
-      bullets: [
-        "Greater efficiency and order in digital content operations.",
-        "Narrative consistency and quality control in every deliverable.",
-        "Effective integration between strategy, execution, and performance.",
-        "Sustained timeline compliance in high-demand environments.",
-      ],
-    },
   },
 ];

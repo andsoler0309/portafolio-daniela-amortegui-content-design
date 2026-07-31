@@ -80,9 +80,9 @@ function PillarCard({ pillar, index }: { pillar: Pillar; index: number }) {
   const { t } = useI18n();
 
   const pillarI18nMap: Record<string, { title: string; description: string }> = {
-    "ux-content-design": { title: t("pillar.uxContent.title"), description: t("pillar.uxContent.description") },
-    "ai-projects":       { title: t("pillar.ai.title"),        description: t("pillar.ai.description") },
-    "other-projects":    { title: t("pillar.other.title"),     description: t("pillar.other.description") },
+    "work":              { title: t("pillar.work.title"),     description: t("pillar.work.description") },
+    "personal-projects": { title: t("pillar.personal.title"), description: t("pillar.personal.description") },
+    "ai":                { title: t("pillar.ai.title"),       description: t("pillar.ai.description") },
   };
 
   const translated = pillarI18nMap[pillar.id] || { title: pillar.title, description: pillar.description };

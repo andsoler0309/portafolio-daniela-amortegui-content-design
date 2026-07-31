@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { WorkPageClient } from "./WorkPageClient";
 
 export const metadata: Metadata = {
-  title: "Work — Daniela Amortegui",
+  title: "Work — Daniela Amórtegui",
   description:
-    "Selected content strategy, brand narrative, and editorial projects for wellness, sports, and lifestyle brands.",
+    "Proyectos de producto, comunicación y gestión digital para Mercado Libre, Avianca, Mesfix, Triario y Dattis.",
 };
 
 export default function WorkPage() {

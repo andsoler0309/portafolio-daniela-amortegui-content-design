@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 
 const letterVariants = {
@@ -20,7 +19,6 @@ const letterVariants = {
 export function Hero() {
   const { t } = useI18n();
   const greeting = t("hero.greeting");
-  const name = siteConfig.name;
 
   return (
     <section
@@ -29,7 +27,7 @@ export function Hero() {
       aria-label="Introduction"
     >
       <div className="container-main w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 gap-8 items-center">
           {/* Text content */}
           <div>
             {/* Greeting line */}
@@ -62,27 +60,40 @@ export function Hero() {
               ))}
             </h1>
 
-            {/* Title accent */}
-            {/* <motion.div
+            {/* Role */}
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-6 md:mb-8"
+              className="text-terracotta text-sm md:text-base font-semibold tracking-wide uppercase mt-2 mb-7 md:mb-9 max-w-xl"
             >
-              <span className="inline-block px-4 py-2 rounded-full border border-sage/40 text-sage-dark text-xs md:text-sm font-medium tracking-wide uppercase">
-                {siteConfig.title}
-              </span>
-            </motion.div> */}
+              {t("hero.role")}
+            </motion.p>
 
-            {/* Tagline */}
+            {/* Positioning statement */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-fg-secondary text-base md:text-lg lg:text-xl max-w-xl leading-relaxed"
+              className="text-fg-primary text-lg md:text-xl lg:text-2xl max-w-2xl leading-relaxed text-justify"
             >
-              {t("hero.subtitle")}
+              {t("hero.p1")}
             </motion.p>
+
+            {/* Supporting paragraphs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 md:mt-8 flex flex-col gap-5 max-w-2xl"
+            >
+              <p className="text-fg-secondary text-base md:text-lg leading-relaxed text-justify">
+                {t("hero.p2")}
+              </p>
+              <p className="text-fg-secondary text-base md:text-lg leading-relaxed text-justify">
+                {t("hero.p3")}
+              </p>
+            </motion.div>
 
             {/* Scroll indicator */}
             <motion.div

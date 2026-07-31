@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/lib/data";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useI18n } from "@/lib/i18n";
@@ -14,9 +13,12 @@ export function Navigation() {
 
   const navLinks = [
     { href: "/", label: t("nav.home") },
-    { href: "/work/ux-content", label: t("nav.contentDesign") },
-    { href: "/work/ai", label: t("nav.ai") },
-    { href: "/work/other", label: t("nav.other") },
+    { href: "/about", label: t("nav.about") },
+    { href: "/work", label: t("nav.work") },
+    { href: "/personal-projects", label: t("nav.personal") },
+    { href: "/ai", label: t("nav.ai") },
+    { href: "/resume", label: t("nav.resume") },
+    { href: "/contact", label: t("nav.contact") },
   ];
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,14 +89,8 @@ export function Navigation() {
         style={{ height: "var(--nav-height)" }}
       >
         <div className="container-main h-full flex items-center justify-between">
-          {/* Logo / Initials */}
-          <Link
-            href="/"
-            className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-fg-primary hover:text-terracotta transition-colors duration-300"
-            aria-label={`${siteConfig.name} — Home`}
-          >
-            {siteConfig.initials}
-          </Link>
+          {/* Spacer (logo removed) */}
+          <span aria-hidden="true" />
 
           {/* Desktop Nav */}
           <nav

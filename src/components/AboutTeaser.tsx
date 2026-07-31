@@ -28,7 +28,7 @@ export function AboutTeaser() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-bg-secondary">
               <Image
-                src="/images/about-image.JPG"
+                src="/images/perfil-daniela.jpg"
                 alt="Daniela Amórtegui"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -63,12 +63,8 @@ export function AboutTeaser() {
               {t("about.p3")}
             </p>
             <br />
-            <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-6 max-w-xl">
-              {t("about.p4")}
-            </p>
-            <br />
             <p className="text-fg-secondary text-base md:text-lg leading-relaxed mb-10 max-w-xl">
-              {t("about.p5")}
+              {t("about.p4")}
             </p>
           </motion.div>
         </div>

@@ -14,76 +14,104 @@ const translations: Record<Locale, Record<string, string>> = {
   es: {
     // Navigation
     "nav.home": "Inicio",
-    "nav.contentDesign": "Content Design",
+    "nav.about": "Sobre mí",
+    "nav.work": "Proyectos",
+    "nav.personal": "Proyectos personales",
     "nav.ai": "IA",
-    "nav.other": "Otros",
+    "nav.resume": "CV",
+    "nav.contact": "Contacto",
 
     // Hero
     "hero.greeting": "Hola, soy",
     "hero.scroll": "Scroll para explorar",
-    "hero.subtitle":
-      "Content Designer con +7 años diseñando estrategias de contenido para productos digitales. Trabajo transformando sistemas complejos en experiencias claras que ayudan a las personas a entender, decidir y actuar.",
+    "hero.role": "Estrategia de Producto, Comunicación y Proyectos Digitales",
+    "hero.p1":
+      "Diseño soluciones que convierten productos complejos en experiencias claras para las personas y en resultados para los negocios.",
+    "hero.p2":
+      "Durante los últimos años he liderado proyectos digitales para compañías como Mercado Libre, Avianca, Bancolombia, Bavaria, EY e IQOS, coordinando equipos multidisciplinarios y conectando producto, diseño, tecnología, negocio y comunicación.",
+    "hero.p3":
+      "Mi experiencia combina estrategia de producto, gestión de proyectos, comunicación digital e Inteligencia Artificial para diseñar soluciones que generan impacto.",
 
-    // Three Pillars
+    // Pillars (home)
     "pillars.label": "Mi trabajo",
-    "pillars.ariaLabel": "Pilares de trabajo",
-    "pillars.scrollDesktop": "Scroll para explorar",
-    "pillars.scrollMobile": "Desliza para explorar",
+    "pillars.ariaLabel": "Áreas de trabajo",
     "pillars.explore": "Explorar",
-
-    // Pillar cards
-    "pillar.uxContent.title": "Content\nDesign",
-    "pillar.uxContent.description":
-      "Estrategia de contenido, UX Writing y sistemas de mensajes para productos digitales a gran escala.",
-    "pillar.ai.title": "Proyectos\ncon IA",
+    "pillar.work.title": "Proyectos",
+    "pillar.work.description":
+      "Producto, comunicación y gestión de proyectos digitales para Mercado Libre, Avianca, Mesfix y más.",
+    "pillar.personal.title": "Proyectos\npersonales",
+    "pillar.personal.description":
+      "Comunidad, contenido y storytelling alrededor del running y los deportes de resistencia.",
+    "pillar.ai.title": "IA",
     "pillar.ai.description":
-      "Exploración y diseño de experiencias con inteligencia artificial aplicadas a contenido, automatización y toma de decisiones.",
-    "pillar.other.title": "Otros\nProyectos",
-    "pillar.other.description":
-      "Otras experiencias laborales en donde trabajé con contenido y formatos digitales.",
+      "Inteligencia Artificial aplicada a producto, flujos de trabajo y toma de decisiones.",
 
-    // About Teaser
+    // About
     "about.label": "Un poco sobre mí",
+    "about.eyebrow": "Sobre mí",
     "about.p1":
-      "Soy UX Writer y Content Designer con formación en periodismo y comunicación estratégica. A lo largo de mi carrera he trabajado diseñando contenido para productos digitales, plataformas tecnológicas y estrategias de comunicación orientadas a usuarios.",
+      "Soy comunicadora con más de ocho años de experiencia liderando proyectos digitales, estrategias de comunicación y experiencias de producto.",
     "about.p2":
-      "Mi trabajo se centra en transformar sistemas complejos, como métricas, dashboards o herramientas de negocio, en experiencias claras, útiles y accionables para las personas.",
+      "A lo largo de mi carrera he trabajado desde distintos frentes: estrategia de contenido, UX, gestión de proyectos, coordinación entre equipos, transformación digital, Inteligencia Artificial y comunicación corporativa.",
     "about.p3":
-      "En Mercado Libre participé en el diseño de productos orientados a vendedores, ayudándoles a comprender su desempeño, mejorar su reputación y tomar mejores decisiones dentro de la plataforma. Esto implicó diseñar sistemas de contenido para dashboards, planes de comunicación para cambios de producto y experiencias que integran inteligencia artificial para ofrecer recomendaciones a los usuarios.",
+      "Lo que más disfruto es conectar personas, procesos y objetivos para que proyectos complejos puedan ejecutarse de manera organizada y generar resultados reales.",
     "about.p4":
-      "En otras experiencias, desarrollé estrategias de comunicación digital, marketing de contenidos y copywriting para fintech y agencias. Esa experiencia me permitió entender el contenido desde una perspectiva más amplia: como una herramienta para explicar, posicionar productos y construir relaciones de confianza con las personas.",
-    "about.p5":
-      "Me interesa especialmente trabajar en productos donde el contenido puede reducir la complejidad, mejorar la comprensión y ayudar a las personas a tomar decisiones más informadas.",
+      "Creo en la comunicación como una herramienta estratégica para resolver problemas, alinear equipos y facilitar la adopción de productos.",
+    "about.valuesLabel": "Valores",
+    "about.skillsLabel": "Habilidades",
+    "about.skillsStatement":
+      "Estrategia, sistema y ejecución para construir productos",
+    "about.skillsStatementAccent": "que crecen.",
+    "about.skillsCaption":
+      "De la definición del producto a la ejecución, con coherencia y propósito.",
+    "about.quote": "Las historias son la manera en que le damos sentido al mundo.",
 
     // Footer
     "footer.menu": "Menu",
     "footer.contact": "Contacto",
     "footer.backToTop": "Volver arriba",
 
-    // UX Content Design page — UI Labels
-    "ux.back": "Inicio",
-    "ux.sectionNav.rol": "Rol",
-    "ux.sectionNav.objetivo": "Objetivo",
-    "ux.sectionNav.desafio": "Desafío",
-    "ux.sectionNav.estrategia": "Estrategia",
-    "ux.sectionNav.solucion": "Solución",
-    "ux.sectionNav.resultados": "Resultados",
-    "ux.sectionNav.enfoque": "Enfoque",
-    "ux.sectionNav.impacto": "Impacto",
-    "ux.sectionLabel.rol": "Rol",
-    "ux.sectionLabel.objetivo": "Objetivo General",
-    "ux.sectionLabel.desafio": "Desafío",
-    "ux.sectionLabel.estrategia": "Estrategia",
-    "ux.sectionLabel.solucion": "Solución",
-    "ux.sectionLabel.resultados": "Resultados",
-    "ux.sectionLabel.enfoque": "Enfoque",
-    "ux.sectionLabel.impacto": "Impacto",
-    "ux.challenge": "El reto",
-    "ux.contentDesign": "Content Design",
+    // Work page — UI Labels
+    "work.back": "Inicio",
+    "work.eyebrow": "Proyectos",
+    "work.challenge": "El reto",
+    "work.sectionNav.rol": "Mi rol",
+    "work.sectionNav.desafio": "Desafío",
+    "work.sectionNav.solucion": "Solución",
+    "work.sectionNav.enfoque": "Enfoque",
+    "work.sectionNav.impacto": "Impacto",
+    "work.sectionLabel.rol": "Mi rol",
+    "work.sectionLabel.desafio": "Desafío",
+    "work.sectionLabel.solucion": "Solución",
+    "work.sectionLabel.enfoque": "Enfoque",
+    "work.sectionLabel.impacto": "Impacto",
+
+    // Personal projects page
+    "personal.eyebrow": "Proyectos personales",
+    "personal.title": "Construyendo comunidad a través de historias",
+    "personal.intro":
+      "Fuera del trabajo construyo comunidad alrededor del running y el deporte, creo contenido educativo y escribo sobre disciplina, resiliencia y hábitos.",
+    "personal.responsibilities": "Lo que hago",
+    "personal.visit": "Ver proyecto",
+
+    // Resume page
+    "resume.eyebrow": "CV",
+    "resume.title": "Hoja de vida",
+    "resume.intro":
+      "Más de ocho años liderando proyectos digitales, estrategias de comunicación y experiencias de producto. Descarga el CV completo en PDF.",
+    "resume.download": "Descargar CV (Español)",
+    "resume.downloadAlt": "Descargar CV (Inglés)",
+    "resume.companies": "Empresas",
+
+    // Contact page
+    "contact.eyebrow": "Contacto",
+    "contact.title": "Hablemos",
+    "contact.intro":
+      "¿Tienes un proyecto, una vacante o una idea en mente? Escríbeme por cualquiera de estos canales.",
 
     // AI page — UI Labels
     "ai.back": "Inicio",
-    "ai.heroLabel": "Proyectos con IA",
+    "ai.heroLabel": "IA",
     "ai.challenge": "El reto",
     "ai.sectionNav.rol": "Rol",
     "ai.sectionNav.objetivo": "Objetivo",
@@ -103,91 +131,107 @@ const translations: Record<Locale, Record<string, string>> = {
     "ai.sectionLabel.iteracion": "Iteración y Pruebas",
     "ai.sectionLabel.herramientas": "Herramientas Utilizadas",
     "ai.sectionLabel.herramientasIA": "Herramientas de IA",
-
-    // Other Projects page — UI Labels
-    "other.back": "Inicio",
-    "other.heroLabel": "Otros Proyectos",
-    "other.challenge": "El reto",
-    "other.sectionNav.desafio": "Desafío",
-    "other.sectionNav.enfoque": "Enfoque",
-    "other.sectionNav.impacto": "Impacto",
-    "other.sectionLabel.desafio": "Desafío",
-    "other.sectionLabel.enfoque": "Enfoque",
-    "other.sectionLabel.impacto": "Impacto",
   },
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.contentDesign": "Content Design",
+    "nav.about": "About",
+    "nav.work": "Work",
+    "nav.personal": "Personal Projects",
     "nav.ai": "AI",
-    "nav.other": "Other",
+    "nav.resume": "Resume",
+    "nav.contact": "Contact",
 
     // Hero
     "hero.greeting": "Hi, I'm",
     "hero.scroll": "Scroll to explore",
-    "hero.subtitle":
-      "Content Designer with 7+ years crafting content strategies for digital products. I transform complex systems into clear experiences that help people understand, decide, and act.",
+    "hero.role": "Product Strategy, Communications & Digital Projects",
+    "hero.p1":
+      "I design solutions that transform complex products into clear user experiences and meaningful business outcomes.",
+    "hero.p2":
+      "Over the past several years, I have led digital initiatives for companies including Mercado Libre, Avianca, Bancolombia, Bavaria, EY and IQOS, coordinating cross-functional teams and connecting Product, Design, Engineering, Business and Communications.",
+    "hero.p3":
+      "My experience combines product strategy, project management, digital communication and Artificial Intelligence to deliver solutions that create real impact.",
 
-    // Three Pillars
+    // Pillars (home)
     "pillars.label": "My work",
-    "pillars.ariaLabel": "Work pillars",
-    "pillars.scrollDesktop": "Scroll to explore",
-    "pillars.scrollMobile": "Swipe to explore",
+    "pillars.ariaLabel": "Work areas",
     "pillars.explore": "Explore",
-
-    // Pillar cards
-    "pillar.uxContent.title": "Content\nDesign",
-    "pillar.uxContent.description":
-      "Content strategy, UX Writing, and messaging systems for large-scale digital products.",
-    "pillar.ai.title": "AI\nProjects",
+    "pillar.work.title": "Work",
+    "pillar.work.description":
+      "Product, communication and digital project management for Mercado Libre, Avianca, Mesfix and more.",
+    "pillar.personal.title": "Personal\nProjects",
+    "pillar.personal.description":
+      "Community, content and storytelling around running and endurance sports.",
+    "pillar.ai.title": "AI",
     "pillar.ai.description":
-      "Exploring and designing AI-powered experiences for content, automation, and decision-making.",
-    "pillar.other.title": "Other\nProjects",
-    "pillar.other.description":
-      "Other professional experiences working with content and digital formats.",
+      "Artificial Intelligence applied to product, workflows and decision-making.",
 
-    // About Teaser
+    // About
     "about.label": "A bit about me",
+    "about.eyebrow": "About",
     "about.p1":
-      "I'm a UX Writer and Content Designer with a background in journalism and strategic communications. Throughout my career, I've designed content for digital products, technology platforms, and user-centered communication strategies.",
+      "I'm a communication professional with over eight years of experience leading digital products, communication strategies and cross-functional projects.",
     "about.p2":
-      "My work focuses on transforming complex systems — metrics, dashboards, and business tools — into clear, useful, and actionable experiences for people.",
+      "Throughout my career I've worked across product strategy, UX, project management, AI initiatives and digital transformation.",
     "about.p3":
-      "At Mercado Libre, I participated in designing seller-facing products, helping them understand their performance, improve their reputation, and make better decisions within the platform. This involved designing content systems for dashboards, communication plans for product changes, and AI-powered experiences that deliver recommendations to users.",
+      "I enjoy bringing together people, processes and business goals to turn complex initiatives into organized execution and measurable results.",
     "about.p4":
-      "In other roles, I developed digital communication strategies, content marketing, and copywriting for fintech companies and agencies. That experience allowed me to understand content from a broader perspective: as a tool to explain, position products, and build trust-based relationships with people.",
-    "about.p5":
-      "I'm especially interested in working on products where content can reduce complexity, improve understanding, and help people make more informed decisions.",
+      "I believe communication is much more than words — it's a strategic tool that helps products succeed.",
+    "about.valuesLabel": "Values",
+    "about.skillsLabel": "Skills",
+    "about.skillsStatement": "Strategy, systems and execution to build products",
+    "about.skillsStatementAccent": "that grow.",
+    "about.skillsCaption":
+      "From product definition to delivery, with coherence and purpose.",
+    "about.quote": "Stories are how we make sense of the world.",
 
     // Footer
     "footer.menu": "Menu",
     "footer.contact": "Contact",
     "footer.backToTop": "Back to top",
 
-    // UX Content Design page — UI Labels
-    "ux.back": "Home",
-    "ux.sectionNav.rol": "Role",
-    "ux.sectionNav.objetivo": "Objective",
-    "ux.sectionNav.desafio": "Challenge",
-    "ux.sectionNav.estrategia": "Strategy",
-    "ux.sectionNav.solucion": "Solution",
-    "ux.sectionNav.resultados": "Results",
-    "ux.sectionNav.enfoque": "Approach",
-    "ux.sectionNav.impacto": "Impact",
-    "ux.sectionLabel.rol": "Role",
-    "ux.sectionLabel.objetivo": "General Objective",
-    "ux.sectionLabel.desafio": "Challenge",
-    "ux.sectionLabel.estrategia": "Strategy",
-    "ux.sectionLabel.solucion": "Solution",
-    "ux.sectionLabel.resultados": "Results",
-    "ux.sectionLabel.enfoque": "Approach",
-    "ux.sectionLabel.impacto": "Impact",
-    "ux.challenge": "The challenge",
-    "ux.contentDesign": "Content Design",
+    // Work page — UI Labels
+    "work.back": "Home",
+    "work.eyebrow": "Work",
+    "work.challenge": "The challenge",
+    "work.sectionNav.rol": "My role",
+    "work.sectionNav.desafio": "Challenge",
+    "work.sectionNav.solucion": "Solution",
+    "work.sectionNav.enfoque": "Approach",
+    "work.sectionNav.impacto": "Impact",
+    "work.sectionLabel.rol": "My Role",
+    "work.sectionLabel.desafio": "Challenge",
+    "work.sectionLabel.solucion": "Solution",
+    "work.sectionLabel.enfoque": "Approach",
+    "work.sectionLabel.impacto": "Impact",
+
+    // Personal projects page
+    "personal.eyebrow": "Personal Projects",
+    "personal.title": "Building Communities Through Storytelling",
+    "personal.intro":
+      "Outside of work I build communities around running and sport, create educational content and write about discipline, resilience and habits.",
+    "personal.responsibilities": "What I do",
+    "personal.visit": "Visit project",
+
+    // Resume page
+    "resume.eyebrow": "Resume",
+    "resume.title": "Resume",
+    "resume.intro":
+      "Over eight years leading digital projects, communication strategies and product experiences. Download the full resume as a PDF.",
+    "resume.download": "Download resume (English)",
+    "resume.downloadAlt": "Download resume (Spanish)",
+    "resume.companies": "Companies",
+
+    // Contact page
+    "contact.eyebrow": "Contact",
+    "contact.title": "Let's talk",
+    "contact.intro":
+      "Have a project, a role or an idea in mind? Reach out through any of these channels.",
 
     // AI page — UI Labels
     "ai.back": "Home",
-    "ai.heroLabel": "AI Projects",
+    "ai.heroLabel": "AI",
     "ai.challenge": "The challenge",
     "ai.sectionNav.rol": "Role",
     "ai.sectionNav.objetivo": "Objective",
@@ -207,17 +251,6 @@ const translations: Record<Locale, Record<string, string>> = {
     "ai.sectionLabel.iteracion": "Iteration & Testing",
     "ai.sectionLabel.herramientas": "Tools Used",
     "ai.sectionLabel.herramientasIA": "AI Tools",
-
-    // Other Projects page — UI Labels
-    "other.back": "Home",
-    "other.heroLabel": "Other Projects",
-    "other.challenge": "The challenge",
-    "other.sectionNav.desafio": "Challenge",
-    "other.sectionNav.enfoque": "Approach",
-    "other.sectionNav.impacto": "Impact",
-    "other.sectionLabel.desafio": "Challenge",
-    "other.sectionLabel.enfoque": "Approach",
-    "other.sectionLabel.impacto": "Impact",
   },
 };
 

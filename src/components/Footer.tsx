@@ -1,40 +1,37 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { siteConfig } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.linkedin },
-  { label: "Instagram", href: siteConfig.instagram },
   { label: "Email", href: `mailto:${siteConfig.email}` },
+  { label: "Instagram", href: siteConfig.instagram },
+  { label: "Substack", href: siteConfig.substack },
 ];
 
 export function Footer() {
-  const ref = useRef<HTMLElement>(null);
   const { t } = useI18n();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "start 0.55"],
-  });
 
   const footerLinks = [
     { href: "/", label: t("nav.home") },
-    { href: "/work/ux-content", label: t("nav.contentDesign") },
-    { href: "/work/ai", label: t("nav.ai") },
-    { href: "/work/other", label: t("nav.other") },
+    { href: "/about", label: t("nav.about") },
+    { href: "/work", label: t("nav.work") },
+    { href: "/personal-projects", label: t("nav.personal") },
+    { href: "/ai", label: t("nav.ai") },
+    { href: "/resume", label: t("nav.resume") },
+    { href: "/contact", label: t("nav.contact") },
   ];
-
-  const y = useTransform(scrollYProgress, [0, 1], ["8%", "0%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   return (
     <motion.footer
-      ref={ref}
-      style={{ y, opacity }}
-      className="page-section border-t border-stone/20 origin-bottom"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="page-section border-t border-stone/20 origin-bottom relative z-20"
       aria-label="Footer"
     >
       <div className="container-main">

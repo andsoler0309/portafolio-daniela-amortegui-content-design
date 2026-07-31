@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { AboutPageClient } from "./AboutPageClient";
 
 export const metadata: Metadata = {
-  title: "About — Daniela Amortegui",
+  title: "About — Daniela Amórtegui",
   description:
-    "Content strategist rooted in wellness, sport, and human psychology. Learn about my approach, values, and the experiences that shape my work.",
+    "Comunicadora con más de ocho años liderando proyectos digitales, estrategias de comunicación y experiencias de producto.",
 };
 
 export default function AboutPage() {

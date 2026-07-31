@@ -10,7 +10,18 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  async redirects() {
+    return [
+      { source: "/work/ux-content", destination: "/work", permanent: true },
+      { source: "/work/other", destination: "/work", permanent: true },
+      { source: "/work/ai", destination: "/ai", permanent: true },
+    ];
+  },
   async headers() {
+    // En dev los chunks de Turbopack reusan el mismo nombre de archivo, así que
+    // cachearlos como "immutable" deja al navegador ejecutando código viejo.
+    if (process.env.NODE_ENV !== "production") return [];
+
     return [
       {
         source: "/images/:path*",

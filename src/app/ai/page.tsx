@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { AIPageClient } from "./AIPageClient";
 
 export const metadata: Metadata = {
-  title: "Proyectos con IA — Daniela Amórtegui",
+  title: "AI — Daniela Amórtegui",
   description:
-    "Exploración y aplicación de inteligencia artificial en contenido, automatización y nuevas narrativas.",
+    "Inteligencia Artificial aplicada a producto, flujos de trabajo, documentación y toma de decisiones.",
 };
 
 export default function AIPage() {

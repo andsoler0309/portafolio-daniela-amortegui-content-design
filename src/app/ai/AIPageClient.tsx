@@ -1032,6 +1032,7 @@ function ProjectCard({ project, isActive, onClick }: {
 function ProjectView({ project }: { project: AIProject }) {
   const { SECTIONS_TYPE1, SECTIONS_TYPE2, SECTIONS_TYPE3 } = useAISections();
   const sections = getSectionsForProject(project, SECTIONS_TYPE1, SECTIONS_TYPE2, SECTIONS_TYPE3);
+  const sectionIds = sections.map((s) => s.id).join(",");
   const [activeSection, setActiveSection] = useState(sections[0].id);
 
   const handleIntersect = useCallback((id: string, visible: boolean) => {
@@ -1051,14 +1052,15 @@ function ProjectView({ project }: { project: AIProject }) {
       observers.push(obs);
     });
     return () => observers.forEach((o) => o.disconnect());
-  }, [project.id, handleIntersect, sections]);
+    // `sections` is rebuilt on every render; key the effect off its ids instead
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [project.id, handleIntersect, sectionIds]);
 
   return (
     <motion.div
       key={project.id}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
       <ProjectHero project={project} />
@@ -1259,7 +1261,7 @@ export function AIPageClient() {
                     : "text-fg-muted hover:text-fg-secondary"
                 }`}
               >
-                {project.client}
+                {project.tabLabel}
                 {i === activeProjectIndex && (
                   <motion.span
                     layoutId="aiProjectTab"
@@ -1281,9 +1283,7 @@ export function AIPageClient() {
 
       {/* Main content */}
       <div style={{ paddingTop: "calc(var(--nav-height) + 68px)" }}>
-        <AnimatePresence mode="wait">
-          <ProjectView key={activeProject.id} project={activeProject} />
-        </AnimatePresence>
+        <ProjectView key={activeProject.id} project={activeProject} />
       </div>
     </div>
   );

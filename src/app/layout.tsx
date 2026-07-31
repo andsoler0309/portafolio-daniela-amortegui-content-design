@@ -21,13 +21,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Daniela Amortegui — Content Specialist | Wellness, Sports & Lifestyle",
+  title: "Daniela Amórtegui — Product, Communication & Project Strategist",
   description:
-    "Content strategist for wellness, sports & lifestyle brands. Blending narrative, data, and cultural insight to build movements, not just campaigns.",
+    "Estratega de producto, comunicación y proyectos digitales. Convierto productos complejos en experiencias claras para las personas y en resultados para los negocios.",
   openGraph: {
-    title: "Daniela Amortegui — Content Specialist",
+    title: "Daniela Amórtegui — Product, Communication & Project Strategist",
     description:
-      "Content strategist for wellness, sports & lifestyle brands.",
+      "Estrategia de producto, gestión de proyectos, comunicación digital, UX e Inteligencia Artificial.",
     type: "website",
   },
 };
